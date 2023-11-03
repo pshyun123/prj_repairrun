@@ -8,6 +8,14 @@ import Footer from "./component/Footer";
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
+  :root {
+    --DARKBLUE : #4682A9;
+    --MIDBLUE : #749BC2;
+    --LIGHTBLUE : #91C8E4;
+    --IVORY : #F6F4EB;
+    --GREY : #E0E4E9;
+  }
+
   * {
     box-sizing: border-box;
   }
@@ -25,6 +33,27 @@ const GlobalStyle = createGlobalStyle`
   menu, nav, output, ruby, section, summary,
   time, mark, audio, video{
     font-family: 'Noto Sans KR', sans-serif;
+  }
+  h2 {
+    font-size: 2.4em;
+  }
+  h3 {
+    font-size: 1.6em;
+  }
+  .container {
+    width: 1200px;
+    margin: 0 auto;
+  }
+  @media only screen and (max-width:768px) {
+    body {
+      font-size: 14px;
+    }
+    h2 {
+      font-size: 2em;
+    }
+    .container {
+      width: 90vw;
+    }
   }
 `;
 
