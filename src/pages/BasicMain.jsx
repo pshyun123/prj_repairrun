@@ -1,7 +1,7 @@
 const BasicMain = () => {
   return (
     <>
-      <div>BasicMain!</div>
+      <div style={{ height: "80vh" }}>BasicMain!</div>
     </>
   );
 };

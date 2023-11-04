@@ -1,17 +1,36 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 export const UserContext = createContext(null);
 
 const UserStore = (props) => {
-  const [userId, setUserId] = useState("");
-  const [password, setPassword] = useState("");
+  // const [userId, setUserId] = useState("");
+  // const [password, setPassword] = useState("");
+
+  window.localStorage.setItem("isMember", "true");
+  window.localStorage.setItem("isPartner", "false");
+
+  const [isMember, setMemberStatus] = useState(
+    localStorage.getItem("isMember")
+  );
+  const [isPartner, setPartnerStatus] = useState(
+    localStorage.getItem("isPartner")
+  );
+
+  useEffect(() => {
+    localStorage.setItem("isMember", isMember);
+    localStorage.setItem("isPartner", isPartner);
+  }, [isMember, isPartner]);
 
   return (
     <UserContext.Provider
       value={{
-        userId,
-        setUserId,
-        password,
-        setPassword,
+        isMember,
+        isPartner,
+        setMemberStatus,
+        setPartnerStatus,
+        // userId,
+        // setUserId,
+        // password,
+        // setPassword,
       }}
     >
       {props.children}

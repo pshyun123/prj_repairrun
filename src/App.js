@@ -1,61 +1,27 @@
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { createGlobalStyle } from "styled-components";
-import reset from "styled-reset";
 import UserStore from "./context/UserStore";
+import GlobalStyle from "./style/GlobalStyle";
 import Header from "./pages/Header";
+import BasicMain from "./pages/BasicMain";
+import Login from "./pages/Login";
+import Join from "./pages/Join";
+import NewOrder from "./pages/NewOrder";
+import BasicRepair from "./pages/BasicRepair";
+import FastRepair from "./pages/FastRepair";
+import GeneralStep from "./pages/GeneralStep";
+import PartnerList from "./pages/PartnerList";
+import ReviewStock from "./pages/ReviewStock";
+import MyPage from "./pages/MyPage";
+import UpdateInfo from "./pages/UpdateInfo";
+import OrderInfo from "./pages/OrderInfo";
+import MyReview from "./pages/MyReview";
+import PartnerMain from "./pages/PartnerMain";
+import PartnerReview from "./pages/PartnerReview";
+import ChatRoom from "./pages/ChatRoom";
+import Notice from "./pages/Notice";
+import FAQ from "./pages/FAQ";
 import Footer from "./component/Footer";
-
-const GlobalStyle = createGlobalStyle`
-  ${reset}
-  :root {
-    --DARKBLUE : #4682A9;
-    --MIDBLUE : #749BC2;
-    --LIGHTBLUE : #91C8E4;
-    --IVORY : #F6F4EB;
-    --GREY : #E0E4E9;
-  }
-
-  * {
-    box-sizing: border-box;
-  }
-  html, body, div, span, applet, object, iframe,
-  h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-  a, abbr, acronym, address, big, cite, code,
-  del, dfn, em, img, ins, kbd, q, s, samp,
-  small, strike, strong, sub, sup, tt, var,
-  b, u, i, center,
-  dl, dt, dd, ol, ul, li,
-  fieldset, form, label, legend,
-  table, caption, tbody, tfoot, thead, tr, th, td,
-  article, aside, canvas, details, embed,
-  figure, figcaption, footer, header, hgroup,
-  menu, nav, output, ruby, section, summary,
-  time, mark, audio, video{
-    font-family: 'Noto Sans KR', sans-serif;
-  }
-  h2 {
-    font-size: 2.4em;
-  }
-  h3 {
-    font-size: 1.6em;
-  }
-  .container {
-    width: 1200px;
-    margin: 0 auto;
-  }
-  @media only screen and (max-width:768px) {
-    body {
-      font-size: 14px;
-    }
-    h2 {
-      font-size: 2em;
-    }
-    .container {
-      width: 90vw;
-    }
-  }
-`;
 
 function App() {
   return (
@@ -64,7 +30,43 @@ function App() {
       <UserStore>
         <Router>
           <Routes>
-            <Route path="/" element={<Header />}></Route>
+            <Route element={<Header />}>
+              <Route path="/" element={<BasicMain />}></Route>
+              {/*************** 로그인 / 회원가입 *****************/}
+              <Route path="/Login" element={<Login />} />
+              <Route path="/Join" element={<Join />} />
+              {/************ 일반 회원 ******************/}
+              {/* 서비스 신청 */}
+              <Route path="/NewOrder" element={<NewOrder />} />
+              <Route path="/NewOrder/BasicRepair" element={<BasicRepair />} />
+              <Route path="/NewOrder/FastRepair" element={<FastRepair />} />
+              <Route path="/NewOrder/GeneralStep" element={<GeneralStep />} />
+              {/* RR파트너스 (비회원 조회 가능) */}
+              <Route path="/PartnerList" element={<PartnerList />} />
+              <Route path="/PartnerList/Partner" element={<PartnerMain />} />
+              <Route path="/ReviewStock" element={<ReviewStock />} />
+              {/* 마이페이지 */}
+              <Route path="/MyPage" element={<MyPage />} />
+              <Route path="/MyPage/UpdateInfo" element={<UpdateInfo />} />
+              <Route path="/MyPage/OrderInfo" element={<OrderInfo />} />
+              <Route path="/MyPage/MyReview" element={<MyReview />} />
+              {/************** 파트너회원 *****************/}
+              <Route path="/PartnerMain" element={<PartnerMain />} />
+              {/* 정보수정(파트너) */}
+              <Route path="/PartnerMain/UpdateInfo" element={<UpdateInfo />} />
+              {/* 후기관리 */}
+              <Route
+                path="/PartnerMain/PartnerReview"
+                element={<PartnerReview />}
+              />
+              {/***********채팅방***************/}
+              <Route path="/ChatRoom/:orderNum" element={<ChatRoom />} />
+              {/***************** 고객센터 ********************/}
+              {["/Service", "/Service/Notice"].map((path, index) => (
+                <Route key={index} path={path} element={<Notice />} />
+              ))}
+              <Route path="/Service/FAQ" element={<FAQ />} />
+            </Route>
           </Routes>
         </Router>
         <Footer />
