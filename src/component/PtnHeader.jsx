@@ -25,7 +25,7 @@ const PtnHeader = () => {
   };
 
   return (
-    <nav>
+    <nav className="active">
       <ul className="menu">
         <li>
           <div className="m-title" onClick={() => onClickMenu(1)}>

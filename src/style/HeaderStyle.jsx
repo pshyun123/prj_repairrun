@@ -7,6 +7,7 @@ const HeaderComp = styled.header`
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 999;
   border: 1px solid #ccc;
   .container {
     display: flex;
@@ -106,6 +107,55 @@ const HeaderComp = styled.header`
           cursor: pointer;
           color: var(--LIGHTBLUE);
         }
+      }
+    }
+    @media only screen and (max-width: 768px) {
+      justify-content: space-between;
+      height: 80px;
+      .m-menu {
+        display: block;
+        flex-grow: 0;
+        font-size: 40px;
+      }
+
+      nav {
+        width: 100vw;
+        height: calc(100vh - 80px);
+        padding-bottom: 40px;
+        position: absolute;
+        top: 80px;
+        left: -100%;
+        background-color: var(--IVORY);
+        overflow-y: scroll;
+        transition: 0.5s;
+
+        &.active {
+          left: 0;
+        }
+        .menu {
+          height: auto;
+          display: block;
+          > li {
+            padding: 0 20px;
+            position: static;
+            .m-title {
+              padding: 20px 0;
+              background-color: var(--IVORY);
+            }
+            .sub-menu {
+              height: auto;
+              position: static;
+              border-radius: 0;
+            }
+          }
+        }
+      }
+      .logo {
+        display: flex;
+        justify-content: center;
+      }
+      .log-icon {
+        flex-grow: 0;
       }
     }
   }
