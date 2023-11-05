@@ -1,31 +1,36 @@
 import { useNavigate } from "react-router-dom";
 
-const PtnHeader = () => {
+const PtnHeader = ({ active, togle }) => {
   const navigate = useNavigate();
 
   const onClickMenu = (num) => {
     switch (num) {
       case 1:
         navigate("/partnermain");
+        togle();
         break;
       case 2:
         navigate("/partnermain/updateinfo");
+        togle();
         break;
       case 3:
         navigate("/partnermain/partnerreview");
+        togle();
         break;
       case 4:
         navigate("/service/notice");
+        togle();
         break;
       case 5:
         navigate("/service/faq");
+        togle();
         break;
       default:
     }
   };
 
   return (
-    <nav className="active">
+    <nav className={active}>
       <ul className="menu">
         <li>
           <div className="m-title" onClick={() => onClickMenu(1)}>

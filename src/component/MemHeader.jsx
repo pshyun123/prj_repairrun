@@ -1,46 +1,58 @@
 import { useNavigate } from "react-router-dom";
 
-const MemHeader = () => {
+const MemHeader = ({ active, togle }) => {
   const navigate = useNavigate();
+
+  console.log("active :" + active);
 
   const onClickMenu = (num) => {
     switch (num) {
       case 1:
         navigate("/neworder");
+        togle();
         break;
       case 2:
         navigate("/neworder/fastrepair");
+        togle();
         break;
       case 3:
         navigate("/neworder/basicrepair");
+        togle();
         break;
       case 4:
         navigate("/partnerlist");
+        togle();
         break;
       case 5:
         navigate("/reviewstock");
+        togle();
         break;
       case 6:
         navigate("/mypage");
+        togle();
         break;
       case 7:
         navigate("/mypage/updateinfo");
+        togle();
         break;
       case 8:
         navigate("/mypage/myreview");
+        togle();
         break;
       case 9:
         navigate("/service/notice");
+        togle();
         break;
       case 10:
         navigate("/service/faq");
+        togle();
         break;
       default:
     }
   };
 
   return (
-    <nav className="active">
+    <nav className={active}>
       <ul className="menu">
         <li>
           <div className="m-title" onClick={() => onClickMenu(1)}>

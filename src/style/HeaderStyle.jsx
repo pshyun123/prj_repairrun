@@ -17,6 +17,7 @@ const HeaderComp = styled.header`
     //모바일 메뉴
     .m-menu {
       display: none;
+      cursor: pointer;
     }
     //로고
     .logo {
@@ -124,13 +125,13 @@ const HeaderComp = styled.header`
         padding-bottom: 40px;
         position: absolute;
         top: 80px;
-        left: -100%;
+        left: -101%;
         background-color: var(--IVORY);
         overflow-y: scroll;
         transition: 0.5s;
 
         &.active {
-          left: 0;
+          left: -1px;
         }
         .menu {
           height: auto;
