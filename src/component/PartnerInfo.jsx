@@ -16,7 +16,7 @@ const PartnerInfo = () => {
       <PartnerInfoComp>
         <div className="container">
           <div className="infoHeader">
-            <div className="ptnName">{tempData.ptnName}</div>
+            <h2>{tempData.ptnName}</h2>
             <div className="logo">
               <img src={tempData.logoImgUrl} alt="로고" />
             </div>
@@ -36,10 +36,12 @@ const PartnerInfo = () => {
             </div>
             <div className="info-box">
               <p className="title">소개글</p>
-              <p>{tempData.ptnDesc}</p>
+              <p className="desc">{tempData.ptnDesc}</p>
             </div>
           </div>
-          <button>수정하기</button>
+          <div className="btnBox">
+            <button>수정하기</button>
+          </div>
         </div>
       </PartnerInfoComp>
     </>
