@@ -125,10 +125,10 @@ const HeaderComp = styled.header`
         padding-bottom: 40px;
         position: absolute;
         top: 80px;
-        left: -101%;
+        left: -150%;
         background-color: var(--IVORY);
         overflow-y: scroll;
-        transition: 0.5s;
+        transition: 0.5s ease-in;
 
         &.active {
           left: -1px;
