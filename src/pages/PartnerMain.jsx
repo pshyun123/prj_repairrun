@@ -1,7 +1,10 @@
+import PartnerInfo from "../component/PartnerInfo";
+
 const PartnerMain = () => {
   return (
     <>
       <div>PartnerMain</div>
+      <PartnerInfo />
     </>
   );
 };
