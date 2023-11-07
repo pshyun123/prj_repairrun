@@ -35,12 +35,13 @@ const Joinstyle = styled.section`
     .wrapper {
       width: 72%;
       margin: 0 auto;
+      margin-bottom: 10px;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       .inputArea {
-        margin-bottom: 20px;
+        margin-bottom: 30px;
         width: 100%;
         display: flex;
         justify-content: center;
@@ -83,6 +84,23 @@ const Joinstyle = styled.section`
       }
     }
     .btnBox {
+      display: flex;
+      justify-content: center;
+      button {
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        background-color: var(--GREY);
+        &.active {
+          background-color: var(--LIGHTBLUE);
+          cursor: pointer;
+          transition: 0.3s ease-in;
+          &:hover {
+            background-color: var(--DARKBLUE);
+            color: white;
+          }
+        }
+      }
     }
   }
 `;

@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { UserContext } from "../context/UserStore";
 
 import HeaderComp from "../style/HeaderStyle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,14 +13,11 @@ import PtnHeader from "../component/PtnHeader";
 
 const Header = () => {
   const navigate = useNavigate();
+  const context = useContext(UserContext);
+  const { loginStatus } = context;
 
-  const [member, setMember] = useState(true);
   const [active, setOpen] = useState("");
   const [icon, setIcon] = useState(active === "" ? faBars : faXmark);
-
-  const test = () => {
-    member ? setMember(false) : setMember(true);
-  };
 
   const mMenuClick = () => {
     active === "active" ? setOpen("") : setOpen("active");
@@ -38,13 +36,13 @@ const Header = () => {
           <div className="logo">
             <img src={Logo} alt="로고" />
           </div>
-          {member ? (
+          {loginStatus === "" || loginStatus === "member" ? (
             <MemHeader active={active} togle={mMenuClick} />
           ) : (
             <PtnHeader active={active} togle={mMenuClick} />
           )}
           <div className="log-icon">
-            <FontAwesomeIcon icon={faUser} onClick={test} />
+            <FontAwesomeIcon icon={faUser} onClick={() => navigate("/login")} />
           </div>
         </div>
       </HeaderComp>

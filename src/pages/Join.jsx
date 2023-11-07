@@ -17,7 +17,7 @@ const Join = () => {
   return (
     <Joinstyle>
       <div className="container">
-        <h2>소비자 회원가입</h2>
+        <h2>개인 회원가입</h2>
         <div className="profile">
           <div className="imgBox">
             <img src={imgSrc} alt="프로필이미지" />

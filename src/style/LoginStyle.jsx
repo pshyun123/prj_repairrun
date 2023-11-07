@@ -21,6 +21,7 @@ const LoginStyle = styled.div`
         align-items: center;
         margin-bottom: 50px;
         button {
+          font-weight: 600;
           align-self: flex-end;
           border: none;
           background: none;
@@ -65,11 +66,8 @@ const LoginStyle = styled.div`
       }
     }
     .loginButton {
-      padding-top: 10px;
-      padding-left: 40px;
-      padding-right: 40px;
-      padding-bottom: 10px;
-      border: 1px solid #333;
+      padding: 10px 30px;
+      border: none;
       border-radius: 10px;
       font-size: 1.2em;
       background-color: var(--LIGHTBLUE);
@@ -78,6 +76,7 @@ const LoginStyle = styled.div`
       &:hover {
         cursor: pointer;
         background-color: var(--DARKBLUE);
+        color: white;
       }
     }
   }
@@ -86,22 +85,16 @@ const LoginStyle = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-  }
-  .forgotID,
-  .forgotPw {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  .findId button,
-  .findPw button {
-    border: none;
-    background: none;
-    font-size: 1em;
-    font-weight: 700;
-    &:hover {
+
+    button {
+      border: none;
+      background: none;
+      font-size: 1em;
+      font-weight: 700;
       cursor: pointer;
+      &:hover {
+        text-decoration: underline;
+      }
     }
   }
   .findId button {
@@ -136,8 +129,9 @@ const LoginStyle = styled.div`
     background: none;
     font-size: 1em;
     font-weight: 700;
+    cursor: pointer;
     &:hover {
-      cursor: pointer;
+      text-decoration: underline;
     }
   }
   @media only screen and (max-width: 768px) {

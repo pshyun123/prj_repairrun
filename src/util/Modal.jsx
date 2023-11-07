@@ -2,7 +2,7 @@ import { styled } from "styled-components";
 
 const ModalStyle = styled.div`
   .modal {
-    display: block;
+    display: none;
     position: fixed;
     top: 0;
     right: 0;
