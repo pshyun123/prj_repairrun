@@ -1,10 +1,9 @@
 import { styled } from "styled-components";
 
 const LoginStyle = styled.div`
-  width: 100vw;
-
+  width: 100%;
   .container {
-    padding: 80px 0;
+    padding: 80px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -52,11 +51,16 @@ const LoginStyle = styled.div`
 
       .idInput label,
       .pwInput label {
-        width: 80px;
+        width: 70px;
+        font-size: 1.1em;
       }
 
       .idInput input,
       .pwInput input {
+        padding: 5px;
+        margin-left: 10px;
+        border-radius: 5px;
+        border: 1px solid #333;
         flex: 1;
       }
     }
@@ -65,12 +69,15 @@ const LoginStyle = styled.div`
       padding-left: 40px;
       padding-right: 40px;
       padding-bottom: 10px;
-      border: none;
-      font-size: 1.5em;
+      border: 1px solid #333;
+      border-radius: 10px;
+      font-size: 1.2em;
       background-color: var(--LIGHTBLUE);
       margin-bottom: 50px;
+
       &:hover {
         cursor: pointer;
+        background-color: var(--DARKBLUE);
       }
     }
   }
@@ -116,19 +123,30 @@ const LoginStyle = styled.div`
   .noPartner {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
+  }
+  .noMember {
     margin-bottom: 10px;
   }
 
   .noMember button,
   .noPartner button {
-    margin-left: 70px;
+    margin-left: 50px;
     border: none;
     background: none;
     font-size: 1em;
     font-weight: 700;
     &:hover {
       cursor: pointer;
+    }
+  }
+  @media only screen and (max-width: 768px) {
+    justify-content: space-between;
+    .loginType {
+      width: 400px;
+    }
+    .noJoin {
+      width: 400px;
     }
   }
 `;

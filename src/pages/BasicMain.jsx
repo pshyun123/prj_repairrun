@@ -1,8 +1,6 @@
+import BasicMainStyle from "../style/BasicMainStyle";
+
 const BasicMain = () => {
-  return (
-    <>
-      <div style={{ height: "80vh" }}>BasicMain!</div>
-    </>
-  );
+  return <></>;
 };
 export default BasicMain;
