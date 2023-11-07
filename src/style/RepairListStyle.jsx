@@ -8,7 +8,7 @@ const RepairListComp = styled.section`
       margin-bottom: 50px;
     }
     .repairWrapper {
-      width: 70%;
+      width: 80%;
       margin: 0 auto;
       display: flex;
       justify-content: space-between;
@@ -30,10 +30,11 @@ const RepairListComp = styled.section`
           thead {
             width: 100%;
             font-weight: bold;
+            letter-spacing: -1.6px;
             tr {
               th {
                 padding-bottom: 16px;
-                font-size: 1.2em;
+                font-size: 1.1em;
               }
             }
           }
@@ -45,29 +46,33 @@ const RepairListComp = styled.section`
                 text-align: center;
                 font-weight: bold;
                 font-size: 1.2em;
+                letter-spacing: -1.2px;
                 &.name {
                   width: 40%;
                 }
                 &.days {
                   width: 26%;
                   input {
-                    width: 50%;
-                    text-align: right;
+                    width: 24%;
                   }
                 }
                 &.price {
                   input {
                     width: 100%;
-                    text-align: center;
-                    padding-left: 12px;
                   }
                 }
                 input {
+                  text-align: center;
                   background-color: var(--LIGHTBLUE);
                   border: none;
                   color: #333;
                   font-weight: bold;
                   font-size: 1em;
+                  &::-webkit-outer-spin-button,
+                  &::-webkit-inner-spin-button {
+                    -webkit-appearance: none;
+                    margin: 0;
+                  }
                 }
               }
             }
@@ -88,6 +93,19 @@ const RepairListComp = styled.section`
             &:hover {
               background-color: var(--DARKBLUE);
             }
+          }
+        }
+      }
+      @media only screen and (max-width: 768px) {
+        width: 100%;
+        .repairBox {
+          padding: 20px 5px;
+          thead {
+            font-size: 0.8em;
+          }
+          tbody {
+            font-size: 0.9em;
+            letter-spacing: -0.9px;
           }
         }
       }

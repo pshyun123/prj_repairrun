@@ -18,7 +18,7 @@ const Repair = ({ data }) => {
                 <tr key="name">
                   <td className="name">{det.name}</td>
                   <td className="days">
-                    <input type="number" value={det.days} disabled />일
+                    <input type="number" value={det.days} />일
                   </td>
                   <td className="price">
                     <input type="number" value={det.price} disabled />
