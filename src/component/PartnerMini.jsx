@@ -1,17 +1,18 @@
 import styled from "styled-components";
 
 const PartnerMiniBlock = styled.div`
+  width: 45%;
+  margin-bottom: 30px;
+  cursor: pointer;
   .wrapper {
     display: flex;
     justify-content: space-between;
-    width: 50%;
-    border: 1px solid #ccc;
+    width: 100%;
     border-radius: 10px;
     overflow: hidden;
     .wrap {
       width: 48%;
       height: auto;
-      outline: 1px solid red;
       .logoImg {
         width: 100%;
         height: 100%;
@@ -20,30 +21,42 @@ const PartnerMiniBlock = styled.div`
       &:last-child {
         display: flex;
         flex-direction: column;
-        outline: 1px solid red;
         .item {
+          border-radius: 10px;
+          background-color: var(--GREY);
+          transition: 0.3s ease-in;
           &.name {
             margin-bottom: 10px;
-            flex-grow: 3;
+            flex-grow: 4;
             display: flex;
             flex-direction: column;
             justify-content: center;
             text-align: center;
             h3 {
               font-weight: 600;
-              margin-bottom: 20px;
+              margin-bottom: 30px;
+              font-size: 25px;
             }
             p {
             }
           }
           &.rating {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             flex-grow: 2;
             text-align: center;
-            font-size: 2em;
+            font-size: 25px;
           }
         }
       }
     }
+  }
+  .wrapper:hover .wrap .item {
+    background-color: var(--MIDBLUE);
+  }
+  @media screen and (max-width: 768px) {
+    width: 100%;
   }
 `;
 
@@ -73,5 +86,3 @@ const PartnerMini = () => {
   );
 };
 export default PartnerMini;
-
-// 플렉스로 나누기로함!
