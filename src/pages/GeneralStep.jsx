@@ -1,4 +1,5 @@
-import { ImgUpload, OrderCheck } from "../component/ImgUpload";
+import ImgUpload from "../component/ImgUpload";
+import OrderCheck from "../component/OrderCheck";
 
 const GeneralStep = () => {
   return (
