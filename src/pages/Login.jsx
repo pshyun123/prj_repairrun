@@ -10,8 +10,8 @@ const Login = () => {
   const context = useContext(UserContext);
   const { setLoginStatus } = context;
   const navigate = useNavigate();
+  const isLogin = window.localStorage.getItem("loginStatus");
 
-  // 일반 회원/ 파트너 회원 로그인 구분
   const [loginType, setLoginType] = useState("member");
   const [memberActive, setMemberActive] = useState("active");
   const [partnerActive, setPartnerActive] = useState("");
@@ -27,6 +27,8 @@ const Login = () => {
   };
 
   useEffect(() => {
+    console.log(isLogin);
+    if (isLogin !== "") navigate(-1);
     console.log(loginType);
     console.log("id:" + inputId);
     console.log("pw:" + inputPw);

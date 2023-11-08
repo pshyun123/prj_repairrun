@@ -11,5 +11,18 @@ const MemberApi = {
     };
     return await axios.post(BACKEND + "/members/login", login);
   },
+
+  // 이미 사용중인 아이디 체크
+  isExistingId: async (id) => {
+    return await axios.get(BACKEND + `members/check/?id=${id}`);
+  },
+  // 이미 사용중인 전화번호 체크
+  isExistingPhone: async (phone) => {
+    return await axios.get(BACKEND + `members/check/?phone=${phone}`);
+  },
+  // 이미 사용중인 이메일 체크
+  isExistingEmail: async (email) => {
+    return await axios.get(BACKEND + `members/check/?email=${email}`);
+  },
 };
 export default MemberApi;

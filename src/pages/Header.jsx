@@ -1,11 +1,16 @@
 import { Outlet } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { UserContext } from "../context/UserStore";
 
 import HeaderComp from "../style/HeaderStyle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faXmark, faUser } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBars,
+  faXmark,
+  faUser,
+  faRightFromBracket,
+} from "@fortawesome/free-solid-svg-icons";
 import Logo from "../images/RepairRun_logo.png";
 
 import MemHeader from "../component/MemHeader";
@@ -14,14 +19,30 @@ import PtnHeader from "../component/PtnHeader";
 const Header = () => {
   const navigate = useNavigate();
   const context = useContext(UserContext);
-  const { loginStatus } = context;
+  const { loginStatus, setLoginStatus } = context;
 
   const [active, setOpen] = useState("");
   const [icon, setIcon] = useState(active === "" ? faBars : faXmark);
 
+  useEffect(() => {
+    console.log(loginStatus);
+  }, [loginStatus]);
+
   const mMenuClick = () => {
     active === "active" ? setOpen("") : setOpen("active");
     setIcon(icon === faBars ? faXmark : faBars);
+  };
+
+  const onLogOutClick = () => {
+    setLoginStatus("");
+    window.localStorage.setItem("userId", "");
+    window.localStorage.setItem("userPw", "");
+    console.log(
+      "유저로그아웃 확인 아이디" + window.localStorage.getItem("userId")
+    );
+    console.log(
+      "유저로그아웃 확인 상태" + window.localStorage.getItem("loginStatus")
+    );
   };
 
   return (
@@ -42,7 +63,19 @@ const Header = () => {
             <PtnHeader active={active} togle={mMenuClick} />
           )}
           <div className="log-icon">
-            <FontAwesomeIcon icon={faUser} onClick={() => navigate("/login")} />
+            {loginStatus === "" ? (
+              <FontAwesomeIcon
+                icon={faUser}
+                onClick={() => {
+                  navigate("/login");
+                }}
+              />
+            ) : (
+              <FontAwesomeIcon
+                icon={faRightFromBracket}
+                onClick={onLogOutClick}
+              />
+            )}
           </div>
         </div>
       </HeaderComp>

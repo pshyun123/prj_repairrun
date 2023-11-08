@@ -7,7 +7,7 @@ const UserStore = (props) => {
   );
 
   useEffect(() => {
-    localStorage.setItem("loginStaus", loginStatus);
+    localStorage.setItem("loginStatus", loginStatus);
   }, [loginStatus]);
 
   return (

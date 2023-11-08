@@ -15,13 +15,13 @@ const Repair = ({ data }) => {
           <tbody>
             {detail &&
               detail.map((det) => (
-                <tr key="name">
+                <tr key={det.name}>
                   <td className="name">{det.name}</td>
                   <td className="days">
-                    <input type="number" value={det.days} />일
+                    <input type="number" defaultValue={det.days} />일
                   </td>
                   <td className="price">
-                    <input type="number" value={det.price} disabled />
+                    <input type="number" defaultValue={det.price} disabled />
                   </td>
                 </tr>
               ))}
