@@ -8,10 +8,10 @@ const NewOrder = () => {
   const onClickBtn = (e) => {
     switch (e) {
       case 1:
-        navigate("/FastRepair");
+        navigate("/neworder/FastRepair");
         break;
       case 2:
-        navigate("/BasicRepair");
+        navigate("/neworder/BasicRepair");
         break;
       default:
     }
@@ -21,8 +21,8 @@ const NewOrder = () => {
     <>
       <NewOrderComp>
         <div className="container">
-          <TransBtn onClickBtn={() => onClickBtn(1)}>빠른 매칭</TransBtn>
-          <TransBtn onClickBtn={() => onClickBtn(2)}>일반 매칭</TransBtn>
+          <TransBtn onClick={() => onClickBtn(1)}>빠른 매칭</TransBtn>
+          <TransBtn onClick={() => onClickBtn(2)}>일반 매칭</TransBtn>
         </div>
       </NewOrderComp>
     </>
