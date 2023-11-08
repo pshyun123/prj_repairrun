@@ -1,7 +1,11 @@
+import styled, { Styled } from "styled-components";
+
 const ReviewStock = () => {
   return (
     <>
-      <div>ReviewStock!</div>
+      <div>
+        <button className="btn">검색</button>
+      </div>
     </>
   );
 };
