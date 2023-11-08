@@ -97,7 +97,7 @@ const UserInfo = () => {
               <p>{userInfoEx.userId}</p>
             </div>{" "}
             <div className="userBox">
-              <p className="title">이메일</p>
+              <p className="title">EMAIL</p>
               <p>{userInfoEx.email}</p>
             </div>{" "}
             <div className="userBox">
@@ -105,7 +105,7 @@ const UserInfo = () => {
               <p>{userInfoEx.phoneNumber}</p>
             </div>{" "}
             <div className="userBox">
-              <p className="title">소 재 지</p>
+              <p className="title">소재지</p>
               <p>{userInfoEx.addr}</p>
             </div>
           </div>

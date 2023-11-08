@@ -1,54 +1,72 @@
 import { styled } from "styled-components";
 
 const CouponComp = styled.div`
-    width: 100%;
-  /* background-color: var(--MIDBLUE); */
+  width: 100%;
 
   .container {
-    position: relative;
     display: flex;
-    justify-content: space-between;
-    height: auto;
-    flex-wrap: wrap;
-    padding: 10px 0;
-
+    flex-direction: column;
+    /* background-color: red; */
+    padding: 50px 0;
     .myCoupon {
-      /* background-color: red; */
-      width: 100%;
-      height: 80px;
-      padding-top: 20px;
-      border-bottom: 1px solid;
+      border-bottom: 1px solid black;
+      h2 {
+        margin-bottom: 20px;
+      }
     }
     .couponGift {
-      width: 100%;
-      /* background-color: red; */
-      padding-top: 30px;
-      display: flex;
-      justify-content: space-evenly;
-
+      margin-top: 30px;
+      background-color: white;
       .couponBox {
-        background-color: LIGHTBLUE;
-      }
-
-      .welcomeCoupon {
-        background-color: white;
+        display: flex;
+        width: 100%;
         text-align: center;
-      }
-
-      .deliveryCoupon {
-        background-color: LIGHTBLUE;
-
-        text-align: center;
+        justify-content: space-evenly;
+        .Couponex {
+          border: 1px solid #ccc;
+          border-radius: 10px;
+          padding: 10px 20px;
+          background-color: var(--LIGHTBLUE);
+          margin-bottom: 15px;
+          .couponBorder {
+            width: 250px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 10px 0;
+            h3 {
+              margin-bottom: 10px;
+            }
+            p {
+              font-size: 1.1em;
+              font-weight: 600;
+              margin-bottom: 10px;
+            }
+            .couponRightExp {
+              font-size: 1.1em;
+              margin-bottom: 0;
+              right: 0;
+            }
+          }
+        }
       }
     }
-    .noCoupon {
-      position: relative;
-      bottom: 50px;
-      width: 100%;
-      text-align: center;
-      h3 {
-        color: rgba(0, 0, 0, 0.5);
-      }
+  }
+
+  .welcomeCoupon {
+    margin-top: 10px;
+  }
+  .deliveryCoupon {
+    background-color: LIGHTBLUE;
+    text-align: center;
+  }
+
+  .noCoupon {
+    position: relative;
+    bottom: 50px;
+    width: 100%;
+    text-align: center;
+    h3 {
+      color: rgba(0, 0, 0, 0.5);
     }
   }
 `;
