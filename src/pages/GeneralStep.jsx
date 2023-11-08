@@ -1,7 +1,10 @@
+import { ImgUpload, OrderCheck } from "../component/ImgUpload";
+
 const GeneralStep = () => {
   return (
     <>
-      <div>GeneralStep</div>
+      <ImgUpload />
+      <OrderCheck />
     </>
   );
 };
