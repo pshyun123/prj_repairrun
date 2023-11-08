@@ -1,29 +1,23 @@
-import styled from "styled-components";
+import Review from "./Review";
+import { ReviewListStyle } from "../style/ReviewStyle";
 
-const ReviewListContainer = styled.div`
-  width: 100%;
-  background-color: var(--GREY);
-
-  .container {
-    padding-top: 30px;
-    padding-bottom: 80px;
-    p,
-    div {
-      color: white;
-    }
-  }
-`;
-
-const ReviewList = () => {
+const ReviewListComp = () => {
   return (
     <>
-      <ReviewListContainer>
+      <ReviewListStyle>
         <div className="container">
-          <p>주문현황 영역입니다.</p>
+          <Review />
+          <Review />
+          <Review />
+          <Review />
+          <Review />
+          <Review />
+          <Review />
+          <Review />
+          <Review />
         </div>
-      </ReviewListContainer>
+      </ReviewListStyle>
     </>
   );
 };
-
-export default ReviewList;
+export default ReviewListComp;
