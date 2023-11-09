@@ -8,9 +8,11 @@ import { UserContext } from "../context/UserStore";
 
 const Login = () => {
   const context = useContext(UserContext);
-  const { setLoginStatus } = context;
+  const { setLoginStatus, loginStatus } = context;
   const navigate = useNavigate();
   const isLogin = window.localStorage.getItem("loginStatus");
+
+  console.log(loginStatus);
 
   const [loginType, setLoginType] = useState("member");
   const [memberActive, setMemberActive] = useState("active");
@@ -25,6 +27,7 @@ const Login = () => {
   const closeModal = () => {
     setModalOpen(false);
   };
+  const [modalMsg, setModalMsg] = useState("");
 
   useEffect(() => {
     console.log(isLogin);
@@ -32,7 +35,7 @@ const Login = () => {
     console.log(loginType);
     console.log("id:" + inputId);
     console.log("pw:" + inputPw);
-  }, [loginType, inputId, inputPw]);
+  }, [loginType, inputId, inputPw, loginStatus, modalMsg]);
 
   const onTypeClick = (type) => {
     switch (type) {
@@ -66,20 +69,27 @@ const Login = () => {
   };
 
   const onClickLogin = async () => {
-    const res =
-      loginType === "member"
-        ? await MemberApi.memberLogin(inputId, inputPw)
-        : await PartnerApi.partnerLogin(inputId, inputPw);
-    console.log("res" + res);
-    if (res.data === true) {
-      window.localStorage.setItem("userId", inputId);
-      window.localStorage.setItem("userPw", inputPw);
-      loginType === "member"
-        ? setLoginStatus("member")
-        : setLoginStatus("partner");
-      loginType === "partner" ? navigate("/partnermain") : navigate(-1);
-    } else {
+    try {
+      const res =
+        loginType === "member"
+          ? await MemberApi.memberLogin(inputId, inputPw)
+          : await PartnerApi.partnerLogin(inputId, inputPw);
+      console.log("res" + res);
+      if (res.data === true) {
+        window.localStorage.setItem("userId", inputId);
+        window.localStorage.setItem("userPw", inputPw);
+        loginType === "member"
+          ? setLoginStatus("member")
+          : setLoginStatus("partner");
+        loginType === "partner" ? navigate("/partnermain") : navigate(-1);
+      } else {
+        setModalMsg("잘못된 아이디 또는 비밀번호 입니다.");
+        setModalOpen(true);
+      }
+    } catch (err) {
+      console.log("err");
       setModalOpen(true);
+      setModalMsg("서버와의 연결이 끊어졌습니다!");
     }
   };
 
@@ -149,8 +159,13 @@ const Login = () => {
           </div>
         </div>
       </LoginStyle>
-      <Modal open={openModal} close={closeModal} header="로그인 실패">
-        잘못된 아이디 또는 비밀번호 입니다.
+      <Modal
+        open={openModal}
+        close={closeModal}
+        header="로그인 실패"
+        children={modalMsg}
+      >
+        {/* 잘못된 아이디 또는 비밀번호 입니다. */}
       </Modal>
     </>
   );
