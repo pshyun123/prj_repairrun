@@ -1,57 +1,64 @@
 import styled from "styled-components";
+import bannerpc from "../images/mainpage_banner_pc.jpg";
+import bannermo from "../images/mainpage_banner_mo.jpg";
+import before from "../images/main_before_pc.png";
+import after from "../images/main_after_pc.png";
+import meeting from "../images/meeting.jpg";
+import delivery from "../images/delivery.jpg";
+import connection from "../images/connection.jpg";
 
-export const BannerStyle = styled.div`
+export const BannerStyle = styled.section`
   width: 100%;
+  text-align: center;
+  background-image: url(${bannerpc});
+  background-size: cover;
+  background-position: center;
+  outline: 1px solid #999;
+  margin-bottom: 30px;
   .mainBanner {
-    text-align: center;
-    padding-top: 120px;
-    padding-bottom: 70px;
-    background-image: url("https://img.freepik.com/premium-vector/autumn-atmosphere-horizontal-long-banner-type-autumn-sale-concept-web-banner-vector-illustration-for-invite-cover-promo_713752-370.jpg?w=996");
-    background-size: cover;
-    outline: 1px solid #999;
-    margin-bottom: 30px;
-    .bannerText {
-      margin-bottom: 80px;
-    }
-    .matching {
-      display: flex;
-      justify-content: center;
-      flex-direction: row;
-
-      .fastButton,
-      .generalButton {
-        border: 1px solid grey;
-        border-radius: 10px;
-        padding-top: 30px;
-        padding-bottom: 30px;
-        padding-left: 50px;
-        padding-right: 50px;
-        background-color: var(--LIGHTBLUE);
-        font-size: 1.2em;
-        font-weight: 700;
-        &:hover {
-          background-color: var(--DARKBLUE);
-          cursor: pointer;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 80px 0;
+    .container {
+      .bannerText {
+        margin-bottom: 80px;
+        h2 {
+          color: white;
         }
       }
-      .fastButton {
-        margin-right: 150px;
+      .matching {
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+
+        .fastButton,
+        .generalButton {
+          border: 1px solid grey;
+          border-radius: 10px;
+          padding: 15px 20px;
+          background-color: rgba(0, 0, 0, 0.5);
+          font-size: 1.2em;
+          color: white;
+          &:hover {
+            background-color: var(--LIGHTBLUE);
+            color: #333;
+            cursor: pointer;
+          }
+        }
+        .fastButton {
+          margin-right: 30px;
+        }
       }
     }
   }
   @media only screen and (max-width: 768px) {
+    background-image: url(${bannermo});
     .mainBanner {
-      background-image: url("https://img.freepik.com/free-photo/medium-shot-woman-knitting-at-home_23-2149304912.jpg?w=996&t=st=1699349909~exp=1699350509~hmac=https://img.freepik.com/free-photo/medium-shot-woman-knitting-at-home_23-2149304912.jpg?w=996&t=st=1699349909~exp=1699350509~hmac=27a564500de9cc9d56667610490825c4dec75854336505d4d8f9caa13fd5c705");
-      .matching {
-        .fastButton,
-        .generalButton {
-          padding-top: 20px;
-          padding-bottom: 20px;
-          padding-left: 30px;
-          padding-right: 30px;
-        }
-        .fastButton {
-          margin-right: 80px;
+      background-color: rgba(0, 0, 0, 0.4);
+      .container {
+        .bannerText {
+          font-size: 0.8em;
         }
       }
     }
@@ -64,13 +71,11 @@ export const FixStyle = styled.div`
   .container {
     .beaf {
       padding: 400px;
-      outline: 1px solid black;
       position: relative;
-      background-image: url("https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/201909/16/f86881b8-d42b-4297-978e-66353aa37e29.jpg"),
-        url("https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/201909/16/51fff963-a6f6-42ab-91ba-1baf0674a862.jpg");
+      background-image: url(${before}), url(${after});
       background-position: center;
       background-size: cover;
-      margin-bottom: 30px;
+      margin-bottom: 60px;
       .before {
         position: absolute;
         top: 0;
@@ -100,6 +105,9 @@ export const ReasonStyle = styled.div`
   .container {
     .whyText {
       padding-bottom: 20px;
+      .wtxt {
+        font-size: 1.8em;
+      }
     }
     .reasonSet {
       display: grid;
@@ -111,39 +119,56 @@ export const ReasonStyle = styled.div`
         "reason5 reason6";
       gap: 20px;
       margin-bottom: 30px;
+      line-height: 1.5em;
 
       .reason1 {
         grid-area: reason1;
-        padding: 120px;
-        background-image: url("https://www.lifegoeson.kr/wp-content/uploads/2022/12/company_business_01.jpg");
+        padding: 140px;
+        background-image: url(${meeting});
+        background-position: center;
+        background-size: cover;
       }
       .reason2 {
         grid-area: reason2;
-        justify-content: center;
-        align-items: center;
-        display: flex;
+        padding: 0 10px;
+        margin: auto;
+
+        .repairR {
+          font-size: 1.3em;
+          line-height: 3em;
+        }
       }
       .reason3 {
         grid-area: reason3;
-        justify-content: center;
-        align-items: center;
-        display: flex;
+        padding: 0 10px;
+        margin: auto;
+        .repairR {
+          font-size: 1.3em;
+          line-height: 3em;
+        }
       }
       .reason4 {
         grid-area: reason4;
-        padding: 120px;
-        background-image: url("https://www.lifegoeson.kr/wp-content/uploads/2022/12/company_business_02.jpg");
+        padding: 140px;
+        background-image: url(${delivery});
+        background-position: center;
+        background-size: cover;
       }
       .reason5 {
         grid-area: reason5;
-        padding: 120px;
-        background-image: url("https://www.lifegoeson.kr/wp-content/uploads/2023/09/company_business_03_230906.jpg");
+        padding: 140px;
+        background-image: url(${connection});
+        background-position: center;
+        background-size: cover;
       }
       .reason6 {
         grid-area: reason6;
-        justify-content: center;
-        align-items: center;
-        display: flex;
+        padding: 0 10px;
+        margin: auto;
+        .repairR {
+          font-size: 1.3em;
+          line-height: 3em;
+        }
       }
     }
   }
@@ -160,13 +185,18 @@ export const ReasonStyle = styled.div`
           "reason3"
           "reason5"
           "reason6";
+        row-gap: 0px;
+        .reason2 {
+          margin-bottom: 20px;
+        }
+        .reason3 {
+          margin-bottom: 20px;
+        }
+        .reason6 {
+          margin-bottom: 20px;
+        }
       }
     }
-  }
-`;
-
-export const SlideStyle = styled.div`
-  .container {
   }
 `;
 
