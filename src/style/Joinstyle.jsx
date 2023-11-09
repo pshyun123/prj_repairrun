@@ -66,18 +66,31 @@ const Joinstyle = styled.section`
               width: 94%;
               text-align: right;
               font-size: 0.8em;
+              word-break: keep-all;
+              letter-spacing: -1.2px;
+              &.pass {
+                color: var(--DARKBLUE);
+              }
+              &.fail {
+                color: red;
+              }
             }
           }
           button {
             border: none;
-            cursor: pointer;
             padding: 5px 10px;
             border-radius: 5px;
-            background-color: var(--MIDBLUE);
-            color: white;
+            background-color: var(--GREY);
+            color: #333;
             letter-spacing: -0.8px;
-            &:hover {
-              background-color: var(--DARKBLUE);
+
+            &.active {
+              cursor: pointer;
+              background-color: var(--MIDBLUE);
+              color: white;
+              &:hover {
+                background-color: var(--DARKBLUE);
+              }
             }
           }
         }
@@ -88,7 +101,7 @@ const Joinstyle = styled.section`
       justify-content: center;
       button {
         border: none;
-        padding: 10px 20px;
+        padding: 14px 20px;
         border-radius: 5px;
         background-color: var(--GREY);
         &.active {
