@@ -12,8 +12,6 @@ const Login = () => {
   const navigate = useNavigate();
   const isLogin = window.localStorage.getItem("loginStatus");
 
-  console.log(loginStatus);
-
   const [loginType, setLoginType] = useState("member");
   const [memberActive, setMemberActive] = useState("active");
   const [partnerActive, setPartnerActive] = useState("");
@@ -93,6 +91,10 @@ const Login = () => {
     }
   };
 
+  const onJoinClick = () => {
+    navigate("/join");
+  };
+
   return (
     <>
       <LoginStyle>
@@ -150,11 +152,11 @@ const Login = () => {
           <div className="noJoin">
             <div className="noMember">
               아직 리페어런의 회원이 아니신가요?
-              <button>일반회원 가입</button>
+              <button onClick={onJoinClick}>일반회원 가입</button>
             </div>
             <div className="noPartner">
               리페어런의 파트너가 되길 원하시나요?
-              <button>파트너 가입</button>
+              <button onClick={onJoinClick}>파트너 가입</button>
             </div>
           </div>
         </div>

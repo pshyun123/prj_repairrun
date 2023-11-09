@@ -5,6 +5,7 @@ import DaumPostcode from "react-daum-postcode";
 import Joinstyle from "../style/Joinstyle";
 import basicProfile from "../images/기본프로필.jpg";
 import Modal from "../util/Modal";
+import MemberApi from "../api/MemberApi";
 
 const Join = () => {
   const navigate = useNavigate();
@@ -40,6 +41,7 @@ const Join = () => {
   const closeModal = () => {
     setModalOpen(false);
   };
+  const [modalMsg, setModalMsg] = useState("");
 
   // 입력받은 이미지 파일 주소
   const handleFileInputChange = (e) => {
@@ -121,15 +123,24 @@ const Join = () => {
   };
 
   // 중복확인 필요
-  const checkUnique = (num) => {
-    switch (num) {
-      case 1:
-        break;
-      case 2:
-        break;
-      case 3:
-        break;
-      default:
+  const checkUnique = async (num) => {
+    const checkVal = [inputId, inputPhone, inputEmail];
+    const msgList = [setIdMessage, setPhoneMessage, setEmailMessage];
+    const validList = [setIsId, setIsPhone, setIsEmail];
+    try {
+      const res = await MemberApi.uniqueCheck(num, checkVal[num]);
+      console.log("res" + res);
+      if (res.data === false) {
+        msgList[num]("사용 가능합니다");
+        validList[num](true);
+      } else {
+        msgList[num]("이미 사용중입니다");
+        validList[num](false);
+      }
+    } catch (err) {
+      console.log("err");
+      setModalOpen(true);
+      setModalMsg("서버와의 연결이 끊어졌습니다!");
     }
   };
 
@@ -170,7 +181,7 @@ const Join = () => {
                   )}
                 </div>
                 {regexList[0].test(inputId) ? (
-                  <button className="active" onClick={() => checkUnique(1)}>
+                  <button className="active" onClick={() => checkUnique(0)}>
                     중복확인
                   </button>
                 ) : (
@@ -210,7 +221,7 @@ const Join = () => {
                   )}
                 </div>
                 {regexList[2].test(inputPhone) ? (
-                  <button className="active" onClick={() => checkUnique(2)}>
+                  <button className="active" onClick={() => checkUnique(1)}>
                     중복확인
                   </button>
                 ) : (
@@ -230,7 +241,7 @@ const Join = () => {
                   )}
                 </div>
                 {regexList[3].test(inputEmail) ? (
-                  <button className="active" onClick={() => checkUnique(3)}>
+                  <button className="active" onClick={() => checkUnique(2)}>
                     중복확인
                   </button>
                 ) : (
@@ -255,7 +266,12 @@ const Join = () => {
           </div>
         </div>
       </Joinstyle>
-      <Modal open={openModal} close={closeModal}></Modal>
+      <Modal
+        open={openModal}
+        close={closeModal}
+        header="오류"
+        children={modalMsg}
+      ></Modal>
     </>
   );
 };
