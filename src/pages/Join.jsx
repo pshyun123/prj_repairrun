@@ -62,7 +62,7 @@ const Join = () => {
       case 1:
         const currName = e.target.value;
         setInputName(currName);
-        if (currName.length < 6 || currName.length > 15) {
+        if (currName.length < 2 || currName.length > 5) {
           setNameMessage("2자 이상 5자 이하로 입력하세요");
           setIsName(false);
         } else {
