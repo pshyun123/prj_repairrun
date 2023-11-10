@@ -1,7 +1,41 @@
-import React, { useState } from "react";
-import { PaymentComp, Checkbox } from "../style/PaymentStyle";
+import React, { useState, useEffect } from "react";
+import { PaymentComp } from "../style/PaymentStyle";
+import Checkbox from "../util/Checkbox";
 
 export const Payment = () => {
+  const [checkedAll, setCheckedAll] = useState(false);
+  const [checked1, setChecked1] = useState(false);
+  const [checked2, setChecked2] = useState(false);
+  const [checked3, setChecked3] = useState(false);
+
+  const onCheckedChange = (checkboxNumber) => {
+    switch (checkboxNumber) {
+      case 1:
+        setChecked1(!checked1);
+        break;
+      case 2:
+        setChecked2(!checked2);
+        break;
+      case 3:
+        setChecked3(!checked3);
+        break;
+      default:
+        // 전체약관동의 체크박스를 선택하면 나머지 세 개의 체크박스도 선택/해제되도록 설정
+        setCheckedAll(!checkedAll);
+        setChecked1(!checkedAll);
+        setChecked2(!checkedAll);
+        setChecked3(!checkedAll);
+        break;
+    }
+  };
+  useEffect(() => {
+    if (checked1 && checked2 && checked3) {
+      setCheckedAll(true);
+    } else {
+      setCheckedAll(false);
+    }
+  }, [checked1, checked2, checked3]);
+
   const tempData = {
     userName: "송중기",
     userPhone: "010-1234-5678",
@@ -23,15 +57,15 @@ export const Payment = () => {
               </div>
               <div className="paymentBox">
                 <div className="name">
-                  <p className="nameLabel">주문자</p>
+                  <div className="label">주문자</div>
                   <p>{tempData.userName}</p>
                 </div>
                 <div className="phone">
-                  <p>연락처</p>
+                  <div className="label">연락처</div>
                   <p>{tempData.userPhone}</p>
                 </div>
                 <div className="addr">
-                  <p>주 소</p>
+                  <div className="label">주 소</div>
                   <p>{tempData.userAddr}</p>
                 </div>
               </div>
@@ -45,34 +79,57 @@ export const Payment = () => {
               {/* input 하는 곳 */}
               <div className="cardSection">
                 <div className="cardBox">
-                  <p>카드 번호</p>
-                  <div className="cardNuminput">
-                    <input type="number" />-
-                    <input type="number" />-
-                    <input type="number" />-
-                    <input type="number" />
+                  <div className="cardNumBox">
+                    <p>카드 번호</p>
+                    <div className="cardNuminput">
+                      <input type="number" />
+                      <p>-</p>
+                      <input type="number" />
+                      <p>-</p>
+                      <input type="number" />
+                      <p>-</p>
+                      <input type="number" />
+                    </div>
                   </div>
                   <div className="expireDate">
                     <p>유효기간</p>
                     <input type="text" placeholder="MMYY" />
                   </div>
                   <div className="CVC">
+                    <p>CVC</p>
                     <input type="text" placeholder="카드 뒷면 3자리" />
                   </div>
                   <div className="secret">
+                    <p>비밀번호</p>
                     <input type="text" placeholder="카드 비밀번호 앞 두자리" />
                   </div>
                 </div>
-                <div className="agreement">
-                  <p>약관 동의</p>
-                  <Checkbox>전체약관동의</Checkbox>
-                  <Checkbox>리페어런 개인(신용)정보 수집 및 이용 동의</Checkbox>
-                  <Checkbox>
-                    리페어런 → 카드사 개인(신용)정보 제공 동의
-                  </Checkbox>
-                  <Checkbox>
-                    카드사 → 리페어런 개인(신용)정보 제공 동의
-                  </Checkbox>
+                {/* 카드 약관동의 */}
+                <div className="agreementBox">
+                  <div className="agreement">
+                    <p>약관 동의</p>
+                    <Checkbox
+                      className="agreeAll"
+                      children="전체약관동의"
+                      checked={checkedAll}
+                      onCheckedChange={() => onCheckedChange()}
+                    />
+                    <Checkbox
+                      children="리페어런 개인(신용)정보 수집 및 이용 동의"
+                      checked={checked1}
+                      onCheckedChange={() => onCheckedChange(1)}
+                    />
+                    <Checkbox
+                      children="리페어런 → 카드사 개인(신용)정보 제공 동의"
+                      checked={checked2}
+                      onCheckedChange={() => onCheckedChange(2)}
+                    />
+                    <Checkbox
+                      children="카드사 → 리페어런 개인(신용)정보 제공 동의"
+                      checked={checked3}
+                      onCheckedChange={() => onCheckedChange(3)}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -83,11 +140,20 @@ export const Payment = () => {
                 <p className="title">쿠폰</p>
               </div>
               <div className="myCoupon">
-                <p>{tempData.couponType}</p>
-                <p>{tempData.couponType2}</p>
+                <select>
+                  <option value="">선택안함</option>
+                  <option value={tempData.couponType}>
+                    {tempData.couponType}
+                  </option>
+                  <option value={tempData.couponType2}>
+                    {tempData.couponType2}
+                  </option>
+                </select>
               </div>
               <div className="couponBox"></div>
             </div>
+            {/* <p></p>
+                <p>{tempData.couponType2}</p> */}
 
             {/* 최종확인 */}
             <div className="payBox">
@@ -109,7 +175,7 @@ export const Payment = () => {
                     <p>{tempData.delivery}</p>
                   </div>
                 </div>
-                <div className="totalPrice">{/* 합계 */}</div>
+                <div className="totalPrice"></div>
               </div>
             </div>
             <div className="buttonContainer">

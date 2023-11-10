@@ -6,7 +6,8 @@ import side from "../images/side.png";
 import spot from "../images/spot.png";
 
 export const ImgUpload = () => {
-  const [imgSrc, setImgSrc] = useState("");
+  const [imgSrc, setImgSrc] = useState(full); // 기본 이미지 설정
+  // 4가지로 수정하기
   const [url, setUrl] = useState("");
 
   const handleFileInputChange = (e) => {
@@ -50,38 +51,38 @@ export const ImgUpload = () => {
 
           {/* 그리드 적용-이미지 업로드 */}
           <div className="uploadBox">
-            <div className="textBox1">
+            <div className="textBox textBox1">
               <p>전체 사진</p>
             </div>
-            <div className="textBox2">
+            <div className="textBox textBox2">
               <p>상세 사진</p>
             </div>
 
-            <div className="itemImg1">
+            <div className="itemImg itemImg1">
               <img src={imgSrc} alt="itemImg1" />
             </div>
-            <div className="imgInput1">
+            <div className="imgInput imgInput1">
               <input type="file" onChange={(e) => handleFileInputChange(e)} />
             </div>
 
-            <div className="itemImg2">
+            <div className="itemImg itemImg2">
               <img src={imgSrc} alt="itemImg2" />
             </div>
-            <div className="imgInput2">
+            <div className="imgInput imgInput2">
               <input type="file" onChange={(e) => handleFileInputChange(e)} />
             </div>
 
-            <div className="itemImg3">
+            <div className="itemImg itemImg3">
               <img src={imgSrc} alt="itemImg3" />
             </div>
-            <div className="imgInput3">
+            <div className="imgInput imgInput3">
               <input type="file" onChange={(e) => handleFileInputChange(e)} />
             </div>
 
-            <div className="itemImg4">
+            <div className="itemImg itemImg4">
               <img src={imgSrc} alt="itemImg4" />
             </div>
-            <div className="imgInput4">
+            <div className="imgInput imgInput4">
               <input type="file" onChange={(e) => handleFileInputChange(e)} />
             </div>
           </div>

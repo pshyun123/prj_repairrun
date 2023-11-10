@@ -7,7 +7,6 @@ export const PaymentComp = styled.section`
   background-color: var(--LIGHTBLUE);
 
   .container {
-    border: 1px solid darkgray;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -49,19 +48,6 @@ export const PaymentComp = styled.section`
             font-weight: 400;
           }
         }
-        .cardSection {
-          .cardBox {
-            .cardNuminput {
-              input {
-                &::-webkit-inner-spin-button,
-                &::-webkit-outer-spin-button {
-                  -webkit-appearance: none;
-                  margin: 0;
-                }
-              }
-            }
-          }
-        }
         .paymentBox {
           display: flex;
           flex-direction: column;
@@ -72,7 +58,12 @@ export const PaymentComp = styled.section`
             justify-content: space-between;
             padding: 10px 0;
             p {
-              font-size: 1rem;
+              font-size: 1.1rem;
+              font-weight: 400;
+            }
+            .label {
+              font-weight: 600;
+              font-size: 1.1rem;
             }
           }
           .phone {
@@ -80,7 +71,12 @@ export const PaymentComp = styled.section`
             justify-content: space-between;
             padding: 10px 0;
             p {
-              font-size: 1rem;
+              font-size: 1.1rem;
+              font-weight: 400;
+            }
+            .label {
+              font-weight: 600;
+              font-size: 1.1rem;
             }
           }
           .addr {
@@ -88,31 +84,146 @@ export const PaymentComp = styled.section`
             justify-content: space-between;
             padding: 10px 0;
             p {
-              font-size: 1rem;
+              font-size: 1.1rem;
+              font-weight: 400;
+            }
+            .label {
+              font-weight: 600;
+              font-size: 1.1rem;
             }
           }
         }
-      }
-      .buttonContainer {
-        align-items: flex-end;
-        padding-top: 10px;
-        button {
-          width: 300px;
-          height: 45px;
-          border-radius: 30px;
-          border-style: none;
-          background-color: var(--DARKBLUE);
-          color: white;
-          font-weight: 600;
-          font-size: 1.3rem;
-          margin: 20px;
-          &:hover {
-            cursor: pointer;
-            background-color: var(--MIDBLUE);
+        .cardSection {
+          display: flex;
+          justify-content: space-between;
+          padding: 5% 3%;
+          .cardBox {
+            /* border: 1px solid red; */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: left;
+            width: 55%;
+            /* padding: 3%; */
+            p {
+              padding: 10px 0;
+            }
+            .cardNumBox {
+              width: 100%;
+              display: flex;
+              flex-direction: column;
+
+              .cardNuminput {
+                margin: 3px;
+                display: flex;
+                p {
+                  /* padding: 0; */
+                  text-align: center;
+                  color: var(--GREY);
+                }
+
+                /* width: 50%; */
+
+                input {
+                  width: 100%;
+                  padding: 6px;
+                  border: 1px solid var(--GREY);
+                  &::-webkit-inner-spin-button,
+                  &::-webkit-outer-spin-button {
+                    -webkit-appearance: none;
+                    margin: 0;
+                  }
+                }
+              }
+            }
           }
+          .expireDate {
+            width: 100%;
+            input {
+              width: 100%;
+              padding: 6px;
+              border: 1px solid var(--GREY);
+            }
+          }
+          .CVC {
+            width: 100%;
+            input {
+              width: 100%;
+              padding: 6px;
+              border: 1px solid var(--GREY);
+            }
+          }
+          .secret {
+            width: 100%;
+            input {
+              width: 100%;
+              padding: 6px;
+              border: 1px solid var(--GREY);
+            }
+          }
+        }
+        .agreementBox {
+          display: flex;
+          align-items: flex-end;
+          justify-content: center;
+          border: 1px purple;
+          margin-left: 10px;
+          text-align: left;
+          /* padding: 3%; */
+
+          .agreement {
+            height: 50%;
+            padding: 20px;
+            /* border: 1px solid blue; */
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-color: white;
+
+            .agreeAll {
+              label {
+                font-weight: 400;
+              }
+            }
+            p {
+              font-size: 1rem;
+              padding: 10px 0;
+            }
+          }
+        }
+        .myCoupon {
+          /* padding: 3%; */
+          p {
+            padding: 10px;
+            border: 1px solid var(--GREY);
+            border-radius: 5px;
+          }
+        }
+      }
+    }
+    .buttonContainer {
+      align-items: flex-end;
+      padding-top: 10px;
+      button {
+        width: 300px;
+        height: 45px;
+        border-radius: 30px;
+        border-style: none;
+        background-color: var(--DARKBLUE);
+        color: white;
+        font-weight: 600;
+        font-size: 1.3rem;
+        margin: 20px;
+        &:hover {
+          cursor: pointer;
+          background-color: var(--MIDBLUE);
         }
       }
     }
   }
 `;
-export const Checkbox = styled.div``;
+export const CheckboxStyle = styled.div`
+  font-size: 0.9rem;
+`;
