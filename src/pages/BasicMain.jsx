@@ -4,9 +4,17 @@ import {
   ReasonStyle,
   ReviewStyle,
 } from "../style/BasicMainStyle";
-import Slide from "../component/Slide";
+import LogoSlide from "../component/Slide";
+import { useNavigate } from "react-router-dom";
 
 const MainBody = () => {
+  const navigate = useNavigate();
+  const fastMatchingClick = () => {
+    navigate("/neworder/FastRepair");
+  };
+  const generalMatchingClick = () => {
+    navigate("/neworder/basicrepair");
+  };
   return (
     <BannerStyle>
       <div className="mainBanner">
@@ -15,8 +23,12 @@ const MainBody = () => {
             <h2>나에게 필요한 매칭 서비스를 선택하세요.</h2>
           </div>
           <div className="matching">
-            <div className="fastButton">빠른 매칭</div>
-            <div className="generalButton">일반 매칭</div>
+            <div className="fastButton" onClick={fastMatchingClick}>
+              빠른 매칭
+            </div>
+            <div className="generalButton" onClick={generalMatchingClick}>
+              일반 매칭
+            </div>
           </div>
         </div>
       </div>
@@ -82,7 +94,7 @@ const BasicMain = () => {
       <Fix />
       <Reason />
       <Review />
-      <Slide />
+      <LogoSlide />
     </>
   );
 };
