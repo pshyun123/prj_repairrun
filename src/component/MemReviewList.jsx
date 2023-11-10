@@ -1,14 +1,6 @@
 import styled from "styled-components";
 import MemReview from "./MemReview";
-
-const MemReviewListStyle = styled.section`
-  padding: 100px 0;
-  .container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-`;
+import { MemReviewListStyle } from "../style/MyReviewStyle";
 
 const MemReviewList = () => {
   return (

@@ -96,8 +96,8 @@ export const PtnStockSearchBar = styled.section`
       justify-content: center;
       input {
         border-radius: 30px;
-        width: 250px;
-        height: 40px;
+        width: 500px;
+        height: 60px;
         background-color: var(--IVORY);
         border: none;
         text-align: center;
@@ -107,8 +107,8 @@ export const PtnStockSearchBar = styled.section`
         border-radius: 30px;
         color: white;
         border: none;
-        width: 65px;
-        height: 40px;
+        width: 90px;
+        height: 60px;
         margin-left: 7px;
         font-size: 17px;
         font-weight: 600;

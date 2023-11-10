@@ -8,7 +8,8 @@ const MemReview = () => {
       "https://firebasestorage.googleapis.com/v0/b/repairrun-dae01.appspot.com/o/1_full_wallet.jpg?alt=media&token=0bbf843a-06a9-4f85-9f19-ba0aa05b9ed6",
     compUrl:
       "https://firebasestorage.googleapis.com/v0/b/repairrun-dae01.appspot.com/o/1_comp_wallet.jpg?alt=media&token=25e63758-5c94-4ecc-8ecc-0ccdda651a01",
-    rating: "★★★★★",
+    rating: "",
+    star: "★★★★★",
     ptnName: "뜨개뜨개 마법",
     repairItem: "가방",
     compDate: "2023/10/26",
@@ -17,7 +18,10 @@ const MemReview = () => {
   return (
     <MemReviewBlock>
       <div className="wrapper">
-        <h3>{test.orderNum}</h3>
+        <div className="title-btn">
+          <h3>{test.orderNum}</h3>
+          <button className="ch-btn">수정</button>
+        </div>
         <div className="wrap">
           <div className="imgBox">
             <div className="imgWrap">
@@ -27,8 +31,11 @@ const MemReview = () => {
           </div>
           <div className="box">
             <div className="txt-box">
-              <p>별점: </p>
+              <p>별점:</p>
               <p>{test.rating}</p>
+              <div className="star-box">
+                <p>{test.star}</p>
+              </div>
             </div>
             <div className="txt-box">
               <p>파트너사:</p>
@@ -46,9 +53,6 @@ const MemReview = () => {
           <div className="box2">
             <p>{test.review}</p>
           </div>
-        </div>
-        <div className="btnBox">
-          <button className="ch-btn">수정</button>
         </div>
       </div>
     </MemReviewBlock>

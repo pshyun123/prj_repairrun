@@ -10,11 +10,12 @@ const MyReview = () => {
           <div className="myreviewTitle">
             <h3>나의 리뷰 보기</h3>
           </div>
-          <ui className="writingReview">
-            <li className="active">작성한 리뷰</li>
-            <li>작성 가능한 리뷰</li>
-          </ui>
-          <div className="total">
+
+          <div className="infoBox">
+            <ul className="writingReview">
+              <li className="active">작성한 리뷰</li>
+              <li>작성 가능한 리뷰</li>
+            </ul>
             <p>총 4건</p>
           </div>
         </div>
