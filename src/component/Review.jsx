@@ -42,4 +42,5 @@ const Review = () => {
     </ReviewBlock>
   );
 };
+
 export default Review;

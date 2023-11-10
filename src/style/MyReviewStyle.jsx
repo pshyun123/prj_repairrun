@@ -38,6 +38,11 @@ export const ReviewTop = styled.section`
           &:first-child {
             margin-right: 15px;
           }
+          @media screen and (max-width: 768px) {
+            .li {
+              align-items: center;
+            }
+          }
         }
       }
       p {
@@ -68,7 +73,7 @@ export const MemReviewBlock = styled.div`
         text-align: left;
         color: white;
         margin-bottom: 30px;
-        /* outline: 1px solid red; */
+        /* outline: 1px solid red;s */
       }
       .ch-btn {
         border: none;
@@ -139,6 +144,9 @@ export const MemReviewBlock = styled.div`
       font-weight: 600;
     }
   }
+  /* @media screen and (max-width: 768px) {
+    width: 100%;
+  } */
 `;
 
 // MemReviewList 관련 정렬 하는 스타일

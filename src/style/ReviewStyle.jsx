@@ -74,10 +74,14 @@ export const ReviewListStyle = styled.section`
   width: 100%;
   padding: 40px 0;
   .container {
-    /* outline: 1px solid red; */ //아웃라인
+    /* outline: 1px solid red; //아웃라인s */
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 40px;
+    @media screen and (max-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 10px;
+    }
   }
 `;
 
@@ -88,34 +92,55 @@ export const PtnStockSearchBar = styled.section`
   .container {
     height: 100%;
     position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    padding-top: 80px;
     .SearchArea {
+      width: 100%;
       display: flex;
       justify-content: center;
-      input {
-        border-radius: 30px;
-        width: 500px;
-        height: 60px;
-        background-color: var(--IVORY);
-        border: none;
-        text-align: center;
-      }
-      .btnSearch {
-        background-color: var(--LIGHTBLUE);
-        border-radius: 30px;
-        color: white;
-        border: none;
-        width: 90px;
-        height: 60px;
-        margin-left: 7px;
-        font-size: 17px;
-        font-weight: 600;
-        transition: 0.2s ease-in;
-        cursor: pointer;
-        &:hover {
-          background-color: var(--DARKBLUE);
+      .searchBox {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        /* outline: 1px solid red; */
+        input {
+          border-radius: 30px;
+          width: 40%;
+          height: 60px;
+          background-color: var(--IVORY);
+          font-size: 20px;
+          border: none;
+          text-align: center;
+        }
+        button {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-color: var(--MIDBLUE);
+          border-radius: 30px;
+          color: #ffffff;
+          border: none;
+          width: 100px;
+          height: 60px;
+          margin-left: 20px;
+          transition: 0.2s ease-in;
+          cursor: pointer;
+          &:hover {
+            background-color: var(--GREY);
+          }
+          svg {
+            font-size: 1em;
+          }
+        }
+        @media screen and (max-width: 768px) {
+          input {
+            width: 70%;
+            height: 300%;
+            font-size: 100%;
+          }
+          button {
+            width: 10%;
+            height: 300%;
+          }
         }
       }
     }
@@ -127,6 +152,7 @@ export const PtnStockSearchBar = styled.section`
       right: 0;
       font-weight: 600;
       font-size: 15px;
+      /* outline: 1px solid red; //sortArea아웃라인 */
       li {
         position: relative;
         cursor: pointer;
