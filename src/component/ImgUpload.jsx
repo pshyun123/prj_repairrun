@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ImgUploadComp } from "../style/GeneralStyle";
+import { ImgUploadComp } from "../style/ImgUploadStyle";
 import full from "../images/full.png";
 import inside from "../images/inside.png";
 import side from "../images/side.png";

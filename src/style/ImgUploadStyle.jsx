@@ -56,7 +56,7 @@ export const ImgUploadComp = styled.section`
         img {
           width: 80%;
           position: relative;
-          /* overflow: hidden; */
+          overflow: hidden;
           border: 1px solid #ccc;
           border-radius: 10px;
         }
@@ -100,7 +100,6 @@ export const ImgUploadComp = styled.section`
 
       .textBox1 {
         grid-area: textbox1;
-        /* background-color: teal; */
         padding-top: 5%;
         p {
           text-align: left;
@@ -187,6 +186,7 @@ export const ImgUploadComp = styled.section`
         color: white;
         font-weight: 600;
         font-size: 1.3rem;
+        margin: 20px;
         &:hover {
           cursor: pointer;
           background-color: var(--MIDBLUE);
@@ -194,99 +194,4 @@ export const ImgUploadComp = styled.section`
       }
     }
   }
-`;
-// 견적요청서 확인 컴포넌트
-export const OrderCheckComp = styled.section`
-  width: 100%;
-  padding: 60px 0;
-  .container {
-    border: 1px solid darkgray;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    position: relative;
-    width: 100%;
-    h3 {
-      text-align: center;
-      font-weight: 400;
-      padding: 20px;
-      font-size: 1.5rem;
-
-      span {
-        font-weight: 600;
-        font-size: 1.6rem;
-      }
-    }
-    .orderContainer {
-      width: 70%;
-      background-color: var(--IVORY);
-      border-radius: 10px;
-      padding: 30px;
-      .itemBox {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 15px 0;
-        width: 100%;
-        .repairItem {
-          font-weight: 600;
-        }
-        p {
-          font-size: 1.3rem;
-          font-weight: 400;
-          @media (max-width: 768px) {
-            font-size: 1.1rem;
-          }
-        }
-        .repairItemImg {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          text-align: center;
-          width: 100%;
-
-          border: 1px solid darkgray;
-
-          p {
-            font-weight: 600;
-            font-size: 1.3rem;
-            @media (max-width: 768px) {
-              font-size: 1.1rem;
-            }
-          }
-          img {
-            width: 30%;
-            overflow: hidden;
-            border: 4px solid #ccc;
-            border-radius: 10px;
-          }
-        }
-      }
-    }
-    .buttonContainer {
-      align-items: flex-end;
-      padding-top: 10px;
-      button {
-        width: 300px;
-        height: 45px;
-        border-radius: 30px;
-        border-style: none;
-        background-color: var(--DARKBLUE);
-        color: white;
-        font-weight: 600;
-        font-size: 1.3rem;
-        &:hover {
-          cursor: pointer;
-          background-color: var(--MIDBLUE);
-        }
-      }
-    }
-  }
-`;
-// 파트너 선택 컴포넌트
-export const PartnerSelectComp = styled.section`
-  display: flex;
 `;

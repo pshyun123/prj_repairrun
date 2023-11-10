@@ -1,4 +1,4 @@
-import { OrderCheckComp } from "../style/GeneralStyle";
+import { OrderCheckComp } from "../style/OrderCheckStyle";
 const tempData = {
   item: "가방 클리닝",
   brand: "구찌",
@@ -42,15 +42,25 @@ export const OrderCheck = () => {
             <div className="itemBox">
               <div className="repairItemImg">
                 <p>전체 사진</p>
-                <img src={tempData.fullImg} alt="전체 이미지" />
+                <div className="fullImg">
+                  <img src={tempData.fullImg} alt="전체 이미지" />
+                </div>
               </div>
             </div>
             <div className="itemBox">
               <div className="repairItemImg">
                 <p>상세 사진</p>
-                <img src={tempData.fullImg} alt="상세 이미지" />
-                <img src={tempData.fullImg} alt="상세 이미지" />
-                <img src={tempData.fullImg} alt="상세 이미지" />
+                <div className="detailImgBox">
+                  <div className="detailImg">
+                    <img src={tempData.detailImg1} alt="상세 이미지1" />
+                  </div>
+                  <div className="detailImg">
+                    <img src={tempData.detailImg2} alt="상세 이미지2" />
+                  </div>
+                  <div className="detailImg">
+                    <img src={tempData.detailImg3} alt="상세 이미지3" />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
