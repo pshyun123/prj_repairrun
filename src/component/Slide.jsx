@@ -42,8 +42,8 @@ const LogoSlide = () => {
   useEffect(() => {
     const loadLogoData = async () => {
       try {
-        const imageData = await loadLogos(); // fetchImageData 함수 사용
-        setUrlList(imageData); // 서버에서 가져온 데이터를 상태에 저장
+        const imageData = await loadLogos(); //
+        setUrlList(imageData); //
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -76,4 +76,3 @@ const LogoSlide = () => {
 };
 
 export default LogoSlide;
-// 라이브러리 설치 : npm i swiper@8  (터미널)

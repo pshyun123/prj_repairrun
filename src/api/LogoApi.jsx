@@ -3,7 +3,7 @@ const BACKEND = "http://localhost:8111";
 
 const loadLogos = async () => {
   try {
-    const response = await axios.post(BACKEND);
+    const response = await axios.post(BACKEND + "/partners/logolist");
     return response.data;
   } catch (error) {
     console.error("Error fetching data:", error);
