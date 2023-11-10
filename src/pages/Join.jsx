@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { storage } from "../api/firebase";
-import DaumPostcode from "react-daum-postcode";
+import DaumPostPopup from "../api/DaumPost";
 import Joinstyle from "../style/Joinstyle";
 import basicProfile from "../images/기본프로필.jpg";
 import Modal from "../util/Modal";
@@ -35,6 +35,7 @@ const Join = () => {
   const [isPw, setIsPw] = useState(false);
   const [isPhone, setIsPhone] = useState(false);
   const [isEmail, setIsEmail] = useState(false);
+  const [isAddr, setIsAddr] = useState(false);
 
   //팝업 처리
   const [openModal, setModalOpen] = useState(false);
@@ -42,6 +43,20 @@ const Join = () => {
     setModalOpen(false);
   };
   const [modalMsg, setModalMsg] = useState("");
+
+  //주소 팝업
+  const [isPopUpOpen, setIsPopUpOpen] = useState(false);
+  const openPostCode = () => {
+    setIsPopUpOpen(true);
+  };
+  const closePostCode = () => {
+    setIsPopUpOpen(false);
+  };
+
+  const setAddr = (addr) => {
+    setInputAddr(addr);
+    setIsAddr(true);
+  };
 
   // 입력받은 이미지 파일 주소
   const handleFileInputChange = (e) => {
@@ -252,13 +267,18 @@ const Join = () => {
             <div className="inputArea">
               <label name="addr">
                 <span>주소</span>
-                <input type="text" />
-                <button className="active">주소찾기</button>
+                <input type="text" defaultValue={inputAddr} />
+                <button className="active" onClick={openPostCode}>
+                  주소찾기
+                </button>
               </label>
+              {isPopUpOpen && (
+                <DaumPostPopup onClose={closePostCode} setAddr={setAddr} />
+              )}
             </div>
           </div>
           <div className="btnBox">
-            {isName && isId && isPw && isPhone && isEmail ? (
+            {isName && isId && isPw && isPhone && isEmail && isAddr ? (
               <button className="active">제출하기</button>
             ) : (
               <button>제출하기</button>
