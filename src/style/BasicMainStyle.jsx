@@ -199,8 +199,3 @@ export const ReasonStyle = styled.div`
     }
   }
 `;
-
-export const ReviewStyle = styled.div`
-  .container {
-  }
-`;

@@ -1,11 +1,7 @@
-import {
-  BannerStyle,
-  FixStyle,
-  ReasonStyle,
-  ReviewStyle,
-} from "../style/BasicMainStyle";
+import { BannerStyle, FixStyle, ReasonStyle } from "../style/BasicMainStyle";
 import LogoSlide from "../component/Slide";
 import { useNavigate } from "react-router-dom";
+import ReviewListComp from "../component/ReviewList";
 
 const MainBody = () => {
   const navigate = useNavigate();
@@ -83,17 +79,13 @@ const Reason = () => {
   );
 };
 
-const Review = () => {
-  return <ReviewStyle>리뷰영역</ReviewStyle>;
-};
-
 const BasicMain = () => {
   return (
     <>
       <MainBody />
       <Fix />
       <Reason />
-      <Review />
+      <ReviewListComp />
       <LogoSlide />
     </>
   );
