@@ -82,7 +82,6 @@ const UserInfoComp = styled.div`
         justify-content: center;
       }
     }
-    bottom: 0;
   }
 `;
 

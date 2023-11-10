@@ -5,6 +5,8 @@ export const ReviewBlock = styled.div`
   width: 100%;
   margin-bottom: 30px;
   border: 1px solid var(--GREY);
+  border-radius: 10px;
+  background-color: var(--IVORY); //아이보리or 그냥 없애기 고민중
   cursor: pointer;
   h3 {
     font-weight: 600;
@@ -27,6 +29,7 @@ export const ReviewBlock = styled.div`
         padding-bottom: 100%;
         overflow: hidden;
         position: relative;
+        border-radius: 10px;
         &:hover {
           img {
             &:last-child {
@@ -71,7 +74,7 @@ export const ReviewListStyle = styled.section`
   width: 100%;
   padding: 40px 0;
   .container {
-    /* outline: 1px solid red; */
+    /* outline: 1px solid red; */ //아웃라인
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 40px;
@@ -93,8 +96,8 @@ export const PtnStockSearchBar = styled.section`
       justify-content: center;
       input {
         border-radius: 30px;
-        width: 250px;
-        height: 40px;
+        width: 500px;
+        height: 60px;
         background-color: var(--IVORY);
         border: none;
         text-align: center;
@@ -104,8 +107,8 @@ export const PtnStockSearchBar = styled.section`
         border-radius: 30px;
         color: white;
         border: none;
-        width: 65px;
-        height: 40px;
+        width: 90px;
+        height: 60px;
         margin-left: 7px;
         font-size: 17px;
         font-weight: 600;

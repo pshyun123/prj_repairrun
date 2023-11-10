@@ -41,6 +41,7 @@ export const LocationComp = styled.section`
           border: 1px solid darkgray;
           word-break: keep-all;
           &:hover {
+            cursor: pointer;
             background-color: var(--MIDBLUE);
           }
           p {
@@ -184,6 +185,10 @@ export const BrandInputComp = styled.section`
       color: white;
       font-weight: 600;
       font-size: 1.3rem;
+      &:hover {
+        cursor: pointer;
+        background-color: var(--MIDBLUE);
+      }
     }
   }
 `;

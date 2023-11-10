@@ -171,6 +171,10 @@ export const RequestComp = styled.section`
         color: white;
         font-weight: 600;
         font-size: 1.3rem;
+        &:hover {
+          cursor: pointer;
+          background-color: var(--MIDBLUE);
+        }
       }
     }
   }

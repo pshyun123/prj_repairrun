@@ -47,10 +47,10 @@ const OrderList = () => {
   const orderData = [
     {
       orderNumber: "231029101123",
-      ptnName: "Attend",
+      userId: "Attend",
       repairItem: "가방",
-      repairDetail: "가죽 복원",
-      requestDate: "2023.10.29",
+      brand: "가죽 복원",
+      orderRequest: "원래 상태처럼 복구 부탁드려요",
       imgListUrl: [
         {
           type: "imgFullUrl",

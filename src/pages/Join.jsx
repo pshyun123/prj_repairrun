@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { storage } from "../api/firebase";
-import DaumPostcode from "react-daum-postcode";
+import DaumPostPopup from "../api/DaumPost";
 import Joinstyle from "../style/Joinstyle";
 import basicProfile from "../images/기본프로필.jpg";
 import Modal from "../util/Modal";
+import MemberApi from "../api/MemberApi";
 
 const Join = () => {
   const navigate = useNavigate();
@@ -34,11 +35,27 @@ const Join = () => {
   const [isPw, setIsPw] = useState(false);
   const [isPhone, setIsPhone] = useState(false);
   const [isEmail, setIsEmail] = useState(false);
+  const [isAddr, setIsAddr] = useState(false);
 
   //팝업 처리
   const [openModal, setModalOpen] = useState(false);
   const closeModal = () => {
     setModalOpen(false);
+  };
+  const [modalMsg, setModalMsg] = useState("");
+
+  //주소 팝업
+  const [isPopUpOpen, setIsPopUpOpen] = useState(false);
+  const openPostCode = () => {
+    setIsPopUpOpen(true);
+  };
+  const closePostCode = () => {
+    setIsPopUpOpen(false);
+  };
+
+  const setAddr = (addr) => {
+    setInputAddr(addr);
+    setIsAddr(true);
   };
 
   // 입력받은 이미지 파일 주소
@@ -62,7 +79,7 @@ const Join = () => {
       case 1:
         const currName = e.target.value;
         setInputName(currName);
-        if (currName.length < 6 || currName.length > 15) {
+        if (currName.length < 2 || currName.length > 5) {
           setNameMessage("2자 이상 5자 이하로 입력하세요");
           setIsName(false);
         } else {
@@ -121,15 +138,24 @@ const Join = () => {
   };
 
   // 중복확인 필요
-  const checkUnique = (num) => {
-    switch (num) {
-      case 1:
-        break;
-      case 2:
-        break;
-      case 3:
-        break;
-      default:
+  const checkUnique = async (num) => {
+    const checkVal = [inputId, inputPhone, inputEmail];
+    const msgList = [setIdMessage, setPhoneMessage, setEmailMessage];
+    const validList = [setIsId, setIsPhone, setIsEmail];
+    try {
+      const res = await MemberApi.uniqueCheck(num, checkVal[num]);
+      console.log("res" + res);
+      if (res.data === false) {
+        msgList[num]("사용 가능합니다");
+        validList[num](true);
+      } else {
+        msgList[num]("이미 사용중입니다");
+        validList[num](false);
+      }
+    } catch (err) {
+      console.log("err");
+      setModalOpen(true);
+      setModalMsg("서버와의 연결이 끊어졌습니다!");
     }
   };
 
@@ -170,7 +196,7 @@ const Join = () => {
                   )}
                 </div>
                 {regexList[0].test(inputId) ? (
-                  <button className="active" onClick={() => checkUnique(1)}>
+                  <button className="active" onClick={() => checkUnique(0)}>
                     중복확인
                   </button>
                 ) : (
@@ -210,7 +236,7 @@ const Join = () => {
                   )}
                 </div>
                 {regexList[2].test(inputPhone) ? (
-                  <button className="active" onClick={() => checkUnique(2)}>
+                  <button className="active" onClick={() => checkUnique(1)}>
                     중복확인
                   </button>
                 ) : (
@@ -230,7 +256,7 @@ const Join = () => {
                   )}
                 </div>
                 {regexList[3].test(inputEmail) ? (
-                  <button className="active" onClick={() => checkUnique(3)}>
+                  <button className="active" onClick={() => checkUnique(2)}>
                     중복확인
                   </button>
                 ) : (
@@ -241,13 +267,18 @@ const Join = () => {
             <div className="inputArea">
               <label name="addr">
                 <span>주소</span>
-                <input type="text" />
-                <button className="active">주소찾기</button>
+                <input type="text" defaultValue={inputAddr} />
+                <button className="active" onClick={openPostCode}>
+                  주소찾기
+                </button>
               </label>
+              {isPopUpOpen && (
+                <DaumPostPopup onClose={closePostCode} setAddr={setAddr} />
+              )}
             </div>
           </div>
           <div className="btnBox">
-            {isName && isId && isPw && isPhone && isEmail ? (
+            {isName && isId && isPw && isPhone && isEmail && isAddr ? (
               <button className="active">제출하기</button>
             ) : (
               <button>제출하기</button>
@@ -255,7 +286,12 @@ const Join = () => {
           </div>
         </div>
       </Joinstyle>
-      <Modal open={openModal} close={closeModal}></Modal>
+      <Modal
+        open={openModal}
+        close={closeModal}
+        header="오류"
+        children={modalMsg}
+      ></Modal>
     </>
   );
 };
