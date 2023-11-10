@@ -1,12 +1,11 @@
 import styled from "styled-components";
 import bannerpc from "../images/mainpage_banner_pc.jpg";
 import bannermo from "../images/mainpage_banner_mo.jpg";
-import before from "../images/main_before_pc.png";
-import after from "../images/main_after_pc.png";
 import meeting from "../images/meeting.jpg";
 import delivery from "../images/delivery.jpg";
 import connection from "../images/connection.jpg";
 
+///// 메인 배너
 export const BannerStyle = styled.section`
   width: 100%;
   text-align: center;
@@ -65,41 +64,7 @@ export const BannerStyle = styled.section`
   }
 `;
 
-/////////////////////////////////////////////////
-
-export const FixStyle = styled.div`
-  .container {
-    .beaf {
-      padding: 400px;
-      position: relative;
-      background-image: url(${before}), url(${after});
-      background-position: center;
-      background-size: cover;
-      margin-bottom: 60px;
-      .before {
-        position: absolute;
-        top: 0;
-        left: 0;
-      }
-      .after {
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: 1;
-      }
-    }
-  }
-
-  @media only screen and (max-width: 768px) {
-    .container {
-      .beaf {
-        padding: 200px;
-      }
-    }
-  }
-`;
-
-/////////////////////////////////////////////////
+//// 리페어런찾는 이유
 
 export const ReasonStyle = styled.div`
   .container {

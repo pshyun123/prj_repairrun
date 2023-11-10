@@ -1,7 +1,8 @@
-import { BannerStyle, FixStyle, ReasonStyle } from "../style/BasicMainStyle";
+import { BannerStyle, ReasonStyle } from "../style/BasicMainStyle";
 import LogoSlide from "../component/Slide";
 import { useNavigate } from "react-router-dom";
 import ReviewListComp from "../component/ReviewList";
+import Fix from "../component/BeforeAfter";
 
 const MainBody = () => {
   const navigate = useNavigate();
@@ -11,6 +12,7 @@ const MainBody = () => {
   const generalMatchingClick = () => {
     navigate("/neworder/basicrepair");
   };
+
   return (
     <BannerStyle>
       <div className="mainBanner">
@@ -29,18 +31,6 @@ const MainBody = () => {
         </div>
       </div>
     </BannerStyle>
-  );
-};
-const Fix = () => {
-  return (
-    <FixStyle>
-      <div className="container">
-        <div className="beaf">
-          <div className="before"></div>
-          <div className="after"></div>
-        </div>
-      </div>
-    </FixStyle>
   );
 };
 

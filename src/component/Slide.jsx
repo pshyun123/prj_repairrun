@@ -3,10 +3,15 @@ import { Autoplay } from "swiper";
 import "swiper/css";
 import styled from "styled-components";
 import { useState, useEffect } from "react";
-import loadLogos from "../api/LogoApi";
+import PartnerApi from "../api/PartnerApi";
 
 const LogoSlideStyle = styled.div`
   padding: 60px 0;
+  .rrPtns {
+    text-align: center;
+    padding-bottom: 50px;
+    font-size: 1.8em;
+  }
   .logo-slider {
     transition-timing-function: linear;
 
@@ -22,6 +27,11 @@ const LogoSlideStyle = styled.div`
   }
   @media only screen and (max-width: 768px) {
     padding: 0;
+    .rrPtns {
+      text-align: center;
+      padding: 0;
+      font-size: 1.2em;
+    }
     .logo-slider {
       padding: 30px 0;
       .slide {
@@ -42,8 +52,8 @@ const LogoSlide = () => {
   useEffect(() => {
     const loadLogoData = async () => {
       try {
-        const imageData = await loadLogos(); //
-        setUrlList(imageData); //
+        const partnerLogoData = await PartnerApi.loadLogos();
+        setUrlList(partnerLogoData);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -54,6 +64,9 @@ const LogoSlide = () => {
 
   return (
     <LogoSlideStyle>
+      <div>
+        <p className="rrPtns">Repair-Run Partners</p>
+      </div>
       <Swiper
         className="logo-slider"
         modules={[Autoplay]}
