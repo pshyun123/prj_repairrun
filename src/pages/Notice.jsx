@@ -1,7 +1,9 @@
+import NoticeList from "../component/NoticeList";
+
 const Notice = () => {
   return (
     <>
-      <div>Notice!</div>
+      <NoticeList />
     </>
   );
 };
