@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useState, useContext, useEffect } from "react";
 import { UserContext } from "../context/UserStore";
+import { useMediaQuery } from "react-responsive";
 
 import HeaderComp from "../style/HeaderStyle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -28,9 +29,16 @@ const Header = () => {
     console.log(loginStatus);
   }, [loginStatus]);
 
+  const isMobile = useMediaQuery({
+    query: "(max-width:768px)",
+  });
+  console.log("isMobile" + isMobile);
+
   const mMenuClick = () => {
-    active === "active" ? setOpen("") : setOpen("active");
-    setIcon(icon === faBars ? faXmark : faBars);
+    if (isMobile) {
+      active === "active" ? setOpen("") : setOpen("active");
+      setIcon(icon === faBars ? faXmark : faBars);
+    }
   };
 
   const onLogOutClick = () => {

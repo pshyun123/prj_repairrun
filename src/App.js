@@ -34,7 +34,7 @@ function App() {
               <Route path="/" element={<BasicMain />}></Route>
               {/*************** 로그인 / 회원가입 *****************/}
               <Route path="/Login" element={<Login />} />
-              <Route path="/Join" element={<Join />} />
+              <Route path="/Join/:type" element={<Join />} />
               {/************ 일반 회원 ******************/}
               {/* 서비스 신청 */}
               <Route path="/NewOrder" element={<NewOrder />} />

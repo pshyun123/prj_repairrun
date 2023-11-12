@@ -9,7 +9,7 @@ const PartnerMain = () => {
     <>
       <PartnerInfo />
       <RepairList />
-      <OrderList />
+      <OrderList loginType={1} />
       <ReviewList />
     </>
   );

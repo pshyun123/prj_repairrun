@@ -8,7 +8,7 @@ const MyPage = () => {
     <>
       <UserInfo />
       <Coupon />
-      <OrderList />
+      <OrderList loginType={0} />
       <ReviewList />
     </>
   );

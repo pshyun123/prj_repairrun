@@ -1,17 +1,20 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { storage } from "../api/firebase";
 import DaumPostPopup from "../api/DaumPost";
 import Joinstyle from "../style/Joinstyle";
 import basicProfile from "../images/기본프로필.jpg";
 import Modal from "../util/Modal";
 import MemberApi from "../api/MemberApi";
+import PartnerApi from "../api/PartnerApi";
 
 const Join = () => {
+  const { type } = useParams();
   const navigate = useNavigate();
 
   //프로필이미지
   const [imgSrc, setImgSrc] = useState(basicProfile);
+  const [file, setFile] = useState(null);
   const [url, setUrl] = useState("");
 
   //키보드 입력
@@ -22,12 +25,15 @@ const Join = () => {
   const [inputEmail, setInputEmail] = useState("");
   const [inputAddr, setInputAddr] = useState("");
 
+  const [inputDesc, setInputDesc] = useState("");
+
   // 오류 메세지
   const [nameMessage, setNameMessage] = useState("");
   const [idMessage, setIdMessage] = useState("");
   const [pwMessage, setPwMessage] = useState("");
   const [phoneMessage, setPhoneMessage] = useState("");
   const [emailMessage, setEmailMessage] = useState("");
+  const [descMessage, setDescMessage] = useState("");
 
   // 유효성 검사
   const [isName, setIsName] = useState(false);
@@ -36,13 +42,16 @@ const Join = () => {
   const [isPhone, setIsPhone] = useState(false);
   const [isEmail, setIsEmail] = useState(false);
   const [isAddr, setIsAddr] = useState(false);
+  const [isDesc, setIsDesc] = useState(true);
 
   //팝업 처리
   const [openModal, setModalOpen] = useState(false);
-  const closeModal = () => {
+  const closeModal = (num) => {
     setModalOpen(false);
   };
   const [modalMsg, setModalMsg] = useState("");
+  const [modalHeader, setModalHeader] = useState("");
+  const [modalType, setModalType] = useState(null);
 
   //주소 팝업
   const [isPopUpOpen, setIsPopUpOpen] = useState(false);
@@ -61,6 +70,8 @@ const Join = () => {
   // 입력받은 이미지 파일 주소
   const handleFileInputChange = (e) => {
     setImgSrc(URL.createObjectURL(e.target.files[0]));
+    // 파이어베이스에 보내기위해 변수에 저장
+    setFile(e.target.files[0]);
     console.log(imgSrc);
   };
 
@@ -73,6 +84,8 @@ const Join = () => {
     /^\d{3}-\d{4}-\d{4}$/,
     //email
     /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/,
+    //ptnPhone
+    /^\d{2,3}-\d{3,4}-\d{4}$/,
   ];
   const onChangeInput = (e, num) => {
     switch (num) {
@@ -114,7 +127,8 @@ const Join = () => {
       case 4:
         const currPhone = e.target.value;
         setInputPhone(currPhone);
-        if (!regexList[2].test(currPhone)) {
+        const regex = type === "member" ? regexList[2] : regexList[4];
+        if (!regex.test(currPhone)) {
           setPhoneMessage("잘못 입력 하셨습니다.");
           setIsPhone(false);
         } else {
@@ -133,6 +147,18 @@ const Join = () => {
           setIsEmail(false);
         }
         break;
+      case 6:
+        const currDesc = e.target.value;
+        setInputDesc(currDesc);
+        console.log(currDesc);
+        if (currDesc.length > 100) {
+          setDescMessage("100자 이하로 입력해주세요");
+          setIsDesc(false);
+        } else {
+          setIsDesc(true);
+          setDescMessage("");
+        }
+        break;
       default:
     }
   };
@@ -143,7 +169,10 @@ const Join = () => {
     const msgList = [setIdMessage, setPhoneMessage, setEmailMessage];
     const validList = [setIsId, setIsPhone, setIsEmail];
     try {
-      const res = await MemberApi.uniqueCheck(num, checkVal[num]);
+      const res =
+        type === "member"
+          ? await MemberApi.uniqueCheck(num, checkVal[num])
+          : await PartnerApi.uniqueCheck(num, checkVal[num]);
       console.log("res" + res);
       if (res.data === false) {
         msgList[num]("사용 가능합니다");
@@ -155,7 +184,64 @@ const Join = () => {
     } catch (err) {
       console.log("err");
       setModalOpen(true);
+      setModalHeader("오류");
+      setModalType("");
       setModalMsg("서버와의 연결이 끊어졌습니다!");
+    }
+  };
+
+  const onSubmit = () => {
+    if (imgSrc !== basicProfile) {
+      const storageRef = storage.ref();
+      const fileRef = storageRef.child(file.name);
+      fileRef.put(file).then(() => {
+        console.log("저장성공!");
+        fileRef.getDownloadURL().then((url) => {
+          console.log("저장경로 확인 : " + url);
+          setUrl(url);
+          addNewMember();
+        });
+      });
+    } else {
+      addNewMember();
+    }
+  };
+  const addNewMember = async () => {
+    try {
+      const res =
+        type === "member"
+          ? await MemberApi.newMember(
+              inputId,
+              inputPw,
+              inputName,
+              inputEmail,
+              inputPhone,
+              inputAddr,
+              url
+            )
+          : await PartnerApi.newPartner(
+              inputId,
+              inputPw,
+              inputName,
+              inputEmail,
+              inputPhone,
+              inputAddr,
+              inputDesc,
+              url
+            );
+      if (res.data === true) {
+        console.log("가입 성공!");
+        setModalOpen(true);
+        setModalHeader("회원가입 성공");
+        setModalMsg("회원가입에 성공했습니다!");
+        setModalType("회원가입");
+      }
+    } catch (err) {
+      console.log(err);
+      setModalOpen(true);
+      setModalHeader("오류");
+      setModalMsg("서버와의 연결이 끊어졌습니다!");
+      setModalType("");
     }
   };
 
@@ -163,7 +249,7 @@ const Join = () => {
     <>
       <Joinstyle>
         <div className="container">
-          <h2>개인 회원가입</h2>
+          <h2>{type === "member" ? "일반" : "파트너"} 회원가입</h2>
           <div className="profile">
             <div className="imgBox">
               <img src={imgSrc} alt="프로필이미지" />
@@ -235,7 +321,8 @@ const Join = () => {
                     </p>
                   )}
                 </div>
-                {regexList[2].test(inputPhone) ? (
+                {regexList[2].test(inputPhone) ||
+                (type === "partner" && regexList[4].test(inputPhone)) ? (
                   <button className="active" onClick={() => checkUnique(1)}>
                     중복확인
                   </button>
@@ -276,10 +363,37 @@ const Join = () => {
                 <DaumPostPopup onClose={closePostCode} setAddr={setAddr} />
               )}
             </div>
+            {type === "partner" && (
+              <div className="inputArea">
+                <label name="">
+                  <span>소개글</span>
+                  <div className="box">
+                    <textarea
+                      cols="34"
+                      rows="5"
+                      onChange={(e) => onChangeInput(e, 6)}
+                    ></textarea>
+                    {inputDesc.length > 0 && (
+                      <p className={`check ${isDesc ? "pass" : "fail"}`}>
+                        {descMessage}
+                      </p>
+                    )}
+                  </div>
+                </label>
+              </div>
+            )}
           </div>
           <div className="btnBox">
-            {isName && isId && isPw && isPhone && isEmail && isAddr ? (
-              <button className="active">제출하기</button>
+            {isName &&
+            isId &&
+            isPw &&
+            isPhone &&
+            isEmail &&
+            isAddr &&
+            isDesc ? (
+              <button className="active" onClick={onSubmit}>
+                제출하기
+              </button>
             ) : (
               <button>제출하기</button>
             )}
@@ -289,8 +403,12 @@ const Join = () => {
       <Modal
         open={openModal}
         close={closeModal}
-        header="오류"
+        header={modalHeader}
         children={modalMsg}
+        type={modalType}
+        confirm={() => {
+          navigate("/");
+        }}
       ></Modal>
     </>
   );

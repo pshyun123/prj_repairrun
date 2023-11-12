@@ -1,5 +1,8 @@
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from "swiper";
 import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 const OrderImgSwiper = ({ imgListUrl }) => {
   console.log(imgListUrl);
@@ -7,10 +10,14 @@ const OrderImgSwiper = ({ imgListUrl }) => {
   return (
     <>
       <Swiper
+        modules={[Navigation, Pagination]}
+        navigation={true}
+        pagination={true}
         slidesPerView={1}
         autoplay={false}
         onSlideChange={() => console.log("slide change")}
         onSwiper={(swiper) => console.log(swiper)}
+        className="swiper"
       >
         {imgListUrl &&
           imgListUrl.map((imgUrl) => (

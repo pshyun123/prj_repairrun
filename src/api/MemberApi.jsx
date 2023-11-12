@@ -21,5 +21,19 @@ const MemberApi = {
     };
     return await axios.post(BACKEND + "/members/uniquecheck", checkData);
   },
+
+  //회원가입
+  newMember: async (id, pw, name, userEmail, userPhone, userAddr, userImg) => {
+    const newMemData = {
+      id: id,
+      pw: pw,
+      name: name,
+      userEmail: userEmail,
+      userPhone: userPhone,
+      userAddr: userAddr,
+      userImg: userImg,
+    };
+    return await axios.post(BACKEND + "/members/new", newMemData);
+  },
 };
 export default MemberApi;

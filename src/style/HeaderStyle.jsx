@@ -67,9 +67,8 @@ const HeaderComp = styled.header`
             left: 0;
 
             border-radius: 0 0 10px 10px;
-
+            transition: height 0.8s ease-out;
             li {
-              padding: 20px 0;
               background-color: var(--GREY);
               font-size: 1.3rem;
               font-weight: 400;
@@ -88,6 +87,10 @@ const HeaderComp = styled.header`
             }
             .sub-menu {
               height: auto;
+              border: 1px solid #ddd;
+              li {
+                padding: 20px 0;
+              }
             }
           }
         }
@@ -147,6 +150,14 @@ const HeaderComp = styled.header`
               height: auto;
               position: static;
               border-radius: 0;
+              li {
+                padding: 20px 0;
+              }
+            }
+            &:hover {
+              .sub-menu {
+                border: none;
+              }
             }
           }
         }

@@ -28,5 +28,48 @@ const PartnerApi = {
     };
     return await axios.post(BACKEND + "/partners/itemlist", ptnId);
   },
+
+  //임시 이동 예정
+  orderStatusList: async (type, id) => {
+    const userData = {
+      type: type,
+      id: id,
+    };
+    return await axios.post(BACKEND + "/orderss/orderlist", userData);
+  },
+
+  //중복체크
+  uniqueCheck: async (type, inputVal) => {
+    const checkData = {
+      type: type,
+      inputVal: inputVal,
+    };
+    return await axios.post(BACKEND + "/partners/uniquecheck", checkData);
+  },
+
+  //파트너가입
+  newPartner: async (
+    id,
+    pw,
+    name,
+    ptnEmail,
+    ptnPhone,
+    ptnAddr,
+    ptnDesc,
+    ptnLogo
+  ) => {
+    const newPtnData = {
+      id: id,
+      pw: pw,
+      name: name,
+      ptnEmail: ptnEmail,
+      ptnPhone: ptnPhone,
+      ptnAddr: ptnAddr,
+      ptnDesc: ptnDesc,
+      ptnLogo: ptnLogo,
+    };
+    return await axios.post(BACKEND + "/partners/new", newPtnData);
+  },
 };
+
 export default PartnerApi;
