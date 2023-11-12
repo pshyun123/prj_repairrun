@@ -21,5 +21,12 @@ const PartnerApi = {
       console.error("Error fetching data:", error);
     }
   },
+
+  itemlist: async (id) => {
+    const ptnId = {
+      id: id,
+    };
+    return await axios.post(BACKEND + "/partners/itemlist", ptnId);
+  },
 };
 export default PartnerApi;

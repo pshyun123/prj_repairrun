@@ -25,6 +25,7 @@ const Joinstyle = styled.section`
         img {
           position: absolute;
           width: 100%;
+          height: 100%;
         }
         @media only screen and (max-width: 768px) {
           width: 30%;

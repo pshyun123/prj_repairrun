@@ -44,7 +44,7 @@ const HeaderComp = styled.header`
           height: 100%;
           flex-grow: 1;
           position: relative;
-          font-size: 1.6em;
+          font-size: 1.3em;
           font-weight: 600;
           padding: 10px 20px;
           cursor: pointer;
