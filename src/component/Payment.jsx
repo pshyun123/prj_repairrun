@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { PaymentComp } from "../style/PaymentStyle";
 import Checkbox from "../util/Checkbox";
+import { useNavigate } from "react-router-dom";
 
-export const Payment = () => {
+export const Payment = ({ onNext }) => {
+  const navigate = useNavigate();
+  const handleNextClick = () => {
+    navigate("/mypage");
+  };
   const [checkedAll, setCheckedAll] = useState(false);
   const [checked1, setChecked1] = useState(false);
   const [checked2, setChecked2] = useState(false);
@@ -179,7 +184,7 @@ export const Payment = () => {
               </div>
             </div>
             <div className="buttonContainer">
-              <button>결제하기</button>
+              <button onClick={handleNextClick}>결제하기</button>
             </div>
           </div>
         </div>

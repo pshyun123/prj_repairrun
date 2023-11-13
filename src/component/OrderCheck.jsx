@@ -14,7 +14,7 @@ const tempData = {
     "https://firebasestorage.googleapis.com/v0/b/repairrun-dae01.appspot.com/o/2_1_detail_bag.jpg?alt=media&token=c191ae3b-d308-4a32-9b19-6105bc8365a5",
 };
 
-export const OrderCheck = () => {
+export const OrderCheck = ({ onNext }) => {
   return (
     <>
       <OrderCheckComp>
@@ -65,7 +65,7 @@ export const OrderCheck = () => {
             </div>
           </div>
           <div className="buttonContainer">
-            <button>견적요청서 보내기</button>
+            <button onClick={onNext}>견적요청서 보내기</button>
           </div>
         </div>
       </OrderCheckComp>

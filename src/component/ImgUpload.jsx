@@ -5,7 +5,7 @@ import inside from "../images/inside.png";
 import side from "../images/side.png";
 import spot from "../images/spot.png";
 
-export const ImgUpload = () => {
+export const ImgUpload = ({ onNext }) => {
   const [imgSrc, setImgSrc] = useState(full); // 기본 이미지 설정
   // 4가지로 수정하기
   const [url, setUrl] = useState("");
@@ -87,7 +87,7 @@ export const ImgUpload = () => {
             </div>
           </div>
           <div className="buttonContainer">
-            <button>다음</button>
+            <button onClick={onNext}>다음</button>
           </div>
         </div>
       </ImgUploadComp>

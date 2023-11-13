@@ -1,5 +1,5 @@
 import { PartnerSelectComp } from "../style/PartnerSelectStyle";
-export const PartnerSelect = () => {
+export const PartnerSelect = ({ onNext }) => {
   const tempData = {
     ptnLogo:
       "https://firebasestorage.googleapis.com/v0/b/repairrun-dae01.appspot.com/o/01_SilkRoad_logo.png?alt=media&token=71026c74-3311-42a0-ad70-338bd97139ce",
@@ -134,7 +134,7 @@ export const PartnerSelect = () => {
               </div>
             </div>
             <div className="buttonContainer">
-              <button>결제하기</button>
+              <button onClick={onNext}>결제하기</button>
             </div>
           </div>
         </div>
