@@ -3,6 +3,7 @@ import axios from "axios";
 const BACKEND = "http://localhost:8111";
 
 const PartnerApi = {
+  //로그인
   partnerLogin: async (id, pw) => {
     console.log(BACKEND + "/partners/login");
     const login = {
@@ -10,6 +11,14 @@ const PartnerApi = {
       pw: pw,
     };
     return await axios.post(BACKEND + "/partners/login", login);
+  },
+
+  //파트너정보
+  partnerInfo: async (ptnId) => {
+    const ptnData = {
+      ptnId: ptnId,
+    };
+    return await axios.post(BACKEND + "/partners/ptninfo", ptnData);
   },
 
   //로고 슬라이드 연결

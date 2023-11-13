@@ -79,6 +79,8 @@ const Login = () => {
         loginType === "member"
           ? setLoginStatus("member")
           : setLoginStatus("partner");
+
+        loginInfo();
         loginType === "partner" ? navigate("/partnermain") : navigate(-1);
       } else {
         setModalMsg("잘못된 아이디 또는 비밀번호 입니다.");
@@ -88,6 +90,23 @@ const Login = () => {
       console.log("err");
       setModalOpen(true);
       setModalMsg("서버와의 연결이 끊어졌습니다!");
+    }
+  };
+
+  const loginInfo = async () => {
+    const res =
+      loginType === "partner"
+        ? await PartnerApi.partnerInfo(inputId)
+        : await MemberApi.memberInfo(inputId);
+
+    if (res.data !== null) {
+      window.localStorage.setItem("userName", res.data.userName);
+      window.localStorage.setItem("userEmail", res.data.userEmail);
+      window.localStorage.setItem("userPhone", res.data.userPhone);
+      window.localStorage.setItem("userAddr", res.data.userAddr);
+      window.localStorage.setItem("userImg", res.data.userImg);
+      loginType === "partner" &&
+        window.localStorage.setItem("ptnDesc", res.data.ptnDesc);
     }
   };
 

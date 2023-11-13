@@ -1,46 +1,73 @@
+import { useState, useEffect } from "react";
+import PartnerApi from "../api/PartnerApi";
 import PartnerInfoComp from "../style/PartnerInfoStyle";
+import { useNavigate } from "react-router-dom";
 
 const PartnerInfo = () => {
-  const tempData = {
-    ptnName: "SILK ROAD",
-    logoImgUrl:
-      "https://firebasestorage.googleapis.com/v0/b/repairrun-dae01.appspot.com/o/01_SilkRoad_logo.png?alt=media&token=71026c74-3311-42a0-ad70-338bd97139ce",
-    ptnPhone: "02-123-4567",
-    ptnEmail: "silkroad01@gmail.com",
-    ptnAddr: "서울특별시 강남구 강남대로 123",
-    ptnDesc: "요청사항에 맞춰 빠르고 정확하게 수선해드립니다",
+  const navigate = useNavigate();
+  const ptnId = window.localStorage.getItem("userId");
+  const loginType = window.localStorage.getItem("loginStatus");
+  const [ptnInfo, setPtnInfo] = useState(null);
+
+  const getPartnerInfo = async () => {
+    try {
+      const res = await PartnerApi.partnerInfo(ptnId);
+      if (res.data !== null) {
+        setPtnInfo(res.data);
+        window.localStorage.setItem("userName", res.data.userName);
+        window.localStorage.setItem("userEmail", res.data.userEmail);
+        window.localStorage.setItem("userPhone", res.data.userPhone);
+        window.localStorage.setItem("userAddr", res.data.userAddr);
+        window.localStorage.setItem("userImg", res.data.userImg);
+        loginType === "partner" &&
+          window.localStorage.setItem("ptnDesc", res.data.ptnDesc);
+      }
+      console.log(res.data);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
+  useEffect(() => {
+    getPartnerInfo();
+    console.log(ptnInfo);
+  }, []);
   return (
     <>
       <PartnerInfoComp>
         <div className="container">
           <div className="infoHeader">
-            <h2>{tempData.ptnName}</h2>
+            <h2>{ptnInfo && ptnInfo.userName}</h2>
             <div className="logo">
-              <img src={tempData.logoImgUrl} alt="로고" />
+              <img src={ptnInfo && ptnInfo.userImg} alt="로고" />
             </div>
           </div>
           <div className="ptninfo">
             <div className="info-box">
               <p className="title">전화번호</p>
-              <p>{tempData.ptnPhone}</p>
+              <p>{ptnInfo && ptnInfo.userPhone}</p>
             </div>
             <div className="info-box">
               <p className="title">EMAIL</p>
-              <p>{tempData.ptnEmail}</p>
+              <p>{ptnInfo && ptnInfo.userEmail}</p>
             </div>
             <div className="info-box">
               <p className="title">소재지</p>
-              <p>{tempData.ptnAddr}</p>
+              <p>{ptnInfo && ptnInfo.userAddr}</p>
             </div>
             <div className="info-box">
               <p className="title">소개글</p>
-              <p className="desc">{tempData.ptnDesc}</p>
+              <p className="desc">{ptnInfo && ptnInfo.ptnDesc}</p>
             </div>
           </div>
           <div className="btnBox">
-            <button>수정하기</button>
+            <button
+              onClick={() => {
+                navigate(`/partnermain/updateInfo/${ptnId}`);
+              }}
+            >
+              수정하기
+            </button>
           </div>
         </div>
       </PartnerInfoComp>

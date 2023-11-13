@@ -1,53 +1,75 @@
 import UserInfoComp from "../style/UserInfoStyle";
-import { Link } from "react-router-dom/dist";
+import { useState, useEffect } from "react";
+import MemberApi from "../api/MemberApi";
+import { useNavigate } from "react-router-dom";
+
 const UserInfo = () => {
-  const userInfoEx = {
-    name: "송중기",
-    userId: "taeyang2016",
-    userUrl:
-      "https://firebasestorage.googleapis.com/v0/b/repairrun-dae01.appspot.com/o/user01.jpg?alt=media&token=e6562c4e-5394-41f2-9186-037eb9997336",
-    email: "songJK@gmail.com",
-    phoneNumber: "010-1234-5678",
-    addr: "서울특별시 강남구 역삼동",
+  const navigate = useNavigate();
+  const userId = window.localStorage.getItem("userId");
+  const [userInfo, setUserInfo] = useState(null);
+
+  const getUserInfo = async () => {
+    try {
+      const res = await MemberApi.memberInfo(userId);
+      if (res.data !== null) {
+        setUserInfo(res.data);
+        window.localStorage.setItem("userName", res.data.userName);
+        window.localStorage.setItem("userEmail", res.data.userEmail);
+        window.localStorage.setItem("userPhone", res.data.userPhone);
+        window.localStorage.setItem("userAddr", res.data.userAddr);
+        window.localStorage.setItem("userImg", res.data.userImg);
+      }
+      console.log(res.data);
+    } catch (err) {
+      console.log(err);
+    }
   };
+  useEffect(() => {
+    getUserInfo();
+    console.log(userInfo);
+  }, []);
 
   return (
     <>
       <UserInfoComp>
         <div className="container">
           <div className="userProfile">
-            <h2>{userInfoEx.name}님, 안녕하세요!</h2>
+            <h2>{userInfo && userInfo.userName}님, 안녕하세요!</h2>
             <div className="profileImg">
-              {<img src={userInfoEx.userUrl} alt="송중기" />}
+              {<img src={userInfo && userInfo.userImg} alt="profile" />}
             </div>
           </div>
           <div className="userContent">
             <div className="userBox">
               <p className="title">이름</p>
-              <p>{userInfoEx.name}</p>
+              <p>{userInfo && userInfo.userName}</p>
             </div>
             <div className="userBox">
               <p className="title">아이디</p>
-              <p>{userInfoEx.userId}</p>
+              <p>{userId}</p>
             </div>
             <div className="userBox">
               <p className="title">EMAIL</p>
-              <p>{userInfoEx.email}</p>
+              <p>{userInfo && userInfo.userEmail}</p>
             </div>
             <div className="userBox">
               <p className="title">전화번호</p>
-              <p>{userInfoEx.phoneNumber}</p>
+              <p>{userInfo && userInfo.userPhone}</p>
             </div>
             <div className="userBox">
               <p className="title">소재지</p>
-              <p>{userInfoEx.addr}</p>
+              <p>{userInfo && userInfo.userAddr}</p>
             </div>
           </div>
 
           <div className="userModification">
-            <Link to="/MyPage/UpdateInfo">
-              <button>수정하기</button>
-            </Link>
+            <button
+              onClick={() => {
+                navigate(`/mypage/updateInfo/${userId}`);
+              }}
+            >
+              수정하기
+            </button>
           </div>
         </div>
       </UserInfoComp>

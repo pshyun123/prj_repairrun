@@ -16,22 +16,33 @@ const UpdateInfo = () => {
   const { loginStatus } = context;
   const status = loginStatus;
   const userId = window.localStorage.getItem("userId");
+  const userName = window.localStorage.getItem("userName");
+  const userImg = window.localStorage.getItem("userImg");
+  const originImg = userImg !== null ? userImg : basicProfile;
   console.log(status);
 
   const userPw = window.localStorage.getItem("userPw");
 
   //프로필이미지
-  const [imgSrc, setImgSrc] = useState(basicProfile);
+  const [imgSrc, setImgSrc] = useState(originImg);
   const [file, setFile] = useState(null);
   const [url, setUrl] = useState("");
 
   //키보드 입력
   const [inputPw, setInputPw] = useState("");
-  const [inputPhone, setInputPhone] = useState("");
-  const [inputEmail, setInputEmail] = useState("");
-  const [inputAddr, setInputAddr] = useState("");
+  const [inputPhone, setInputPhone] = useState(
+    window.localStorage.getItem("userPhone")
+  );
+  const [inputEmail, setInputEmail] = useState(
+    window.localStorage.getItem("userEmail")
+  );
+  const [inputAddr, setInputAddr] = useState(
+    window.localStorage.getItem("userAddr")
+  );
   //파트너만
-  const [inputDesc, setInputDesc] = useState("");
+  const [inputDesc, setInputDesc] = useState(
+    window.localStorage.getItem("ptnDesc")
+  );
 
   // 오류 메세지
   const [pwMessage, setPwMessage] = useState("");
@@ -127,9 +138,14 @@ const UpdateInfo = () => {
           <div className="wrapper">
             <div className="inputArea">
               <label className="name">
-                <span>이름</span>
+                <span>{status === "member" ? "이름" : "파트너명"}</span>
                 <div className="box">
-                  <input type="text" disabled value={"송중기"} />
+                  <input
+                    className="fixed"
+                    type="text"
+                    disabled
+                    value={userName}
+                  />
                 </div>
               </label>
             </div>
@@ -137,20 +153,82 @@ const UpdateInfo = () => {
               <label name="userId">
                 <span>아이디</span>
                 <div className="box">
-                  <input type="text" disabled value={userId} />
+                  <input
+                    className="fixed"
+                    type="text"
+                    disabled
+                    value={userId}
+                  />
+                </div>
+              </label>
+            </div>
+            <div className="inputArea pwArea">
+              <label name="userPw">
+                <span>비밀번호</span>
+                <div className="box">
+                  <input type="password" placeholder="기존 비밀번호 입력" />
+                  <p className="check">안녕</p>
+                </div>
+              </label>
+              <div className="inputbox">
+                <input type="password" />
+                <input type="passowrd" />
+              </div>
+            </div>
+            <div className="inputArea">
+              <label name="phone">
+                <span>전화번호</span>
+                <div className="box">
+                  <input
+                    type="text"
+                    placeholder="'-' 포함 입력하세요"
+                    defaultValue={inputPhone}
+                  />
                 </div>
               </label>
             </div>
             <div className="inputArea">
-              <label name="userPw">
-                <span>비밀번호</span>
+              <label name="email">
+                <span>EMAIL</span>
                 <div className="box">
-                  <input type="password" />
+                  <input type="email" defaultValue={inputEmail} />
                 </div>
               </label>
-              <input type="password" />
-              <input type="passowrd" />
             </div>
+            <div className="inputArea">
+              <label name="addr">
+                <span>주소</span>
+                <input type="text" defaultValue={inputAddr} />
+                <button className="active" onClick={openPostCode}>
+                  주소찾기
+                </button>
+              </label>
+              {isPopUpOpen && (
+                <DaumPostPopup onClose={closePostCode} setAddr={setAddr} />
+              )}
+            </div>
+            {status === "partner" && (
+              <div className="inputArea">
+                <label name="desc">
+                  <span>소개글</span>
+                  <div className="box">
+                    <textarea
+                      cols="34"
+                      rows="5"
+                      defaultValue={inputDesc}
+                    ></textarea>
+                  </div>
+                </label>
+              </div>
+            )}
+          </div>
+          <div className="btnBox">
+            {isPw && isPhone && isEmail && isAddr && isDesc ? (
+              <button className="active">제출하기</button>
+            ) : (
+              <button>제출하기</button>
+            )}
+            <button className="active">취소하기</button>
           </div>
         </div>
       </UpdateInfoStyle>

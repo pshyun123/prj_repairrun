@@ -56,8 +56,16 @@ const UpdateInfoStyle = styled.section`
             font-weight: 600;
           }
           input {
-            margin-right: 6px;
+            margin-right: 10px;
             padding: 5px;
+            &.fixed {
+              border: none;
+              background-color: white;
+              font-size: 1.1em;
+              font-weight: 600;
+              padding: 0;
+              margin-left: 20px;
+            }
           }
           .box {
             position: relative;
@@ -92,6 +100,31 @@ const UpdateInfoStyle = styled.section`
               &:hover {
                 background-color: var(--DARKBLUE);
               }
+            }
+          }
+        }
+        &.pwArea {
+          outline: 1px solid red;
+          flex-direction: column;
+          align-items: center;
+          label {
+            .box {
+              input {
+                margin-bottom: 20px;
+              }
+              .check {
+              }
+            }
+          }
+          .inputbox {
+            outline: 1px solid blue;
+            width: 330px;
+            display: flex;
+            flex-direction: column;
+            input {
+              width: 56%;
+              padding: 5px;
+              margin-left: 20%;
             }
           }
         }

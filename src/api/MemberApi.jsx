@@ -13,6 +13,14 @@ const MemberApi = {
     return await axios.post(BACKEND + "/members/login", login);
   },
 
+  //회원정보
+  memberInfo: async (memberId) => {
+    const memberData = {
+      memberId: memberId,
+    };
+    return await axios.post(BACKEND + "/members/memberinfo", memberData);
+  },
+
   //중복체크
   uniqueCheck: async (type, inputVal) => {
     const checkData = {

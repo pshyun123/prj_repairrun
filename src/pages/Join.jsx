@@ -307,7 +307,7 @@ const Join = () => {
               </label>
             </div>
             <div className="inputArea">
-              <label name="">
+              <label name="phone">
                 <span>전화번호</span>
                 <div className="box">
                   <input
@@ -332,7 +332,7 @@ const Join = () => {
               </label>
             </div>
             <div className="inputArea">
-              <label name="">
+              <label name="email">
                 <span>EMAIL</span>
                 <div className="box">
                   <input type="email" onChange={(e) => onChangeInput(e, 5)} />

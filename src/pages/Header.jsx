@@ -51,6 +51,7 @@ const Header = () => {
     console.log(
       "유저로그아웃 확인 상태" + window.localStorage.getItem("loginStatus")
     );
+    window.localStorage.clear();
   };
 
   return (
