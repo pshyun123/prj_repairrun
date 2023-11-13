@@ -4,27 +4,27 @@ const BACKEND = "http://localhost:8111";
 
 const OrderApi = {
   // 상세 항목 가져오기
-  getDetailItem: async (detail) => {
-    const requestData = {
-      detail: detail,
+  getDetailItem: async (item) => {
+    const selectItem = {
+      repairItem: item,
     };
-    return await axios.post(BACKEND + "/order/detail", requestData);
+    return await axios.post(BACKEND + "/order/detail", selectItem);
   },
 
-  // 파트너 리스트
+  // 파트너 리스트 선택
   getPartnerList: async (detail) => {
-    const requestData = {
-      detail: detail,
+    const selectPtn = {
+      repairDetail: detail,
     };
-    return await axios.post(BACKEND + "/order/ptnlist", requestData);
+    return await axios.post(BACKEND + "/order/ptnlist", selectPtn);
   },
 
   // 결제 과정
-  processPayment: async (name) => {
-    const requestData = {
-      name: name,
+  processPayment: async (id) => {
+    const payment = {
+      userId: id,
     };
-    return await axios.post(BACKEND + "/order/payment", requestData);
+    return await axios.post(BACKEND + "/order/payment", payment);
   },
 };
 export default OrderApi;
