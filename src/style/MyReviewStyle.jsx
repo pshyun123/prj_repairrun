@@ -38,18 +38,16 @@ export const ReviewTop = styled.section`
           &:first-child {
             margin-right: 15px;
           }
-          @media screen and (max-width: 768px) {
+          /* @media screen and (max-width: 768px) {
             .li {
-              align-items: center;
-            }
-          }
+              align-items: center; */
         }
       }
-      p {
-        font-size: 1.4em;
-        font-weight: 800;
-      }
     }
+  }
+  p {
+    font-size: 1.4em;
+    font-weight: 800;
   }
 `;
 
@@ -113,6 +111,9 @@ export const MemReviewBlock = styled.div`
           }
         }
       }
+      @media screen and (max-width: 768px) {
+        flex-direction: column;
+      }
     }
     .box {
       flex-grow: 1;
@@ -122,6 +123,7 @@ export const MemReviewBlock = styled.div`
       .txt-box {
         display: flex;
         line-height: 50px;
+
         p {
           color: white;
           &:first-child {
@@ -142,11 +144,11 @@ export const MemReviewBlock = styled.div`
       color: #000;
       border: 1px solid #000;
       font-weight: 600;
+      @media screen and (max-width: 768px) {
+        height: 100px;
+      }
     }
   }
-  /* @media screen and (max-width: 768px) {
-    width: 100%;
-  } */
 `;
 
 // MemReviewList 관련 정렬 하는 스타일
