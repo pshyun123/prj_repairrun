@@ -9,17 +9,21 @@ export const LocationComp = styled.section`
   align-content: space-evenly;
 
   .container {
-    border: 1px solid darkgray;
+    /* border: 1px solid darkgray; */
     display: flex;
     padding: 80px 0;
+    flex-direction: column;
 
     .fastselect {
       width: 100%;
+      /* display: flex; */
+      /* align-items: center; */
 
       h3 {
-        text-align: center;
-        margin: 10px;
+        text-align: left;
+        /* margin: 10px; */
         font-weight: 600;
+        padding: 10px 30px;
       }
       .btnBox {
         display: flex;
@@ -59,70 +63,31 @@ export const LocationComp = styled.section`
       }
 
       img {
-        width: 100%;
+        width: 90%;
         margin: 10px;
       }
     }
+    .buttonContainer {
+      text-align: right;
 
-    .searchArea {
-      padding: 0 3%;
-      padding-top: 50px;
-      background-color: var(--IVORY);
-      width: 100%;
-
-      .searchBox {
-        width: 100%;
-        margin-bottom: 20px;
-        display: flex;
+      button {
+        width: 150px;
+        height: 45px;
+        border-radius: 30px;
+        border-style: none;
         background-color: var(--DARKBLUE);
         color: white;
-        border: 1px solid var(--DARKBLUE);
-        border-radius: 4px;
-        /* padding: 15px; */
-        align-items: center;
-        justify-content: space-between;
-
-        input {
-          padding: 15px;
-          height: 60px;
-          border: 1px solid #ccc;
-          border-radius: 4px;
-          flex-grow: 5;
-          font-size: 1.2rem;
-        }
-        svg {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          /* height: 100%; */
-          flex-grow: 1;
-          &:hover {
-            cursor: pointer;
-          }
-        }
-      }
-      .ptnList {
-        height: 600px;
-        overflow: scroll;
-        /* width: 100%; */
-        padding: 20px;
-        /* outline: 1px solid blue; */
-        border-radius: 4px;
-        background-color: var(--GREY);
-
-        li {
-          background-color: var(--LIGHTBLUE);
-          outline: 1px solid darkgray;
-          height: 20%;
-          font-size: 1.6em;
-          padding: 10px 20px;
-          border-radius: 4px;
+        font-weight: 600;
+        font-size: 1.3rem;
+        &:hover {
           cursor: pointer;
+          background-color: var(--MIDBLUE);
         }
       }
     }
   }
-  @media only screen and (max-width: 1185px) {
+
+  @media only screen and (max-width: 768px) {
     .container {
       display: flex;
       flex-direction: column;

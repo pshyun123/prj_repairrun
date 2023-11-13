@@ -1,6 +1,10 @@
 import { BrandInputComp } from "../style/LocationStyle";
 
-const Brandinput = () => {
+const Brandinput = ({ onNext }) => {
+  const handeleNextClick = () => {
+    // 다음 버튼 클릭 시 FastRepair 컴포넌트의 onNext 함수 호출
+    onNext();
+  };
   return (
     <>
       <BrandInputComp>
@@ -11,7 +15,7 @@ const Brandinput = () => {
             </h3>
             <input type="text"></input>
             <div className="buttonContainer">
-              <button>다음</button>
+              <button onClick={handeleNextClick}>다음</button>
             </div>
           </div>
         </div>

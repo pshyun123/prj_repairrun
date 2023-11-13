@@ -1,6 +1,10 @@
 import { RequestComp, RadioBox } from "../style/BasicStyle";
 
-export const ItemSelect = () => {
+export const ItemSelect = ({ onNext }) => {
+  const handeleNextClick = () => {
+    // 다음 버튼 클릭 시 FastRepair 컴포넌트의 onNext 함수 호출
+    onNext();
+  };
   const test = ["가방 클리닝", "가죽 복원", "스트랩 교체"];
 
   return (
@@ -41,7 +45,7 @@ export const ItemSelect = () => {
               ></input>
             </div>
             <div className="buttonContainer">
-              <button>다음</button>
+              <button onClick={handeleNextClick}>다음</button>
             </div>
           </div>
         </div>

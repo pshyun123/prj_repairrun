@@ -4,6 +4,7 @@ export const ItemSelectComp = styled.section`
   .container {
     border: 1px solid darkgray;
     display: flex;
+    flex-direction: column;
     padding: 200px 30px;
     flex-wrap: nowrap;
     align-items: center;
@@ -24,7 +25,7 @@ export const ItemSelectComp = styled.section`
       display: flex;
       flex-direction: row;
       width: 100%;
-      padding: 20px;
+      padding: 20px 0;
       justify-content: center;
       align-content: center;
 
@@ -40,6 +41,28 @@ export const ItemSelectComp = styled.section`
       .itemImg {
         display: flex;
         flex-wrap: wrap;
+      }
+    }
+    .buttonContainer {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      padding: 0 100px;
+
+      button {
+        width: 150px;
+        height: 45px;
+        border-radius: 30px;
+        border-style: none;
+        background-color: var(--DARKBLUE);
+        color: white;
+        font-weight: 600;
+        font-size: 1.3rem;
+        &:hover {
+          cursor: pointer;
+          background-color: var(--MIDBLUE);
+        }
       }
     }
   }

@@ -1,9 +1,8 @@
+import React from "react";
 import { LocationComp } from "../style/LocationStyle";
 import mapimg from "../images/metropolitan-area.jpg";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
-const Location = () => {
+const Location = ({ onNext }) => {
   return (
     <>
       <LocationComp>
@@ -24,22 +23,12 @@ const Location = () => {
                 <p>신발 클리닝</p>
               </button>
             </div>
-
+            <h3>이용 가능한 지역</h3>
             <img src={mapimg} alt="서비스 가능한 지역" />
           </div>
-          <div className="searchArea">
-            <div className="searchBox">
-              <input type="text" placeholder="지역구를 입력하세요" />
-              <FontAwesomeIcon icon={faSearch} />
-            </div>
-            <ul className="ptnList">
-              <li>1</li>
-              <li>2</li>
-              <li>3</li>
-              <li>4</li>
-              <li>5</li>
-              <li>6</li>
-            </ul>
+
+          <div className="buttonContainer">
+            <button onClick={onNext}>다음</button>
           </div>
         </div>
       </LocationComp>

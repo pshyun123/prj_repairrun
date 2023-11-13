@@ -4,7 +4,7 @@ import shoes from "../images/shoes.png";
 import clothes from "../images/clothes.png";
 import walletBelt from "../images/walletBelt.png";
 
-export const ItemSelect = () => {
+export const ItemSelect = ({ onNext }) => {
   return (
     <>
       <ItemSelectComp>
@@ -31,6 +31,9 @@ export const ItemSelect = () => {
                 <p>지갑/벨트</p>
               </button>
             </div>
+          </div>
+          <div className="buttonContainer">
+            <button onClick={onNext}>다음</button>
           </div>
         </div>
       </ItemSelectComp>
