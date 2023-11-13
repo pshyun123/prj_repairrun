@@ -88,8 +88,8 @@ export const ImgUploadComp = styled.section`
     .uploadBox {
       /* border: 1px solid red; */
       display: grid;
-      /* grid-template-columns: repeat (4, 1fr);
-      grid-template-rows: 3; */
+      grid-template-columns: repeat (4, minmax(100px, 1fr));
+      /* grid-template-rows: 3; */
       gap: 10px;
       width: 100%;
 
@@ -159,16 +159,11 @@ export const ImgUploadComp = styled.section`
       }
 
       @media (max-width: 768px) {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        grid-template-columns: repeat(4, minmax(100px, 1fr));
         gap: 10px;
         padding: 0;
         /* justify-content: center; */
         /* 이미지 업로드 공간의 크기를 정사각형으로 유지 */
-        &:before {
-          content: "";
-          padding-bottom: 10%;
-          display: block;
-        }
       }
     }
     .buttonContainer {

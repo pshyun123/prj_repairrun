@@ -6,13 +6,25 @@ import side from "../images/side.png";
 import spot from "../images/spot.png";
 
 export const ImgUpload = ({ onNext }) => {
-  const [imgSrc, setImgSrc] = useState(full); // 기본 이미지 설정
-  // 4가지로 수정하기
-  const [url, setUrl] = useState("");
+  const [fullImg, setFullImg] = useState(full);
+  const [insideImg, setInsideImg] = useState(inside);
+  const [sideImg, setSideImg] = useState(side);
+  const [spotImg, setSpotImg] = useState(spot);
+  const [selectedImgCount, setSelectedImgCount] = useState(0);
 
-  const handleFileInputChange = (e) => {
-    setImgSrc(URL.createObjectURL(e.target.files[0]));
+  const handleFileChange = (e, setImg) => {
+    setImg(URL.createObjectURL(e.target.files[0]));
+    setSelectedImgCount(selectedImgCount + 1);
   };
+
+  const handleNextClick = () => {
+    // itemImg1은 필수로 업로드 되어야 하며,
+    // itemImg2, itemImg3, itemImg4 중 최소 1장은 필수로 업로드 되어야 함
+    if (selectedImgCount >= 1 && fullImg && insideImg && sideImg && spotImg) {
+      onNext();
+    }
+  };
+
   return (
     <>
       <ImgUploadComp>
@@ -57,37 +69,51 @@ export const ImgUpload = ({ onNext }) => {
             <div className="textBox textBox2">
               <p>상세 사진</p>
             </div>
-
             <div className="itemImg itemImg1">
-              <img src={imgSrc} alt="itemImg1" />
+              <img src={fullImg} alt="itemImg1" />
             </div>
             <div className="imgInput imgInput1">
-              <input type="file" onChange={(e) => handleFileInputChange(e)} />
+              <input
+                type="file"
+                onChange={(e) => handleFileChange(e, setFullImg)}
+                required
+              />
             </div>
 
             <div className="itemImg itemImg2">
-              <img src={imgSrc} alt="itemImg2" />
+              <img src={insideImg} alt="itemImg2" />
             </div>
             <div className="imgInput imgInput2">
-              <input type="file" onChange={(e) => handleFileInputChange(e)} />
+              <input
+                type="file"
+                onChange={(e) => handleFileChange(e, setInsideImg)}
+              />
             </div>
 
             <div className="itemImg itemImg3">
-              <img src={imgSrc} alt="itemImg3" />
+              <img src={sideImg} alt="itemImg3" />
             </div>
             <div className="imgInput imgInput3">
-              <input type="file" onChange={(e) => handleFileInputChange(e)} />
+              <input
+                type="file"
+                onChange={(e) => handleFileChange(e, setSideImg)}
+              />
             </div>
 
             <div className="itemImg itemImg4">
-              <img src={imgSrc} alt="itemImg4" />
+              <img src={spotImg} alt="itemImg4" />
             </div>
             <div className="imgInput imgInput4">
-              <input type="file" onChange={(e) => handleFileInputChange(e)} />
+              <input
+                type="file"
+                onChange={(e) => handleFileChange(e, setSpotImg)}
+              />
             </div>
           </div>
           <div className="buttonContainer">
-            <button onClick={onNext}>다음</button>
+            <button onClick={handleNextClick} disabled={selectedImgCount < 1}>
+              다음
+            </button>
           </div>
         </div>
       </ImgUploadComp>
