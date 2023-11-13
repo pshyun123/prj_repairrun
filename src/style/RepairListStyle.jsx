@@ -68,6 +68,10 @@ const RepairListComp = styled.section`
                   color: #333;
                   font-weight: bold;
                   font-size: 1em;
+                  &:enabled {
+                    border: 1px solid #ccc;
+                    background: var(--GREY);
+                  }
                   &::-webkit-outer-spin-button,
                   &::-webkit-inner-spin-button {
                     -webkit-appearance: none;

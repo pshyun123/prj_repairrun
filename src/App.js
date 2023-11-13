@@ -47,13 +47,16 @@ function App() {
               <Route path="/ReviewStock" element={<ReviewStock />} />
               {/* 마이페이지 */}
               <Route path="/MyPage" element={<MyPage />} />
-              <Route path="/MyPage/UpdateInfo" element={<UpdateInfo />} />
+              <Route path="/MyPage/UpdateInfo/:id" element={<UpdateInfo />} />
               <Route path="/MyPage/OrderInfo" element={<OrderInfo />} />
               <Route path="/MyPage/MyReview" element={<MyReview />} />
               {/************** 파트너회원 *****************/}
               <Route path="/PartnerMain" element={<PartnerMain />} />
               {/* 정보수정(파트너) */}
-              <Route path="/PartnerMain/UpdateInfo" element={<UpdateInfo />} />
+              <Route
+                path="/PartnerMain/UpdateInfo/:id"
+                element={<UpdateInfo />}
+              />
               {/* 후기관리 */}
               <Route
                 path="/PartnerMain/PartnerReview"

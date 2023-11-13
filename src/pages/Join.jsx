@@ -291,7 +291,7 @@ const Join = () => {
               </label>
             </div>
             <div className="inputArea">
-              <label name="">
+              <label name="userPw">
                 <span>비밀번호</span>
                 <div className="box">
                   <input

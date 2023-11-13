@@ -70,6 +70,16 @@ const PartnerApi = {
     };
     return await axios.post(BACKEND + "/partners/new", newPtnData);
   },
+
+  updateDetail: async (ptnId, repairDetail, days, price) => {
+    const updateInfo = {
+      ptnId: ptnId,
+      repairDetail: repairDetail,
+      days: days,
+      price: price,
+    };
+    return await axios.post(BACKEND + "/partners/updatedetail", updateInfo);
+  },
 };
 
 export default PartnerApi;

@@ -1,5 +1,23 @@
+import { useState, useEffect } from "react";
+import DetailList from "./DetailList";
+
 const Repair = ({ data }) => {
   const { item, detail } = data;
+
+  const [isModify, setIsModify] = useState(true);
+  const [isDisabled, setIsDisabled] = useState(true);
+  const [isSave, setIsSave] = useState(false);
+
+  const clickModify = () => {
+    isModify ? setIsModify(false) : setIsModify(true);
+    if (isDisabled) {
+      setIsDisabled(false);
+      setIsSave(false);
+    } else {
+      setIsDisabled(true);
+      setIsSave(true);
+    }
+  };
   return (
     <>
       <div className="repairBox">
@@ -12,23 +30,23 @@ const Repair = ({ data }) => {
               <th>수선비용</th>
             </tr>
           </thead>
-          <tbody>
-            {detail &&
-              detail.map((det) => (
-                <tr key={det.name}>
-                  <td className="name">{det.name}</td>
-                  <td className="days">
-                    <input type="number" defaultValue={det.days} />일
-                  </td>
-                  <td className="price">
-                    <input type="number" defaultValue={det.price} disabled />
-                  </td>
-                </tr>
-              ))}
-          </tbody>
+          {detail &&
+            detail.map((det) => (
+              <DetailList
+                key={det.name}
+                det={det}
+                disabled={isDisabled}
+                save={isSave}
+                setSave={setIsSave}
+              />
+            ))}
         </table>
         <div className="btnBox">
-          <button>수정</button>
+          {isModify ? (
+            <button onClick={clickModify}>수정</button>
+          ) : (
+            <button onClick={clickModify}>확인</button>
+          )}
         </div>
       </div>
     </>
