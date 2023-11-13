@@ -5,7 +5,7 @@ export const ItemSelect = ({ onNext }) => {
   const navigate = useNavigate();
 
   const handleNextClick = () => {
-    navigate("/neworder/generalstep"); // "/generalstep"에는 실제 프로젝트에서 사용하는 경로로 변경하세요.
+    navigate("/neworder/generalstep");
   };
 
   const test = ["가방 클리닝", "가죽 복원", "스트랩 교체"];

@@ -13,7 +13,7 @@ export const ItemSelect = ({ onNext }) => {
             <h3>
               <span>어떤 수선</span>이 필요하신가요?
             </h3>
-            <div className="itemImg">
+            <div clssName="itemImg">
               <button>
                 <img src={bag} alt="bag" />
                 <p>가방</p>
