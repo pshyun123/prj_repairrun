@@ -1,13 +1,13 @@
 import NoticeList from "../component/ServiceList";
 import ServiceApi from "../api/Service.Api";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useLayoutEffect } from "react";
 
 const FAQ = () => {
-  const [faqList, setFaqList] = useState([]);
+  const [faqList, setFaqList] = useState(null);
   useEffect(() => {
     const faqData = async () => {
       try {
-        const res = await ServiceApi.service(0);
+        const res = await ServiceApi.service(1);
         setFaqList(res.data);
         console.log(res);
         return res;
@@ -18,10 +18,6 @@ const FAQ = () => {
     faqData();
   }, []);
 
-  return (
-    <>
-      <NoticeList faqData={faqList} />
-    </>
-  );
+  return <>{faqList && <NoticeList faqData={faqList} />}</>;
 };
 export default FAQ;

@@ -7,7 +7,7 @@ const Notice = () => {
   useEffect(() => {
     const noticeData = async () => {
       try {
-        const res = await ServiceApi.service(1);
+        const res = await ServiceApi.service(0);
         setNoticeList(res.data);
         console.log(res);
       } catch (err) {

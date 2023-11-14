@@ -17,7 +17,7 @@ const ServiceText = ({ noticePlus, isNotice }) => {
       <li>
         <div className="box">
           <div className="noticeTit">{noticePlus.title}</div>
-          {isNotice && <div className="noticeDateBox">{noticePlus.Date}</div>}
+          {isNotice && <div className="noticeDateBox">{noticePlus.date}</div>}
         </div>
 
         <div className={`test ${active}`}>
