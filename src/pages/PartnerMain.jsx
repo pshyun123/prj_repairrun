@@ -15,7 +15,7 @@ const PartnerMain = () => {
       <PartnerInfo selPtn={ptnId} loginType={loginType} />
       <RepairList selPtn={ptnId} loginType={loginType} />
       {loginType === "partner" && <OrderList loginType={1} />}
-      <ReviewList selPtn={ptnId} />
+      <ReviewList selPtn={ptnId} nofilter={"nofilter"} />
     </>
   );
 };

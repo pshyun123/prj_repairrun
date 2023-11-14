@@ -1,9 +1,9 @@
 import { BannerStyle, ReasonStyle } from "../style/BasicMainStyle";
 import LogoSlide from "../component/Slide";
 import { useNavigate } from "react-router-dom";
-import ReviewListComp from "../component/ReviewList";
-import { bestPartnerStyle } from "../style/BasicMainStyle";
+import ReviewList from "../component/ReviewList";
 import Fix from "../component/BeforeAfter";
+import { bestPartnerStyle } from "../style/BasicMainStyle";
 
 const MainBody = () => {
   const navigate = useNavigate();
@@ -81,7 +81,7 @@ const BasicMain = () => {
       <Reason />
       <div className="container">
         <p style={bestPartnerStyle}>베스트 파트너 & 후기</p>
-        <ReviewListComp />
+        <ReviewList nofilter={"nofilter"} />
       </div>
       <LogoSlide />
     </>
