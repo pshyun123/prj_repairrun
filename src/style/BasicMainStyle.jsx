@@ -13,7 +13,7 @@ export const BannerStyle = styled.section`
   background-size: cover;
   background-position: center;
   outline: 1px solid #999;
-  margin-bottom: 100px;
+  margin-bottom: 180px;
   .mainBanner {
     width: 100%;
     height: 100%;
@@ -53,6 +53,7 @@ export const BannerStyle = styled.section`
   }
   @media only screen and (max-width: 768px) {
     background-image: url(${bannermo});
+    margin-bottom: 100px;
     .mainBanner {
       background-color: rgba(0, 0, 0, 0.4);
       .container {
@@ -65,14 +66,17 @@ export const BannerStyle = styled.section`
 `;
 
 //// 리페어런 찾는 이유
-
 export const ReasonStyle = styled.div`
+  margin-bottom: 150px;
+  padding: 30px 0;
+  background-color: var(--IVORY);
   .container {
-    margin-bottom: 100px;
     .whyText {
-      padding-bottom: 20px;
+      padding: 40px 0;
       .wtxt {
-        font-size: 1.8em;
+        font-size: 2.5em;
+        padding-bottom: 20px;
+        font-weight: 600;
       }
     }
     .reasonSet {
@@ -83,13 +87,13 @@ export const ReasonStyle = styled.div`
         "reason1 reason2"
         "reason3 reason4"
         "reason5 reason6";
-      gap: 20px;
+      gap: 50px;
       margin-bottom: 30px;
-      line-height: 1.5em;
+      line-height: 1.6em;
 
       .reason1 {
         grid-area: reason1;
-        padding: 140px;
+        padding: 180px;
         background-image: url(${meeting});
         background-position: center;
         background-size: cover;
@@ -99,24 +103,28 @@ export const ReasonStyle = styled.div`
         grid-area: reason2;
         padding: 0 10px;
         margin: auto;
+        font-size: 1.2em;
 
         .repairR {
-          font-size: 1.3em;
+          font-size: 1.4em;
           line-height: 3em;
+          font-weight: 600;
         }
       }
       .reason3 {
         grid-area: reason3;
         padding: 0 10px;
         margin: auto;
+        font-size: 1.2em;
         .repairR {
-          font-size: 1.3em;
+          font-size: 1.4em;
           line-height: 3em;
+          font-weight: 600;
         }
       }
       .reason4 {
         grid-area: reason4;
-        padding: 140px;
+        padding: 180px;
         background-image: url(${delivery});
         background-position: center;
         background-size: cover;
@@ -124,7 +132,7 @@ export const ReasonStyle = styled.div`
       }
       .reason5 {
         grid-area: reason5;
-        padding: 140px;
+        padding: 180px;
         background-image: url(${connection});
         background-position: center;
         background-size: cover;
@@ -134,15 +142,18 @@ export const ReasonStyle = styled.div`
         grid-area: reason6;
         padding: 0 10px;
         margin: auto;
+        font-size: 1.2em;
         .repairR {
-          font-size: 1.3em;
+          font-size: 1.4em;
           line-height: 3em;
+          font-weight: 600;
         }
       }
     }
   }
 
   @media only screen and (max-width: 768px) {
+    margin-bottom: 60px;
     .container {
       .reasonSet {
         grid-template-columns: repeat(1, 100%);
@@ -156,17 +167,20 @@ export const ReasonStyle = styled.div`
           "reason6";
         row-gap: 0px;
         .reason2 {
-          margin-bottom: 20px;
+          margin-bottom: 50px;
         }
         .reason3 {
-          margin-bottom: 20px;
+          margin-bottom: 50px;
         }
         .reason6 {
-          margin-bottom: 20px;
         }
       }
     }
   }
 `;
 
-export const bestPartnerStyle = { fontSize: "1.8em" };
+export const bestPartnerStyle = {
+  fontSize: "2em",
+  textAlign: "center",
+  fontWeight: "600",
+};

@@ -6,9 +6,9 @@ import {
   ReactCompareSliderImage,
 } from "react-compare-slider";
 
-export const FixStyle = styled.div`
+export const FixStyle = styled.section`
   .container {
-    margin-bottom: 80px;
+    margin-bottom: 150px;
     box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
     .beforeStyle {
       justify-content: start;
@@ -29,10 +29,6 @@ export const FixStyle = styled.div`
         padding: 20px;
         color: white;
         border-radius: 30px;
-        /* backdrop-filter: blur(0.25rem) saturate(180%) contrast(80%)
-        brightness(120%);
-      -webkit-backdrop-filter: blur(0.25rem) saturate(180%) contrast(80%)
-        brightness(120%);*/
         transition: opacity 0.25s ease-in-out;
         margin: 25px;
         background-color: var(--DARKBLUE);
@@ -42,6 +38,7 @@ export const FixStyle = styled.div`
 
   @media only screen and (max-width: 768px) {
     .container {
+      margin-bottom: 100px;
       .afterStyle,
       .beforeStyle {
         .label {
