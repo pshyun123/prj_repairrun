@@ -4,7 +4,7 @@ export const OrderCheckComp = styled.section`
   width: 100%;
   padding: 60px 0;
   .container {
-    border: 1px solid darkgray;
+    /* border: 1px solid darkgray; */
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
