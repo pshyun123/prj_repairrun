@@ -1,17 +1,13 @@
 import { OrderCheckComp } from "../style/OrderCheckStyle";
 const tempData = {
-  item: "가방 클리닝",
-  brand: "구찌",
-  request: "가죽 교체",
-  extra: "가방 세탁이 급하게 필요해요.",
-  fullImg:
-    "https://firebasestorage.googleapis.com/v0/b/repairrun-dae01.appspot.com/o/2_full_bag.jpg?alt=media&token=e2c4d290-8679-463a-a2da-28c8bcddee76",
-  detailImg1:
-    "https://firebasestorage.googleapis.com/v0/b/repairrun-dae01.appspot.com/o/2_1_detail_bag.jpg?alt=media&token=c191ae3b-d308-4a32-9b19-6105bc8365a5",
-  detailImg2:
-    "https://firebasestorage.googleapis.com/v0/b/repairrun-dae01.appspot.com/o/2_1_detail_bag.jpg?alt=media&token=c191ae3b-d308-4a32-9b19-6105bc8365a5",
-  detailImg3:
-    "https://firebasestorage.googleapis.com/v0/b/repairrun-dae01.appspot.com/o/2_1_detail_bag.jpg?alt=media&token=c191ae3b-d308-4a32-9b19-6105bc8365a5",
+  item: window.localStorage.getItem("selectedItem"),
+  brand: window.localStorage.getItem("brandInput"),
+  request: window.localStorage.getItem("selectedOption"),
+  extra: window.localStorage.getItem("additionalText"),
+  fullImg: window.localStorage.getItem("fullImg"),
+  detailImg1: window.localStorage.getItem("insideImg"),
+  detailImg2: window.localStorage.getItem("sideImg"),
+  detailImg3: window.localStorage.getItem("spotImg"),
 };
 
 export const OrderCheck = ({ onNext }) => {

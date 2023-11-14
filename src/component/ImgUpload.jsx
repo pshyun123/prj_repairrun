@@ -15,21 +15,23 @@ export const ImgUpload = ({ onNext }) => {
   useEffect(() => {
     // 컴포넌트가 처음 마운트될 때 실행
     // imgBox의 이미지를 초기 이미지로 설정
-    setFullImg(full);
-    setInsideImg(inside);
-    setSideImg(side);
-    setSpotImg(spot);
-  }, []); // 처음 한 번만 실행
+    window.localStorage.setItem("fullImg", fullImg);
+    window.localStorage.setItem("insideImg", insideImg);
+    const newSideImg = sideImg === side ? "" : sideImg;
+    window.localStorage.setItem("sideImg", newSideImg);
+    const newSpotImg = spotImg === spot ? "" : spotImg;
+    window.localStorage.setItem("spotImg", newSpotImg);
+  }, [fullImg, insideImg, sideImg, spotImg, selectedImgCount]); // 처음 한 번만 실행
 
   const handleFileChange = (e, setImg) => {
     const imageUrl = URL.createObjectURL(e.target.files[0]);
     setImg(imageUrl);
     setSelectedImgCount(selectedImgCount + 1);
-    localStorage.setItem(setImg.name, imageUrl);
   };
 
   const handleNextClick = () => {
-    if (selectedImgCount >= 1 && fullImg && insideImg && sideImg && spotImg) {
+    // 선택된 이미지수가 2개 이상이고 fullImg는 필수로 들어가야함
+    if (selectedImgCount >= 2 && fullImg && (insideImg || sideImg || spotImg)) {
       onNext();
     }
   };
@@ -120,7 +122,7 @@ export const ImgUpload = ({ onNext }) => {
             </div>
           </div>
           <div className="buttonContainer">
-            <button onClick={handleNextClick} disabled={selectedImgCount < 1}>
+            <button onClick={handleNextClick} disabled={selectedImgCount < 2}>
               다음
             </button>
           </div>

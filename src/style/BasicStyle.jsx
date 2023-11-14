@@ -2,39 +2,55 @@ import styled, { css } from "styled-components";
 
 export const ItemSelectComp = styled.section`
   .container {
-    border: 1px solid darkgray;
-    display: flex;
-    flex-direction: column;
-    padding: 200px 30px;
-    flex-wrap: nowrap;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-
-    h3 {
-      text-align: center;
-      font-weight: 400;
-
-      span {
-        font-size: 35px;
-        font-weight: 600;
-      }
-    }
-
-    .itemImg {
-      display: flex;
-      flex-direction: row;
+    padding: 60px 0;
+    .itemSelect {
       width: 100%;
-      padding: 20px 0;
+      display: flex;
+      flex-direction: column;
       justify-content: center;
-      align-content: center;
-
-      button {
-        margin: 10px;
-      }
-      p {
-        font-size: 1.4rem;
+      align-items: center;
+      padding: 40px 0;
+      h3 {
         font-weight: 600;
+        font-size: 1.3rem;
+        margin-bottom: 40px;
+      }
+      .itemImg {
+        width: 70%;
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+        color: var(--GREY);
+
+        .itemButton {
+          display: flex;
+          margin: 10px 10px;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          border-radius: 5px;
+          border: none;
+          &.selected {
+            background-color: var(--LIGHTBLUE);
+          }
+          p {
+            text-align: center;
+            font-weight: 400;
+            font-size: 1.2rem;
+            margin-bottom: 1;
+          }
+
+          ${(props) =>
+            props.selected &&
+            css`
+              background-color: var(--LIGHTBLUE);
+            `}
+          &:hover {
+            cursor: pointer;
+            background-color: var(--LIGHTBLUE);
+          }
+        }
       }
     }
     @media only screen and (max-width: 768px) {
@@ -71,38 +87,35 @@ export const ItemSelectComp = styled.section`
 // 수선 세부사항 - 라디오 박스 스타일
 
 export const RadioBox = styled.div`
-  border: 1px solid #ccc;
   padding: 10px;
   margin: 10px;
   height: 60px;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-
-  label {
-    padding: 25px;
-    border: 1px solid #ccc;
-    height: 2rem;
-    cursor: pointer;
-    border-radius: 2rem;
-    background-color: var(--DARKBLUE);
-    position: relative;
-    font-size: 1.3rem;
-    color: white;
+  .radioBtn {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    word-break: keep-all;
-    text-align: center;
+    justify-content: space-between;
 
-    /* 체크박스를 라벨 내에 숨깁니다. */
-    input[type="radio"] {
-      position: absolute;
-      opacity: 0;
-      height: 0;
-      width: 0;
-      top: 0;
-      left: 0;
+    label {
+      padding: 25px;
+      height: 2rem;
+      cursor: pointer;
+      border-radius: 2rem;
+      background-color: var(--DARKBLUE);
+      font-size: 1.2rem;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      word-break: keep-all;
+      text-align: center;
+      margin: 0 3px;
+
+      /* 체크박스를 라벨 내에 숨깁니다. */
+      input[type="radio"] {
+        margin-right: 10px;
+      }
     }
   }
 `;
@@ -110,7 +123,6 @@ export const RadioBox = styled.div`
 // RequestComp : 요청사항 스타일
 export const RequestComp = styled.section`
   .container {
-    border: 1px solid darkgray;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -118,16 +130,19 @@ export const RequestComp = styled.section`
 
     .request {
       width: 80%;
-
       .requestType {
         width: 100%;
-        border: 1px solid darkgray;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        padding: 10px;
         h3 {
           text-align: center;
+
+          font-size: 1.3rem;
           font-weight: 400;
 
           span {
-            font-size: 35px;
+            font-size: 1.4rem;
             font-weight: 600;
           }
         }
@@ -135,7 +150,9 @@ export const RequestComp = styled.section`
           h3 {
             font-size: 1.3rem;
             font-weight: 600;
-            text-align: left;
+            padding-top: 10px;
+            color: var(--DARKBLUE);
+            /* text-align: left; */
           }
         }
       }
@@ -147,9 +164,13 @@ export const RequestComp = styled.section`
       align-items: center;
       justify-content: space-around;
       border: 1px solid darkgray;
+      border-radius: 5px;
+
       h3 {
         font-size: 1.3rem;
         font-weight: 600;
+        text-align: left;
+        color: var(--DARKBLUE);
       }
       .example {
         display: flex;
@@ -158,10 +179,11 @@ export const RequestComp = styled.section`
         height: 25%;
         width: 100%;
         border: 1px solid darkgray;
-        background-color: var(--LIGHTBLUE);
+
+        background-color: var(--GREY);
         text-align: center;
         h4 {
-          font-size: 1rem;
+          font-size: 1.1rem;
           color: var(--DARKBLUE);
           font-weight: 400;
           padding: 5px;
@@ -171,9 +193,16 @@ export const RequestComp = styled.section`
           font-weight: 400;
         }
       }
-      input {
+      textarea {
         height: 65%;
         width: 100%;
+        font-size: 1rem;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        /* display: flex;
+        justify-content: flex-start;
+        text-align: start;
+        align-items: flex-start; */
       }
     }
     .example {

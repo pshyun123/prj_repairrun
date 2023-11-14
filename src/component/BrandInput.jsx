@@ -11,9 +11,17 @@ const Brandinput = ({ onNext }) => {
   // 입력된 브랜드 값을 저장할 상태 추가
   const [brandInput, setBrandInput] = useState("");
 
+  // const handleInputChange = (event) => {
+  //   // input 값이 변경될 때마다 상태 업데이트
+  //   setBrandInput(event.target.value);
+  // };
   const handleInputChange = (event) => {
     // input 값이 변경될 때마다 상태 업데이트
-    setBrandInput(event.target.value);
+    const inputValue = event.target.value;
+    setBrandInput(inputValue);
+
+    // 로컬 스토리지에 입력된 브랜드 값 저장
+    localStorage.setItem("brandInput", inputValue);
   };
 
   return (

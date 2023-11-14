@@ -6,7 +6,7 @@ const OrderApi = {
   // 상세 항목 가져오기
   getDetailItem: async (item) => {
     const selectItem = {
-      repairItem: item,
+      repairItem: item, //리액트와 연동
     };
     return await axios.post(BACKEND + "/order/detail", selectItem);
   },
@@ -14,7 +14,7 @@ const OrderApi = {
   // 파트너 리스트 선택
   getPartnerList: async (detail) => {
     const selectPtn = {
-      repairDetail: detail,
+      detail: detail,
     };
     return await axios.post(BACKEND + "/order/ptnlist", selectPtn);
   },

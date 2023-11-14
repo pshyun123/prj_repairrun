@@ -120,6 +120,7 @@ export const BrandInputComp = styled.section`
         border-style: none;
         margin: 15px 0;
         border-radius: 5px;
+        font-size: 1.2rem;
       }
     }
     @media only screen and (max-width: 768px) {
