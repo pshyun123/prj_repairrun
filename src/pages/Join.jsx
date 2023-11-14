@@ -116,7 +116,7 @@ const Join = () => {
         setInputPw(currPw);
         if (!regexList[1].test(currPw)) {
           setPwMessage(
-            "소대문자, 숫자, 특수기호 포함 12자 이상 15자 이하로 입력 하세요"
+            "대소문자, 숫자, 특수기호 포함 12자 이상 15자 이하로 입력 하세요"
           );
           setIsPw(false);
         } else {

@@ -21,6 +21,7 @@ const UpdateInfoStyle = styled.section`
         padding-bottom: 20%;
         margin-bottom: 20px;
         border-radius: 10px;
+        border: 1px solid #ccc;
         overflow: hidden;
         img {
           position: absolute;
@@ -54,9 +55,9 @@ const UpdateInfoStyle = styled.section`
             width: 20%;
             font-size: 1.1em;
             font-weight: 600;
+            margin-right: 10px;
           }
           input {
-            margin-right: 10px;
             padding: 5px;
             &.fixed {
               border: none;
@@ -72,6 +73,7 @@ const UpdateInfoStyle = styled.section`
             .check {
               position: absolute;
               top: 104%;
+              right: 2px;
               width: 94%;
               text-align: right;
               font-size: 0.8em;
@@ -104,27 +106,49 @@ const UpdateInfoStyle = styled.section`
           }
         }
         &.pwArea {
-          outline: 1px solid red;
           flex-direction: column;
           align-items: center;
           label {
+            margin-bottom: 20px;
             .box {
               input {
-                margin-bottom: 20px;
               }
               .check {
               }
             }
           }
           .inputbox {
-            outline: 1px solid blue;
             width: 330px;
             display: flex;
             flex-direction: column;
-            input {
+            .pwWrap {
+              position: relative;
               width: 56%;
-              padding: 5px;
-              margin-left: 20%;
+              margin-left: calc(20% + 10px);
+              margin-bottom: 34px;
+              &:last-child {
+                margin-bottom: 0;
+              }
+              input {
+                width: 100%;
+                padding: 5px;
+              }
+              .check {
+                position: absolute;
+                top: 104%;
+                right: 2px;
+                width: 94%;
+                text-align: right;
+                font-size: 0.8em;
+                word-break: keep-all;
+                letter-spacing: -1.2px;
+                &.fail {
+                  color: red;
+                }
+                &.pass {
+                  color: var(--DARKBLUE);
+                }
+              }
             }
           }
         }
@@ -138,6 +162,9 @@ const UpdateInfoStyle = styled.section`
         padding: 14px 20px;
         border-radius: 5px;
         background-color: var(--GREY);
+        &:first-child {
+          margin-right: 20px;
+        }
         &.active {
           background-color: var(--LIGHTBLUE);
           cursor: pointer;
