@@ -73,6 +73,7 @@ export const ReviewBlock = styled.div`
 export const ReviewListStyle = styled.section`
   width: 100%;
   padding: 40px 0;
+  min-height: 70vh;
   .container {
     /* outline: 1px solid red; //아웃라인s */
     display: grid;

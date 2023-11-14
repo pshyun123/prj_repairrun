@@ -9,7 +9,7 @@ const MyPage = () => {
       <UserInfo />
       <Coupon />
       <OrderList loginType={0} />
-      <ReviewList />
+      <ReviewList nofilter={"nofilter"} />
     </>
   );
 };

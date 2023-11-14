@@ -1,17 +1,27 @@
-import styled, { Styled } from "styled-components";
+import { useState } from "react";
 import ReviewList from "../component/ReviewList";
 import { PtnStockSearchBar } from "../style/ReviewStyle";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const ReviewStock = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const getValue = (e) => {
+    setSearchTerm(e.target.value.toLowerCase());
+  };
+
   return (
     <>
       <PtnStockSearchBar>
         <div className="container">
           <div className="SearchArea">
             <div className="searchBox">
-              <input type="text" placeholder="키워드를 입력해 주세요" />
+              <input
+                type="text"
+                placeholder="키워드를 입력해 주세요"
+                onChange={getValue}
+              />
 
               <button className="btnSearch">
                 <FontAwesomeIcon icon={faSearch} />
@@ -26,7 +36,7 @@ const ReviewStock = () => {
           </ul>
         </div>
       </PtnStockSearchBar>
-      <ReviewList />
+      <ReviewList search={searchTerm} nofilter={""} />
     </>
   );
 };
