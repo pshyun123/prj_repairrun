@@ -3,6 +3,7 @@ import LogoSlide from "../component/Slide";
 import { useNavigate } from "react-router-dom";
 import ReviewListComp from "../component/ReviewList";
 import Fix from "../component/BeforeAfter";
+import { bestPartnerStyle } from "../style/BasicMainStyle";
 
 const MainBody = () => {
   const navigate = useNavigate();
@@ -75,7 +76,10 @@ const BasicMain = () => {
       <MainBody />
       <Fix />
       <Reason />
-      <ReviewListComp />
+      <div className="container">
+        <p style={bestPartnerStyle}>베스트 파트너 & 후기</p>
+        <ReviewListComp />
+      </div>
       <LogoSlide />
     </>
   );

@@ -65,7 +65,7 @@ const LogoSlide = () => {
   return (
     <LogoSlideStyle>
       <div>
-        <p className="rrPtns">Repair-Run Partners</p>
+        <p className="rrPtns">리페어런과 함께하는 파트너들</p>
       </div>
       <Swiper
         className="logo-slider"

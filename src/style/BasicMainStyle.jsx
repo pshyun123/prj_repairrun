@@ -5,7 +5,7 @@ import meeting from "../images/meeting.jpg";
 import delivery from "../images/delivery.jpg";
 import connection from "../images/connection.jpg";
 
-///// 메인 배너
+// 메인 배너
 export const BannerStyle = styled.section`
   width: 100%;
   text-align: center;
@@ -13,7 +13,7 @@ export const BannerStyle = styled.section`
   background-size: cover;
   background-position: center;
   outline: 1px solid #999;
-  margin-bottom: 30px;
+  margin-bottom: 100px;
   .mainBanner {
     width: 100%;
     height: 100%;
@@ -64,10 +64,11 @@ export const BannerStyle = styled.section`
   }
 `;
 
-//// 리페어런찾는 이유
+//// 리페어런 찾는 이유
 
 export const ReasonStyle = styled.div`
   .container {
+    margin-bottom: 100px;
     .whyText {
       padding-bottom: 20px;
       .wtxt {
@@ -92,6 +93,7 @@ export const ReasonStyle = styled.div`
         background-image: url(${meeting});
         background-position: center;
         background-size: cover;
+        border-radius: 20px;
       }
       .reason2 {
         grid-area: reason2;
@@ -118,6 +120,7 @@ export const ReasonStyle = styled.div`
         background-image: url(${delivery});
         background-position: center;
         background-size: cover;
+        border-radius: 20px;
       }
       .reason5 {
         grid-area: reason5;
@@ -125,6 +128,7 @@ export const ReasonStyle = styled.div`
         background-image: url(${connection});
         background-position: center;
         background-size: cover;
+        border-radius: 20px;
       }
       .reason6 {
         grid-area: reason6;
@@ -164,3 +168,5 @@ export const ReasonStyle = styled.div`
     }
   }
 `;
+
+export const bestPartnerStyle = { fontSize: "1.8em" };
