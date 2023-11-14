@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ImgUploadComp } from "../style/ImgUploadStyle";
 import full from "../images/full.png";
 import inside from "../images/inside.png";
@@ -12,14 +12,23 @@ export const ImgUpload = ({ onNext }) => {
   const [spotImg, setSpotImg] = useState(spot);
   const [selectedImgCount, setSelectedImgCount] = useState(0);
 
+  useEffect(() => {
+    // 컴포넌트가 처음 마운트될 때 실행
+    // imgBox의 이미지를 초기 이미지로 설정
+    setFullImg(full);
+    setInsideImg(inside);
+    setSideImg(side);
+    setSpotImg(spot);
+  }, []); // 처음 한 번만 실행
+
   const handleFileChange = (e, setImg) => {
-    setImg(URL.createObjectURL(e.target.files[0]));
+    const imageUrl = URL.createObjectURL(e.target.files[0]);
+    setImg(imageUrl);
     setSelectedImgCount(selectedImgCount + 1);
+    localStorage.setItem(setImg.name, imageUrl);
   };
 
   const handleNextClick = () => {
-    // itemImg1은 필수로 업로드 되어야 하며,
-    // itemImg2, itemImg3, itemImg4 중 최소 1장은 필수로 업로드 되어야 함
     if (selectedImgCount >= 1 && fullImg && insideImg && sideImg && spotImg) {
       onNext();
     }

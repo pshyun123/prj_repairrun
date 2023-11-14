@@ -39,7 +39,10 @@ const Brandinput = ({ onNext }) => {
             />
             <div className="buttonContainer">
               <button
-                onClick={(handleNextClick, nextPageClick)}
+                onClick={() => {
+                  handleNextClick();
+                  nextPageClick();
+                }}
                 disabled={!brandInput.trim()}
               >
                 다음
