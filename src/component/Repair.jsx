@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import DetailList from "./DetailList";
 
-const Repair = ({ data }) => {
+const Repair = ({ data, loginType }) => {
   const { item, detail } = data;
 
   const [isModify, setIsModify] = useState(true);
@@ -41,13 +41,15 @@ const Repair = ({ data }) => {
               />
             ))}
         </table>
-        <div className="btnBox">
-          {isModify ? (
-            <button onClick={clickModify}>수정</button>
-          ) : (
-            <button onClick={clickModify}>확인</button>
-          )}
-        </div>
+        {loginType === "partner" && (
+          <div className="btnBox">
+            {isModify ? (
+              <button onClick={clickModify}>수정</button>
+            ) : (
+              <button onClick={clickModify}>확인</button>
+            )}
+          </div>
+        )}
       </div>
     </>
   );

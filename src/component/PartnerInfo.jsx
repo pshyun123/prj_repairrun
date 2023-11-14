@@ -3,10 +3,12 @@ import PartnerApi from "../api/PartnerApi";
 import PartnerInfoComp from "../style/PartnerInfoStyle";
 import { useNavigate } from "react-router-dom";
 
-const PartnerInfo = () => {
+const PartnerInfo = ({ selPtn, loginType }) => {
   const navigate = useNavigate();
-  const ptnId = window.localStorage.getItem("userId");
-  const loginType = window.localStorage.getItem("loginStatus");
+  const ptnId =
+    loginType === "partner" ? window.localStorage.getItem("userId") : selPtn;
+  console.log("ptnId" + ptnId);
+  console.log("ptnId" + selPtn);
   const [ptnInfo, setPtnInfo] = useState(null);
 
   const getPartnerInfo = async () => {

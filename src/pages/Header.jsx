@@ -64,7 +64,15 @@ const Header = () => {
             onClick={mMenuClick}
           />
           <div className="logo">
-            <img src={Logo} alt="로고" />
+            <img
+              src={Logo}
+              alt="로고"
+              onClick={() => {
+                loginStatus === "partner"
+                  ? navigate("/partnermain")
+                  : navigate("/");
+              }}
+            />
           </div>
           {loginStatus === "" || loginStatus === "member" ? (
             <MemHeader active={active} togle={mMenuClick} />

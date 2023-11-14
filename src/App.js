@@ -43,7 +43,10 @@ function App() {
               <Route path="/NewOrder/GeneralStep" element={<GeneralStep />} />
               {/* RR파트너스 (비회원 조회 가능) */}
               <Route path="/PartnerList" element={<PartnerList />} />
-              <Route path="/PartnerList/Partner" element={<PartnerMain />} />
+              <Route
+                path="/PartnerList/Partner/:id"
+                element={<PartnerMain />}
+              />
               <Route path="/ReviewStock" element={<ReviewStock />} />
               {/* 마이페이지 */}
               <Route path="/MyPage" element={<MyPage />} />

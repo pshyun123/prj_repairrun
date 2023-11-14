@@ -28,6 +28,7 @@ const HeaderComp = styled.header`
 
       img {
         height: 80%;
+        cursor: pointer;
       }
     }
     //메뉴

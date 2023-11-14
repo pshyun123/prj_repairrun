@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 
 const PtnHeader = ({ active, togle }) => {
   const navigate = useNavigate();
+  const ptnId = window.localStorage.getItem("userId");
 
   const onClickMenu = (num) => {
     switch (num) {
@@ -10,7 +11,7 @@ const PtnHeader = ({ active, togle }) => {
         togle();
         break;
       case 2:
-        navigate("/partnermain/updateinfo");
+        navigate(`/partnermain/updateinfo/${ptnId}`);
         togle();
         break;
       case 3:

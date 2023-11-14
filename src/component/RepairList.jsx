@@ -3,9 +3,10 @@ import RepairListComp from "../style/RepairListStyle";
 import { useState, useEffect } from "react";
 import PartnerApi from "../api/PartnerApi";
 
-const RepairList = () => {
+const RepairList = ({ selPtn, loginType }) => {
   const [repairList, setRepairList] = useState([]);
-  const ptnId = window.localStorage.getItem("userId");
+  const ptnId =
+    loginType === "partner" ? window.localStorage.getItem("userId") : selPtn;
 
   const renderList = async (ptnId) => {
     console.log("ptnId(파트너메인) :" + ptnId);
@@ -31,7 +32,9 @@ const RepairList = () => {
           <h2>수선 정보</h2>
           <div className="repairWrapper">
             {repairList &&
-              repairList.map((data) => <Repair key={data.item} data={data} />)}
+              repairList.map((data) => (
+                <Repair key={data.item} data={data} loginType={loginType} />
+              ))}
           </div>
         </div>
       </RepairListComp>
