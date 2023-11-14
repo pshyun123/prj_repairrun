@@ -105,13 +105,14 @@ export const OrderCheckComp = styled.section`
               padding-bottom: 30%;
               overflow: hidden;
               position: relative;
+              background-color: var(--GREY);
+              border-radius: 10px;
               img {
                 top: 0;
                 left: 0;
                 width: 100%;
                 height: 100%;
                 position: absolute;
-                border-radius: 10px;
               }
             }
           }
