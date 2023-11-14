@@ -8,7 +8,6 @@ export const ReviewTop = styled.section`
   /* outline: 1px solid red; */
   margin-bottom: 60px;
   .container {
-    width: 100%;
     /* outline: 1px solid red; */
     .myreviewTitle {
       display: flex;
@@ -89,6 +88,9 @@ export const MemReviewBlock = styled.div`
       .imgBox {
         width: 100%;
         flex-grow: 1;
+        @media screen and (max-width: 768px) {
+          margin-bottom: 20px; // 이미지를 모바일에서 가운데 정렬
+        }
         .imgWrap {
           /* outline: 1px solid yellow; */
           cursor: pointer;
@@ -97,6 +99,9 @@ export const MemReviewBlock = styled.div`
           overflow: hidden;
           position: relative;
           border-radius: 10px;
+          @media screen and (max-width: 768px) {
+            margin: 0 auto; // 이미지를 모바일에서 가운데 정렬
+          }
           &:hover {
             img {
               &:last-child {
@@ -118,11 +123,20 @@ export const MemReviewBlock = styled.div`
     .box {
       flex-grow: 1;
       width: 100%;
-      /* outline: 1px solid yellow; */
       font-weight: 600;
+      /* outline: 1px solid red; */
+      @media screen and (max-width: 768px) {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
       .txt-box {
         display: flex;
         line-height: 50px;
+        /* outline: 1px solid yellow; */
+        @media screen and (max-width: 768px) {
+          line-height: 35px;
+        }
 
         p {
           color: white;
