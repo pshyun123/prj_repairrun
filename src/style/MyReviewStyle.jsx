@@ -79,6 +79,11 @@ export const MemReviewBlock = styled.div`
         cursor: pointer;
         width: 50px;
         height: 30px;
+        border-radius: 10px;
+        transition: 0.2s ease-in;
+        &:hover {
+          background-color: var(--MIDBLUE);
+        }
       }
     }
     .wrap {
