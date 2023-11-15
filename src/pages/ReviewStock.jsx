@@ -6,10 +6,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const ReviewStock = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [inputSearch, setInputSearch] = useState("");
   const [sortBy, setSortBy] = useState("highestRated");
 
   const getValue = (e) => {
-    setSearchTerm(e.target.value.toLowerCase());
+    setInputSearch(e.target.value.toLowerCase());
   };
   const handleSortChange = (criteria) => {
     setSortBy(criteria);
@@ -27,7 +28,12 @@ const ReviewStock = () => {
                 onChange={getValue}
               />
 
-              <button className="btnSearch">
+              <button
+                className="btnSearch"
+                onClick={() => {
+                  setSearchTerm(inputSearch);
+                }}
+              >
                 <FontAwesomeIcon icon={faSearch} />
               </button>
             </div>
@@ -60,7 +66,7 @@ const ReviewStock = () => {
           </ul>
         </div>
       </PtnStockSearchBar>
-      <ReviewList search={searchTerm} nofilter={""} />
+      <ReviewList search={searchTerm} nofilter={""} sortBy={sortBy} />
     </>
   );
 };

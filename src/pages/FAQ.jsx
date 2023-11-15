@@ -1,6 +1,6 @@
-import NoticeList from "../component/ServiceList";
+import ServiceList from "../component/ServiceList";
 import ServiceApi from "../api/Service.Api";
-import { useState, useEffect, useLayoutEffect } from "react";
+import { useState, useEffect } from "react";
 
 const FAQ = () => {
   const [faqList, setFaqList] = useState(null);
@@ -18,6 +18,6 @@ const FAQ = () => {
     faqData();
   }, []);
 
-  return <>{faqList && <NoticeList faqData={faqList} />}</>;
+  return <>{<ServiceList faqData={faqList} />}</>;
 };
 export default FAQ;

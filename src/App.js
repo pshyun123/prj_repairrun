@@ -22,6 +22,7 @@ import ChatRoom from "./pages/ChatRoom";
 import Notice from "./pages/Notice";
 import FAQ from "./pages/FAQ";
 import Footer from "./component/Footer";
+import ServiceList from "./component/ServiceList";
 
 function App() {
   return (

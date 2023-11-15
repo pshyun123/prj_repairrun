@@ -1,4 +1,4 @@
-import NoticeList from "../component/ServiceList";
+import ServiceList from "../component/ServiceList";
 import { useState, useEffect } from "react";
 import ServiceApi from "../api/Service.Api";
 
@@ -19,7 +19,7 @@ const Notice = ({ search }) => {
 
   return (
     <>
-      <NoticeList noticeData={noticeList} />
+      <ServiceList noticeData={noticeList} />
     </>
   );
 };

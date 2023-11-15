@@ -3,8 +3,29 @@ import { ReviewListStyle } from "../style/ReviewStyle";
 import { useEffect, useState } from "react";
 import ReviewApi from "../api/ReviewApi";
 
-const ReviewList = ({ search, nofilter }) => {
-  const [reviewList, setreviewList] = useState("");
+const ReviewList = ({ search, nofilter, sortBy }) => {
+  const [reviewList, setReviewList] = useState("");
+
+  const sortedBy = (sortBy) => {
+    const sortedData = [...reviewList];
+    switch (sortBy) {
+      case "highestRated":
+        sortedData.sort((a, b) => b.rating.length - a.rating.length);
+        break;
+      case "lowestRated":
+        sortedData.sort((a, b) => a.rating.length - b.rating.length);
+        break;
+      case "latest":
+        sortedData.sort((a, b) => new Date(b.compDate) - new Date(a.compDate));
+        break;
+      case "oldest":
+        sortedData.sort((a, b) => new Date(a.compDate) - new Date(b.compDate));
+        break;
+      default:
+        break;
+    }
+    return sortedData;
+  };
 
   useEffect(() => {
     console.log("reviewList");
@@ -12,7 +33,7 @@ const ReviewList = ({ search, nofilter }) => {
       try {
         const res = await ReviewApi.review();
         if (res.status === 200) {
-          setreviewList(res.data);
+          setReviewList(res.data);
           console.log(res.data);
         }
       } catch (err) {
@@ -22,15 +43,20 @@ const ReviewList = ({ search, nofilter }) => {
     reviewData();
   }, []);
 
+  // sortedBy 함수로 정렬된 데이터를 가져옴
+  const sortedReviews = sortedBy(sortBy);
+
+  // 필터링 및 정렬된 데이터
   const filteredReviews =
-    nofilter === "" &&
-    reviewList &&
-    reviewList.filter((review) => {
-      return (
-        search === "" ||
-        review.reviewContents.toLowerCase().includes(search.toLowerCase())
-      );
-    });
+    nofilter === ""
+      ? sortedReviews.filter((review) => {
+          const reviewText = review.reviewContents + review.repairItem;
+          return (
+            search === "" ||
+            reviewText.toLowerCase().includes(search.toLowerCase())
+          );
+        })
+      : sortedReviews;
 
   return (
     <>

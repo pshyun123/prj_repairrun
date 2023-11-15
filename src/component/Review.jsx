@@ -1,3 +1,5 @@
+import styled from "styled-components";
+
 import { ReviewBlock } from "../style/ReviewStyle";
 
 const Review = ({ reviewData }) => {

@@ -1,7 +1,12 @@
 import styled from "styled-components";
 
 const ServiceComp = styled.div`
+  min-height: 40vw;
   .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     padding: 60px 0;
     padding-bottom: 130px;
     .noticeHeader {

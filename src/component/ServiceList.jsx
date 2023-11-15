@@ -29,7 +29,7 @@ const ServiceText = ({ noticePlus, isNotice }) => {
   );
 };
 
-const NoticeList = ({ noticeData, faqData }) => {
+const ServiceList = ({ noticeData, faqData }) => {
   return (
     <>
       <ServiceComp>
@@ -62,4 +62,4 @@ const NoticeList = ({ noticeData, faqData }) => {
   );
 };
 
-export default NoticeList;
+export default ServiceList;
