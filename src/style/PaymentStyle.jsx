@@ -4,7 +4,7 @@ import styled, { css } from "styled-components";
 export const PaymentComp = styled.section`
   width: 100%;
   padding: 60px 0;
-  background-color: var(--LIGHTBLUE);
+  background-color: white;
 
   .container {
     display: flex;
@@ -38,14 +38,14 @@ export const PaymentComp = styled.section`
         flex-direction: column;
         .labelBox {
           width: 100%;
-          background-color: var(--DARKBLUE);
+          background-color: var(--MIDBLUE);
           border-radius: 5px;
           padding: 10px;
           text-align: left;
           .title {
             font-size: 1.1rem;
             color: white;
-            font-weight: 400;
+            font-weight: 600;
           }
         }
         .paymentBox {
@@ -142,7 +142,7 @@ export const PaymentComp = styled.section`
             width: 100%;
             input {
               width: 100%;
-              padding: 6px;
+              padding: 12px;
               border: 1px solid var(--GREY);
             }
           }
@@ -150,7 +150,7 @@ export const PaymentComp = styled.section`
             width: 100%;
             input {
               width: 100%;
-              padding: 6px;
+              padding: 12px;
               border: 1px solid var(--GREY);
             }
           }
@@ -158,7 +158,7 @@ export const PaymentComp = styled.section`
             width: 100%;
             input {
               width: 100%;
-              padding: 6px;
+              padding: 12px;
               border: 1px solid var(--GREY);
             }
           }
@@ -170,7 +170,8 @@ export const PaymentComp = styled.section`
           border: 1px purple;
           margin-left: 10px;
           text-align: left;
-          /* padding: 3%; */
+
+          /* padding: 10%; */
 
           .agreement {
             height: 50%;
@@ -182,11 +183,6 @@ export const PaymentComp = styled.section`
             justify-content: center;
             background-color: white;
 
-            .agreeAll {
-              label {
-                font-weight: 400;
-              }
-            }
             p {
               font-size: 1rem;
               padding: 10px 0;
@@ -194,11 +190,58 @@ export const PaymentComp = styled.section`
           }
         }
         .myCoupon {
-          /* padding: 3%; */
-          p {
+          padding: 3% 0;
+          select {
+            width: 90%;
             padding: 10px;
             border: 1px solid var(--GREY);
-            border-radius: 5px;
+          }
+        }
+        .totalArea {
+          width: 100%;
+          display: flex;
+          padding: 10px;
+          .amount {
+            width: 70%;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            p {
+              font-size: 1.05rem;
+              font-weight: 400;
+            }
+            .estimate {
+              display: flex;
+              justify-content: space-between;
+              margin-bottom: 10px;
+            }
+            .coupon {
+              display: flex;
+              justify-content: space-between;
+              margin-bottom: 10px;
+            }
+            .deliveryFee {
+              display: flex;
+              justify-content: space-between;
+              margin-bottom: 10px;
+            }
+          }
+          .totalPrice {
+            background-color: var(--GREY);
+            border-radius: 3px;
+            width: 30%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            p {
+              color: var(--DARKBLUE);
+              font-weight: 600;
+              margin-bottom: 10px;
+            }
+            .total {
+              font-size: 1.3rem;
+            }
           }
         }
       }
@@ -226,4 +269,8 @@ export const PaymentComp = styled.section`
 `;
 export const CheckboxStyle = styled.div`
   font-size: 0.9rem;
+  font-weight: 300;
+  .agreeAll {
+    font-size: 1.1rem;
+  }
 `;

@@ -45,6 +45,15 @@ export const PartnerSelectComp = styled.section`
         width: 80%;
         /* width: 500px; */
         padding: 2% 5%;
+        &.selected {
+          background-color: var(--DARKBLUE);
+          p {
+            color: white;
+          }
+          .ratingBox .ratingPtn .num {
+            color: white;
+          }
+        }
         &:hover {
           cursor: pointer;
           background-color: var(--DARKBLUE);

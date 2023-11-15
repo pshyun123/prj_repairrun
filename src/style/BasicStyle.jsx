@@ -41,11 +41,6 @@ export const ItemSelectComp = styled.section`
             margin-bottom: 1;
           }
 
-          ${(props) =>
-            props.selected &&
-            css`
-              background-color: var(--LIGHTBLUE);
-            `}
           &:hover {
             cursor: pointer;
             background-color: var(--LIGHTBLUE);

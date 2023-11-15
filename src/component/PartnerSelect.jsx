@@ -4,6 +4,7 @@ import OrderApi from "../api/OrderApi";
 
 export const PartnerSelect = ({ onNext }) => {
   const [partnerData, setPartnerData] = useState([]);
+  const [selectedPartner, setSelectedPartner] = useState(null);
 
   useEffect(() => {
     const fetchPartnerData = async () => {
@@ -19,6 +20,10 @@ export const PartnerSelect = ({ onNext }) => {
     fetchPartnerData();
   }, []); // 빈 의존성 배열은 효과가 한 번만 마운트될 때 실행되도록합니다.
 
+  const handlePartnerClick = (partner) => {
+    setSelectedPartner(partner);
+  };
+
   return (
     <>
       <PartnerSelectComp>
@@ -33,7 +38,13 @@ export const PartnerSelect = ({ onNext }) => {
             {/* partnerData && : 데이터가 있으면 실행, 없으면 오류가 남 null값은 오류남*/}
             {partnerData &&
               partnerData.map((partner) => (
-                <div className="ptninfo" key={partner.ptnName}>
+                <div
+                  className={`ptninfo ${
+                    selectedPartner === partner ? "selected" : ""
+                  }`}
+                  key={partner.ptnName}
+                  onClick={() => handlePartnerClick(partner)}
+                >
                   <div className="selectPtn">
                     <img src={partner.ptnLogo} alt="logo" />
                   </div>

@@ -2,12 +2,15 @@ import React, { useState, useEffect } from "react";
 import { PaymentComp } from "../style/PaymentStyle";
 import Checkbox from "../util/Checkbox";
 import { useNavigate } from "react-router-dom";
+import OrderApi from "../api/OrderApi";
 
 export const Payment = ({ onNext }) => {
   const navigate = useNavigate();
   const handleNextClick = () => {
     navigate("/mypage");
   };
+
+  // 약관동의 체크 관련
   const [checkedAll, setCheckedAll] = useState(false);
   const [checked1, setChecked1] = useState(false);
   const [checked2, setChecked2] = useState(false);
@@ -45,6 +48,7 @@ export const Payment = ({ onNext }) => {
     userName: "송중기",
     userPhone: "010-1234-5678",
     userAddr: "서울특별시 강남구 역삼동",
+    repairPrice: "40000",
     couponType: "배송비 3000원 무료 쿠폰",
     couponType2: "20000원 이상 5000원 할인 쿠폰",
     couponDiscount: "3000",
@@ -147,9 +151,11 @@ export const Payment = ({ onNext }) => {
               <div className="myCoupon">
                 <select>
                   <option value="">선택안함</option>
+                  {/* <option value={userCoupon.couponType}> */}
                   <option value={tempData.couponType}>
                     {tempData.couponType}
                   </option>
+                  {/* <option value={userCoupon.couponType2}> */}
                   <option value={tempData.couponType2}>
                     {tempData.couponType2}
                   </option>
@@ -180,7 +186,10 @@ export const Payment = ({ onNext }) => {
                     <p>{tempData.delivery}</p>
                   </div>
                 </div>
-                <div className="totalPrice"></div>
+                <div className="totalPrice">
+                  <p>총 결제 금액</p>
+                  <p className="total">50000</p>
+                </div>
               </div>
             </div>
             <div className="buttonContainer">

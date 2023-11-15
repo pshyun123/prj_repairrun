@@ -40,13 +40,22 @@ export const LocationComp = styled.section`
           color: white;
           font-size: 1.4rem;
           cursor: pointer;
-          transition: all 0.3s ease;
+          transition: all 0.2s ease;
           border-radius: 5px;
           border: 1px solid darkgray;
           word-break: keep-all;
+          &.selected {
+            background-color: var(--LIGHTBLUE);
+            p {
+              color: black;
+            }
+          }
           &:hover {
             cursor: pointer;
-            background-color: var(--MIDBLUE);
+            background-color: var(--LIGHTBLUE);
+            p {
+              color: black;
+            }
           }
           p {
             position: absolute;
