@@ -9,7 +9,8 @@ import CouponApi from "../api/CouponApi";
 export const Payment = ({ onNext }) => {
   const navigate = useNavigate();
   const handleNextClick = () => {
-    navigate("/mypage");
+    // navigate("/mypage");
+    addNewOrder();
   };
 
   const userId = window.localStorage.getItem("userId");
@@ -20,6 +21,15 @@ export const Payment = ({ onNext }) => {
     repairPrice: window.localStorage.getItem("repairPrice"),
     delivery: Number("3000"),
     ptnNum: window.localStorage.getItem("ptnNum"),
+    ptnId: window.localStorage.getItem("ptnId"),
+    brand: window.localStorage.getItem("brandInput"),
+    request: window.localStorage.getItem("additionalText"),
+    detail: window.localStorage.getItem("selectedOption"),
+    days: window.localStorage.getItem("repairDays"),
+    imgFull: window.localStorage.getItem("fullImg"),
+    imgDet01: window.localStorage.getItem("insideImg"),
+    imgDet02: window.localStorage.getItem("sideImg"),
+    imgDet03: window.localStorage.getItem("spotImg"),
   };
   const date = new Date();
   const year = date.getFullYear();
@@ -28,7 +38,9 @@ export const Payment = ({ onNext }) => {
   const orderDate = year + month + day;
   const orderDate2 = orderDate.slice(-6);
 
-  const orderNum = orderDate + tempData.ptnNum;
+  console.log(orderDate2);
+
+  const orderNum = orderDate2 + tempData.ptnNum;
   console.log("orderNum" + orderNum);
 
   //팝업 처리
@@ -38,6 +50,7 @@ export const Payment = ({ onNext }) => {
   };
   const [modalMsg, setModalMsg] = useState("");
   const [modalHeader, setModalHeader] = useState("");
+  const [modalType, setModalType] = useState(null);
 
   // 약관동의 체크 관련
   const [checkedAll, setCheckedAll] = useState(false);
@@ -102,44 +115,38 @@ export const Payment = ({ onNext }) => {
     // total 상태값 업데이트
     setTotal(newTotal);
   }, [tempData.repairPrice, tempData.delivery, discount]);
-  // const addNewMember = async () => {
-  //   try {
-  //     const res =
-  //       type === "member"
-  //         ? await MemberApi.newMember(
-  //             inputId,
-  //             inputPw,
-  //             inputName,
-  //             inputEmail,
-  //             inputPhone,
-  //             inputAddr,
-  //             url
-  //           )
-  //         : await PartnerApi.newPartner(
-  //             inputId,
-  //             inputPw,
-  //             inputName,
-  //             inputEmail,
-  //             inputPhone,
-  //             inputAddr,
-  //             inputDesc,
-  //             url
-  //           );
-  //     if (res.data === true) {
-  //       console.log("가입 성공!");
-  //       setModalOpen(true);
-  //       setModalHeader("회원가입 성공");
-  //       setModalMsg("회원가입에 성공했습니다!");
-  //       setModalType("회원가입");
-  //     }
-  //   } catch (err) {
-  //     console.log(err);
-  //     setModalOpen(true);
-  //     setModalHeader("오류");
-  //     setModalMsg("서버와의 연결이 끊어졌습니다!");
-  //     setModalType("");
-  //   }
-  // };
+
+  const addNewOrder = async () => {
+    try {
+      const res = await OrderApi.newOrder(
+        orderNum,
+        userId,
+        tempData.ptnId,
+        tempData.brand,
+        tempData.detail,
+        tempData.request,
+        total,
+        tempData.days,
+        tempData.imgFull,
+        tempData.imgDet01,
+        tempData.imgDet02,
+        tempData.imgDet03
+      );
+      if (res.data === true) {
+        console.log("새 주문 성공!");
+        setModalOpen(true);
+        setModalHeader("결제 완료");
+        setModalMsg("결제가 완료되었습니다");
+        setModalType("주문성공");
+      }
+    } catch (err) {
+      console.log(err);
+      setModalOpen(true);
+      setModalHeader("오류");
+      setModalMsg("서버와의 연결이 끊어졌습니다!");
+      setModalType("");
+    }
+  };
   return (
     <>
       <PaymentComp>
@@ -309,6 +316,7 @@ export const Payment = ({ onNext }) => {
         close={closeModal}
         header={modalHeader}
         children={modalMsg}
+        type={modalType}
         confirm={() => {
           navigate("/mypage");
         }}

@@ -14,6 +14,7 @@ const Location = ({ onNext }) => {
 
   useEffect(() => {
     window.localStorage.setItem("selectedOption", selectedOption);
+    window.localStorage.setItem("additionalText", "빠른 수선 부탁드립니다!");
   }, [selectedOption]);
 
   const fetchItem = async () => {

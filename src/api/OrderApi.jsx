@@ -11,7 +11,7 @@ const OrderApi = {
     return await axios.post(BACKEND + "/order/detail", selectItem);
   },
 
-  //ddd
+  // 품목 가져오기
   getRepairItem: async (detail) => {
     const selectDetail = {
       detail: detail, //리액트와 연동
@@ -33,6 +33,38 @@ const OrderApi = {
       userId: id,
     };
     return await axios.post(BACKEND + "/order/payment", payment);
+  },
+
+  // 새 주문
+  newOrder: async (
+    orderNum,
+    userId,
+    ptnId,
+    brand,
+    repairDetail,
+    request,
+    priceTotal,
+    days,
+    imgFull,
+    imgDet01,
+    imgDet02,
+    imgDet03
+  ) => {
+    const orderData = {
+      orderNum: orderNum,
+      userId: userId,
+      ptnId: ptnId,
+      brand: brand,
+      repairDetail: repairDetail,
+      request: request,
+      priceTotal: priceTotal,
+      days: days,
+      imgFull: imgFull,
+      imgDet01: imgDet01,
+      imgDet02: imgDet02,
+      imgDet03: imgDet03,
+    };
+    return await axios.post(BACKEND + "/order/neworder", orderData);
   },
 };
 export default OrderApi;

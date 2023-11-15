@@ -26,6 +26,7 @@ export const PartnerSelect = ({ onNext }) => {
     window.localStorage.setItem("repairPrice", partner.repairPrice);
     window.localStorage.setItem("repairDays", partner.repairDays);
     window.localStorage.setItem("ptnNum", partner.ptnNum);
+    window.localStorage.setItem("ptnId", partner.ptnId);
   };
 
   return (
