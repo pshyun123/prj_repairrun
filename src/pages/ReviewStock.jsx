@@ -6,9 +6,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const ReviewStock = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [sortBy, setSortBy] = useState("highestRated");
 
   const getValue = (e) => {
     setSearchTerm(e.target.value.toLowerCase());
+  };
+  const handleSortChange = (criteria) => {
+    setSortBy(criteria);
   };
 
   return (
@@ -29,10 +33,30 @@ const ReviewStock = () => {
             </div>
           </div>
           <ul className="sortArea">
-            <li className="active">별점높은순</li>
-            <li>별점낮은순</li>
-            <li>최신순</li>
-            <li>과거순</li>
+            <li
+              className={sortBy === "highestRated" ? "active" : ""}
+              onClick={() => handleSortChange("highestRated")}
+            >
+              별점높은순
+            </li>
+            <li
+              className={sortBy === "lowestRated" ? "active" : ""}
+              onClick={() => handleSortChange("lowestRated")}
+            >
+              별점낮은순
+            </li>
+            <li
+              className={sortBy === "latest" ? "active" : ""}
+              onClick={() => handleSortChange("latest")}
+            >
+              최신순
+            </li>
+            <li
+              className={sortBy === "oldest" ? "active" : ""}
+              onClick={() => handleSortChange("oldest")}
+            >
+              과거순
+            </li>
           </ul>
         </div>
       </PtnStockSearchBar>
