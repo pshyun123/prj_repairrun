@@ -66,5 +66,13 @@ const OrderApi = {
     };
     return await axios.post(BACKEND + "/order/neworder", orderData);
   },
+
+  updateOrder: async (orderNum, selPrg) => {
+    const updateInfo = {
+      orderNum: orderNum,
+      selPrg: selPrg,
+    };
+    return await axios.post(BACKEND + "/orderss/updateprg", updateInfo);
+  },
 };
 export default OrderApi;

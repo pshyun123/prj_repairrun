@@ -13,7 +13,21 @@ const PostStyle = styled.div`
     height: 80%;
     margin: 0 auto;
     position: relative;
-    top: 10%;
+    top: 15%;
+    .close {
+      padding: 10px;
+      background-color: white;
+      display: flex;
+      justify-content: end;
+      button {
+        background-color: var(--DARKBLUE);
+        border: none;
+        padding: 10px 12px;
+        color: white;
+        font-size: 1em;
+        cursor: pointer;
+      }
+    }
 
     @media only screen and (max-width: 768px) {
       width: 100%;
@@ -47,6 +61,9 @@ const DaumPostPopup = (props) => {
   return (
     <PostStyle>
       <div className="postWrapper">
+        <div className="close">
+          <button onClick={onClose}>X</button>
+        </div>
         <DaumPostcode className="daumpost" onComplete={handlePostCode} />
       </div>
     </PostStyle>

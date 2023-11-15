@@ -9,15 +9,17 @@ const OrderInfo = () => {
 
   const [orderInfo, setOrderInfo] = useState(null);
 
+  const fetchOrder = async () => {
+    const res = await PartnerApi.orderStatus(orderNum);
+    if (res.data !== null) setOrderInfo(res.data);
+    console.log(res.data);
+  };
   useEffect(() => {
-    const fetchOrder = async () => {
-      const res = await PartnerApi.orderStatus(orderNum);
-      if (res.data !== null) setOrderInfo(res.data);
-      console.log(res.data);
-    };
     fetchOrder();
-  }, []);
+  }, [orderInfo]);
 
-  return <>{orderInfo && <OrderImg orderInfo={orderInfo} />}</>;
+  return (
+    <>{orderInfo && <OrderImg orderInfo={orderInfo} setInfo={fetchOrder} />}</>
+  );
 };
 export default OrderInfo;

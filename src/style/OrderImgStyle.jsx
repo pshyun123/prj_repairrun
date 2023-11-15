@@ -97,14 +97,31 @@ const OrderImgComp = styled.section`
       justify-content: space-between;
       .repairProcess {
         margin-right: 10px;
+        p {
+          font-size: 1.2em;
+          font-weight: 600;
+        }
       }
       .repairing {
-        padding: 20px;
+        /* padding: 20px; */
         border-radius: 10px;
         background-color: var(--GREY);
-      }
-      p {
-        font-size: 1.4em;
+        select {
+          border: none;
+          padding: 20px;
+          font-size: 1.3em;
+          text-align: center;
+          color: #333;
+          background-color: var(--GREY);
+          border-radius: 5px;
+          option: {
+            outline: 1px solid red;
+            text-align: center;
+          }
+          &:disabled {
+            color: #333;
+          }
+        }
       }
     }
     .chattingBtn {

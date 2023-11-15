@@ -61,6 +61,10 @@ const Joinstyle = styled.section`
           }
           .box {
             position: relative;
+            textarea {
+              z-index: -1;
+              position: relative;
+            }
             .check {
               position: absolute;
               top: 104%;

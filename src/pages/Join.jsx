@@ -377,7 +377,12 @@ const Join = () => {
             <div className="inputArea">
               <label name="addr">
                 <span>주소</span>
-                <input type="text" defaultValue={inputAddr} />
+                <input
+                  type="text"
+                  defaultValue={inputAddr}
+                  readOnly={true}
+                  onClick={openPostCode}
+                />
                 <button className="active" onClick={openPostCode}>
                   주소찾기
                 </button>
