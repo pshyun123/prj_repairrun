@@ -7,6 +7,8 @@ export const ReviewTop = styled.section`
   padding-top: 60px;
   /* outline: 1px solid red; */
   margin-bottom: 60px;
+  min-height: 40vw;
+
   .container {
     /* outline: 1px solid red; */
     .myreviewTitle {

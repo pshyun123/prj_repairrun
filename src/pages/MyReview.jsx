@@ -1,8 +1,14 @@
-import { styled } from "styled-components";
 import MemReviewList from "../component/MemReviewList";
 import { ReviewTop } from "../style/MyReviewStyle";
+import { useState } from "react";
 
 const MyReview = () => {
+  const [mySortBy, setMySortBy] = useState("writtenReviews");
+  const [totalReviews, setTotalReviews] = useState(0);
+
+  const handleSortChange = (criteria) => {
+    setMySortBy(criteria);
+  };
   return (
     <>
       <ReviewTop>
@@ -13,14 +19,28 @@ const MyReview = () => {
 
           <div className="infoBox">
             <ul className="writingReview">
-              <li className="active">작성한 리뷰</li>
-              <li>작성 가능한 리뷰</li>
+              <li
+                className={mySortBy === "writtenReviews" ? "active" : ""}
+                onClick={() => handleSortChange("writtenReviews")}
+              >
+                작성한 리뷰
+              </li>
+              <li
+                className={mySortBy === "availableReviews" ? "active" : ""}
+                onClick={() => handleSortChange("availableReviews")}
+              >
+                작성 가능한 리뷰
+              </li>
             </ul>
-            <p>총 4건</p>
+            <p>총 {totalReviews}건</p>
           </div>
         </div>
       </ReviewTop>
-      <MemReviewList />
+      <MemReviewList
+        mySortBy={mySortBy}
+        totalReviews={totalReviews}
+        setTotalReviews={setTotalReviews}
+      />
     </>
   );
 };
