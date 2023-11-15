@@ -16,6 +16,8 @@ export const Payment = ({ onNext }) => {
   const [checked2, setChecked2] = useState(false);
   const [checked3, setChecked3] = useState(false);
 
+  const [discount, setDiscount] = useState(0);
+
   const onCheckedChange = (checkboxNumber) => {
     switch (checkboxNumber) {
       case 1:
@@ -45,15 +47,16 @@ export const Payment = ({ onNext }) => {
   }, [checked1, checked2, checked3]);
 
   const tempData = {
-    userName: "송중기",
-    userPhone: "010-1234-5678",
-    userAddr: "서울특별시 강남구 역삼동",
-    repairPrice: "40000",
-    couponType: "배송비 3000원 무료 쿠폰",
-    couponType2: "20000원 이상 5000원 할인 쿠폰",
-    couponDiscount: "3000",
-    delivery: "0",
+    userName: window.localStorage.getItem("userName"),
+    userPhone: window.localStorage.getItem("userPhone"),
+    userAddr: window.localStorage.getItem("userAddr"),
+    repairPrice: window.localStorage.getItem("repairPrice"),
+    delivery: Number("3000"),
   };
+  const [total, setTotal] = useState(
+    Number(tempData.repairPrice) + tempData.delivery - discount
+  );
+
   return (
     <>
       <PaymentComp>
@@ -177,18 +180,18 @@ export const Payment = ({ onNext }) => {
                     <p>견적 금액</p>
                     <p>{tempData.repairPrice}</p>
                   </div>
-                  <div className="coupon">
-                    <p>쿠폰</p>
-                    <p>{tempData.couponDiscount}</p>
-                  </div>
                   <div className="deliveryFee">
                     <p>배송비</p>
                     <p>{tempData.delivery}</p>
                   </div>
+                  <div className="coupon">
+                    <p>쿠폰</p>
+                    <p>-{tempData.couponDiscount}</p>
+                  </div>
                 </div>
                 <div className="totalPrice">
                   <p>총 결제 금액</p>
-                  <p className="total">50000</p>
+                  <p className="total">{total}</p>
                 </div>
               </div>
             </div>

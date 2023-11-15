@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { LocationComp } from "../style/LocationStyle";
 import mapimg from "../images/metropolitan-area.jpg";
+import OrderApi from "../api/OrderApi";
 
 const Location = ({ onNext }) => {
   // 선택된 항목을 저장할 상태 추가
@@ -15,12 +16,25 @@ const Location = ({ onNext }) => {
     window.localStorage.setItem("selectedOption", selectedOption);
   }, [selectedOption]);
 
+  const fetchItem = async () => {
+    try {
+      const res = await OrderApi.getRepairItem(selectedOption);
+      if (res.data !== null) {
+        window.localStorage.setItem("selectedItem", res.data);
+      }
+      console.log("db에서 가져온 아이템:" + res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   // 다음 버튼 클릭 시 이동 및 선택된 항목 정보 전달
   const handleNextClick = (item) => {
     setSelectedOption(item);
     if (selectedOption) {
       onNext(selectedOption);
     }
+    fetchItem();
   };
 
   return (

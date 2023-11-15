@@ -11,6 +11,14 @@ const OrderApi = {
     return await axios.post(BACKEND + "/order/detail", selectItem);
   },
 
+  //ddd
+  getRepairItem: async (detail) => {
+    const selectDetail = {
+      detail: detail, //리액트와 연동
+    };
+    return await axios.post(BACKEND + "/order/item", selectDetail);
+  },
+
   // 파트너 리스트 선택
   getPartnerList: async (detail) => {
     const selectPtn = {

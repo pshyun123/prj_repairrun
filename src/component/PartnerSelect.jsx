@@ -22,6 +22,9 @@ export const PartnerSelect = ({ onNext }) => {
 
   const handlePartnerClick = (partner) => {
     setSelectedPartner(partner);
+    window.localStorage.setItem("ptnName", partner.ptnName);
+    window.localStorage.setItem("repairPrice", partner.repairPrice);
+    window.localStorage.setItem("repairDays", partner.repairDays);
   };
 
   return (
