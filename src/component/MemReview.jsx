@@ -67,7 +67,7 @@ const MemReview = ({ myReviewData }) => {
     <MemReviewBlock>
       <div className="wrapper">
         <div className="title-btn">
-          <h3>{myReviewData.orderNum}</h3>
+          <h3>주문번호 : {myReviewData.orderNumFk}</h3>
           <button className="ch-btn">수정</button>
         </div>
         <div className="wrap">

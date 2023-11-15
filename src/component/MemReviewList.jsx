@@ -51,7 +51,7 @@ const MemReviewList = () => {
           {myReviewList &&
             myReviewList.map((myReviewMap) => (
               <MemReview
-                key={myReviewMap.orderNum}
+                key={myReviewMap.orderNumFk}
                 myReviewData={myReviewMap}
               />
             ))}
