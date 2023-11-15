@@ -1,7 +1,12 @@
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../context/UserStore";
+import React, { useState, useEffect, useContext } from "react";
 
 const MemHeader = ({ active, togle }) => {
   const navigate = useNavigate();
+  const context = useContext(UserContext);
+  const { loginStatus } = context;
+  const userId = window.localStorage.getItem("userId");
 
   console.log("active :" + active);
 
@@ -32,7 +37,8 @@ const MemHeader = ({ active, togle }) => {
         togle();
         break;
       case 7:
-        navigate("/mypage/updateinfo");
+        if (loginStatus !== "member") navigate("/login");
+        else navigate(`/mypage/updateinfo/${userId}`);
         togle();
         break;
       case 8:

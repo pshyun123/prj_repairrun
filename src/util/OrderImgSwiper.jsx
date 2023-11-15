@@ -1,5 +1,6 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper";
+import { styled } from "styled-components";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -22,7 +23,14 @@ const OrderImgSwiper = ({ imgListUrl }) => {
         {imgListUrl &&
           imgListUrl.map((imgUrl) => (
             <SwiperSlide key={imgUrl.type}>
-              <img src={imgUrl.imgUrl} alt="이미지" style={{ width: "100%" }} />
+              <img
+                src={imgUrl.imgUrl}
+                alt="이미지"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                }}
+              />
             </SwiperSlide>
           ))}
       </Swiper>

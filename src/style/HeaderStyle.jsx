@@ -128,7 +128,7 @@ const HeaderComp = styled.header`
         height: calc(100vh - 80px);
         padding-bottom: 40px;
         position: absolute;
-        top: 80px;
+        top: 79px;
         left: -150%;
         background-color: var(--IVORY);
         overflow-y: scroll;

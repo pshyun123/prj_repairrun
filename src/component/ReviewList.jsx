@@ -50,7 +50,11 @@ const ReviewList = ({ search, nofilter, sortBy }) => {
   const filteredReviews =
     nofilter === ""
       ? sortedReviews.filter((review) => {
-          const reviewText = review.reviewContents + review.repairItem;
+          const reviewText =
+            review.reviewContents +
+            review.repairItem +
+            review.userId +
+            review.ptnName;
           return (
             search === "" ||
             reviewText.toLowerCase().includes(search.toLowerCase())
@@ -62,7 +66,8 @@ const ReviewList = ({ search, nofilter, sortBy }) => {
     <>
       <ReviewListStyle>
         <div className="container">
-          {filteredReviews &&
+          {nofilter !== "nofilter" &&
+            filteredReviews &&
             filteredReviews.map((filteredReview) => (
               <Review
                 key={filteredReview.reviewContents}
@@ -71,9 +76,11 @@ const ReviewList = ({ search, nofilter, sortBy }) => {
             ))}
           {nofilter === "nofilter" &&
             reviewList &&
-            reviewList.map((review) => (
-              <Review key={review.reviewContents} reviewData={review} />
-            ))}
+            reviewList
+              .slice(0, 3)
+              .map((review) => (
+                <Review key={review.reviewContents} reviewData={review} />
+              ))}
         </div>
       </ReviewListStyle>
     </>

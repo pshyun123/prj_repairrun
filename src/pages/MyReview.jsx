@@ -1,10 +1,21 @@
 import MemReviewList from "../component/MemReviewList";
 import { ReviewTop } from "../style/MyReviewStyle";
-import { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { UserContext } from "../context/UserStore";
 
 const MyReview = () => {
   const [mySortBy, setMySortBy] = useState("writtenReviews");
   const [totalReviews, setTotalReviews] = useState(0);
+
+  const context = useContext(UserContext);
+  const { loginStatus } = context;
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (loginStatus !== "member") navigate("/login");
+  }, []);
 
   const handleSortChange = (criteria) => {
     setMySortBy(criteria);

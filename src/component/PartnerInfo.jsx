@@ -6,8 +6,8 @@ import { useNavigate } from "react-router-dom";
 const PartnerInfo = ({ selPtn, loginType }) => {
   const navigate = useNavigate();
   console.log(loginType);
-  const ptnId =
-    loginType === "partner" ? window.localStorage.getItem("userId") : selPtn;
+  const currId = window.localStorage.getItem("userId");
+  const ptnId = loginType === "partner" ? currId : selPtn;
   // console.log("ptnId" + ptnId);
   // console.log("ptnId" + selPtn);
   const [ptnInfo, setPtnInfo] = useState(null);
@@ -18,11 +18,11 @@ const PartnerInfo = ({ selPtn, loginType }) => {
       const res = await PartnerApi.partnerInfo(ptnId);
       if (res.data !== null) {
         setPtnInfo(res.data);
-        window.localStorage.setItem("userName", res.data.userName);
-        window.localStorage.setItem("userEmail", res.data.userEmail);
-        window.localStorage.setItem("userPhone", res.data.userPhone);
-        window.localStorage.setItem("userAddr", res.data.userAddr);
-        window.localStorage.setItem("userImg", res.data.userImg);
+        window.localStorage.setItem("ptnName", res.data.userName);
+        window.localStorage.setItem("ptnEmail", res.data.userEmail);
+        window.localStorage.setItem("ptnPhone", res.data.userPhone);
+        window.localStorage.setItem("ptnAddr", res.data.userAddr);
+        window.localStorage.setItem("ptnImg", res.data.userImg);
         loginType === "partner" &&
           window.localStorage.setItem("ptnDesc", res.data.ptnDesc);
       }
@@ -67,13 +67,15 @@ const PartnerInfo = ({ selPtn, loginType }) => {
             </div>
           </div>
           <div className="btnBox">
-            <button
-              onClick={() => {
-                navigate(`/partnermain/updateInfo/${ptnId}`);
-              }}
-            >
-              수정하기
-            </button>
+            {loginType === "partner" && (
+              <button
+                onClick={() => {
+                  navigate(`/partnermain/updateInfo/${ptnId}`);
+                }}
+              >
+                수정하기
+              </button>
+            )}
           </div>
         </div>
       </PartnerInfoComp>

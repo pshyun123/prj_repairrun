@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const PartnerMiniBlock = styled.div`
   width: 45%;
@@ -62,9 +63,15 @@ const PartnerMiniBlock = styled.div`
 `;
 
 const PartnerMini = ({ ptn }) => {
+  const navigate = useNavigate();
   return (
     <PartnerMiniBlock>
-      <div className="wrapper">
+      <div
+        className="wrapper"
+        onClick={() => {
+          navigate(`/partnerlist/partner/${ptn.ptnId}`);
+        }}
+      >
         <div className="wrap">
           <img className="logoImg" src={ptn.ptnLogo} alt="logo" />
         </div>

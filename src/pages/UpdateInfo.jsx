@@ -109,6 +109,8 @@ const UpdateInfo = () => {
   ];
 
   useEffect(() => {
+    if (loginStatus === "") navigate("/login");
+
     console.log(inputPw);
     console.log();
     // 비밀번호 입력을 다 지우면
@@ -459,7 +461,7 @@ const UpdateInfo = () => {
             <div className="inputArea">
               <label name="addr">
                 <span>주소</span>
-                <input type="text" defaultValue={inputAddr} />
+                <input type="text" value={inputAddr} readOnly={true} />
                 <button className="active" onClick={openPostCode}>
                   주소찾기
                 </button>

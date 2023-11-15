@@ -71,6 +71,13 @@ const PartnerApi = {
     };
     return await axios.post(BACKEND + "/partners/new", newPtnData);
   },
+  // 파트너 가입 시 수선 정보 입려
+  newDetail: async (ptnId) => {
+    const newPtn = {
+      ptnId: ptnId,
+    };
+    return await axios.post(BACKEND + "/partners/insertitems", newPtn);
+  },
 
   updateDetail: async (ptnId, repairDetail, days, price) => {
     const updateInfo = {

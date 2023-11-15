@@ -8,8 +8,7 @@ const CouponMini = ({ couponMapData }) => {
         <div className="couponBorder">
           <h3>{couponMapData.couponType}</h3>
           <p>{couponMapData.discountAmount}원 할인</p>
-          <p>{couponMapData.endDate}일 남음</p>
-          <p className="couponRightExp">{couponMapData.endDate}</p>
+          <p className="couponRightExp">~{couponMapData.endDate}</p>
         </div>
       </div>
     </>

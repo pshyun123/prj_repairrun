@@ -81,6 +81,7 @@ const LogoSlide = () => {
         }}
         slidesPerView={7}
         speed={3000}
+        allowTouchMove={false}
       >
         {urlList &&
           urlList.map((url, index) => (

@@ -2,6 +2,7 @@ import OrderImgComp from "../style/OrderImgStyle";
 import OrderImgSwiper from "../util/OrderImgSwiper";
 
 const OrderImg = ({ orderInfo }) => {
+  const loginType = window.localStorage.getItem("loginStatus");
   return (
     <>
       <OrderImgComp>
@@ -53,7 +54,7 @@ const OrderImg = ({ orderInfo }) => {
               <div className="repairing">
                 <p>{orderInfo.orderPrg}</p>
               </div>
-              <button>수정</button>
+              {loginType === "partner" && <button>수정</button>}
             </div>
             <div className="chattingBtn">
               <button>주문채팅</button>

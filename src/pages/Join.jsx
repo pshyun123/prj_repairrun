@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { storage } from "../api/firebase";
 import DaumPostPopup from "../api/DaumPost";
@@ -190,6 +190,8 @@ const Join = () => {
     }
   };
 
+  useEffect(() => {}, [url]);
+
   const onSubmit = () => {
     if (imgSrc !== basicProfile) {
       const storageRef = storage.ref();
@@ -199,14 +201,14 @@ const Join = () => {
         fileRef.getDownloadURL().then((url) => {
           console.log("저장경로 확인 : " + url);
           setUrl(url);
-          addNewMember();
+          addNewMember(url);
         });
       });
     } else {
       addNewMember();
     }
   };
-  const addNewMember = async () => {
+  const addNewMember = async (url) => {
     try {
       const res =
         type === "member"
@@ -231,8 +233,29 @@ const Join = () => {
             );
       if (res.data === true) {
         console.log("가입 성공!");
+        if (type === "partner") addDetail();
+        else {
+          setModalOpen(true);
+          setModalHeader("회원가입");
+          setModalMsg("회원가입에 성공했습니다!");
+          setModalType("회원가입");
+        }
+      }
+    } catch (err) {
+      console.log(err);
+      setModalOpen(true);
+      setModalHeader("오류");
+      setModalMsg("서버와의 연결이 끊어졌습니다!");
+      setModalType("");
+    }
+  };
+  const addDetail = async () => {
+    try {
+      const res = await PartnerApi.newDetail(inputId);
+      if (res.data === true) {
+        console.log("정보추가 성공!");
         setModalOpen(true);
-        setModalHeader("회원가입 성공");
+        setModalHeader("회원가입");
         setModalMsg("회원가입에 성공했습니다!");
         setModalType("회원가입");
       }
@@ -259,7 +282,7 @@ const Join = () => {
           <div className="wrapper">
             <div className="inputArea">
               <label name="name">
-                <span>이름</span>
+                <span>{type === "member" ? "이름" : "파트너명"}</span>
                 <div className="box">
                   <input type="text" onChange={(e) => onChangeInput(e, 1)} />
                   {inputName.length > 0 && (

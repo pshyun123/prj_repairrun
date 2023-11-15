@@ -1,18 +1,24 @@
 import styled from "styled-components";
 
-const OrderImgComp = styled.div`
+const OrderImgComp = styled.section`
   width: 100%;
-  /* height: 50vw; */
-  /* background-color: var(--IVORY); */
   .container {
     padding: 70px 0;
+    background-color: var(--IVORY);
     .orderDetailBoder {
       display: flex;
-      /* background-color: var(--MIDBLUE); */
       width: 100%;
       margin-bottom: 30px;
       padding: 40px;
       border-radius: 20px;
+      @media only screen and (max-width: 768px) {
+        flex-direction: column;
+        .orderDetailBox1 {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+      }
       .orderDetailBox1 {
         flex-grow: 1;
         h2 {
@@ -22,24 +28,29 @@ const OrderImgComp = styled.div`
           font-weight: 600;
         }
         .orderImgBorder {
-          width: 100%;
-          padding-bottom: 100%;
+          width: 80%;
+          padding-bottom: 80%;
           overflow: hidden;
+          border-radius: 5px;
           position: relative;
           .swiperWrapper {
             width: 100%;
             height: 100%;
             position: absolute;
+            .swiper {
+              width: 100%;
+              height: 100%;
+            }
           }
         }
       }
     }
     .orderDetailBox2 {
-      padding-left: 20px;
+      margin-left: 20px;
       white-space: nowrap;
       flex-grow: 1;
       font-size: 1.4em;
-      padding-top: 16%;
+      padding-top: 10%;
       .orderDetailComp {
         color: black;
         display: flex;
@@ -57,7 +68,7 @@ const OrderImgComp = styled.div`
           margin-bottom: 40px;
         }
         .requestText {
-          padding: 10px;
+          padding: 20px;
           border-radius: 10px;
           background-color: var(--GREY);
         }
