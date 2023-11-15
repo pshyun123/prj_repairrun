@@ -3,12 +3,41 @@ import { PaymentComp } from "../style/PaymentStyle";
 import Checkbox from "../util/Checkbox";
 import { useNavigate } from "react-router-dom";
 import OrderApi from "../api/OrderApi";
+import Modal from "../util/Modal";
+import CouponApi from "../api/CouponApi";
 
 export const Payment = ({ onNext }) => {
   const navigate = useNavigate();
   const handleNextClick = () => {
     navigate("/mypage");
   };
+
+  const userId = window.localStorage.getItem("userId");
+  const tempData = {
+    userName: window.localStorage.getItem("userName"),
+    userPhone: window.localStorage.getItem("userPhone"),
+    userAddr: window.localStorage.getItem("userAddr"),
+    repairPrice: window.localStorage.getItem("repairPrice"),
+    delivery: Number("3000"),
+    ptnNum: window.localStorage.getItem("ptnNum"),
+  };
+  const date = new Date();
+  const year = date.getFullYear();
+  const month = ("0" + (1 + date.getMonth())).slice(-2);
+  const day = ("0" + date.getDate()).slice(-2);
+  const orderDate = year + month + day;
+  const orderDate2 = orderDate.slice(-6);
+
+  const orderNum = orderDate + tempData.ptnNum;
+  console.log("orderNum" + orderNum);
+
+  //팝업 처리
+  const [openModal, setModalOpen] = useState(false);
+  const closeModal = (num) => {
+    setModalOpen(false);
+  };
+  const [modalMsg, setModalMsg] = useState("");
+  const [modalHeader, setModalHeader] = useState("");
 
   // 약관동의 체크 관련
   const [checkedAll, setCheckedAll] = useState(false);
@@ -38,25 +67,79 @@ export const Payment = ({ onNext }) => {
         break;
     }
   };
+  const [couponList, setCouponList] = useState(null);
+
+  const [total, setTotal] = useState(
+    Number(tempData.repairPrice) + tempData.delivery - discount
+  );
   useEffect(() => {
     if (checked1 && checked2 && checked3) {
       setCheckedAll(true);
     } else {
       setCheckedAll(false);
     }
-  }, [checked1, checked2, checked3]);
+  }, [checked1, checked2, checked3, userId, discount]);
+  useEffect(() => {
+    console.log(userId);
+    const fetchCoupon = async () => {
+      try {
+        const res = await CouponApi.coupon(userId);
+        if (res.data !== null) setCouponList(res.data);
+        console.log(couponList);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchCoupon();
+    console.log(couponList);
+  }, []);
 
-  const tempData = {
-    userName: window.localStorage.getItem("userName"),
-    userPhone: window.localStorage.getItem("userPhone"),
-    userAddr: window.localStorage.getItem("userAddr"),
-    repairPrice: window.localStorage.getItem("repairPrice"),
-    delivery: Number("3000"),
-  };
-  const [total, setTotal] = useState(
-    Number(tempData.repairPrice) + tempData.delivery - discount
-  );
+  useEffect(() => {
+    // 최신 상태 값을 기반으로 total 계산
+    const newTotal =
+      Number(tempData.repairPrice) + tempData.delivery - discount;
 
+    // total 상태값 업데이트
+    setTotal(newTotal);
+  }, [tempData.repairPrice, tempData.delivery, discount]);
+  // const addNewMember = async () => {
+  //   try {
+  //     const res =
+  //       type === "member"
+  //         ? await MemberApi.newMember(
+  //             inputId,
+  //             inputPw,
+  //             inputName,
+  //             inputEmail,
+  //             inputPhone,
+  //             inputAddr,
+  //             url
+  //           )
+  //         : await PartnerApi.newPartner(
+  //             inputId,
+  //             inputPw,
+  //             inputName,
+  //             inputEmail,
+  //             inputPhone,
+  //             inputAddr,
+  //             inputDesc,
+  //             url
+  //           );
+  //     if (res.data === true) {
+  //       console.log("가입 성공!");
+  //       setModalOpen(true);
+  //       setModalHeader("회원가입 성공");
+  //       setModalMsg("회원가입에 성공했습니다!");
+  //       setModalType("회원가입");
+  //     }
+  //   } catch (err) {
+  //     console.log(err);
+  //     setModalOpen(true);
+  //     setModalHeader("오류");
+  //     setModalMsg("서버와의 연결이 끊어졌습니다!");
+  //     setModalType("");
+  //   }
+  // };
   return (
     <>
       <PaymentComp>
@@ -152,16 +235,36 @@ export const Payment = ({ onNext }) => {
                 <p className="title">쿠폰</p>
               </div>
               <div className="myCoupon">
-                <select>
+                <select
+                  onChange={(e) => {
+                    const selectedCouponType = e.target.value;
+                    const selectedCoupon = couponList.find(
+                      (coupon) => coupon.couponType === selectedCouponType
+                    );
+                    const newDiscount = selectedCoupon
+                      ? selectedCoupon.discountAmount
+                      : 0;
+
+                    // discount 상태값 업데이트
+                    setDiscount(newDiscount);
+
+                    // discount를 고려한 새로운 total 계산
+                    const newTotal =
+                      Number(tempData.repairPrice) +
+                      tempData.delivery -
+                      newDiscount;
+
+                    // total 상태값 업데이트
+                    setTotal(newTotal);
+                  }}
+                >
                   <option value="">선택안함</option>
-                  {/* <option value={userCoupon.couponType}> */}
-                  <option value={tempData.couponType}>
-                    {tempData.couponType}
-                  </option>
-                  {/* <option value={userCoupon.couponType2}> */}
-                  <option value={tempData.couponType2}>
-                    {tempData.couponType2}
-                  </option>
+                  {couponList &&
+                    couponList.map((coupon) => (
+                      <option key={coupon.couponType} value={coupon.couponType}>
+                        {coupon.couponType}
+                      </option>
+                    ))}
                 </select>
               </div>
               <div className="couponBox"></div>
@@ -186,7 +289,7 @@ export const Payment = ({ onNext }) => {
                   </div>
                   <div className="coupon">
                     <p>쿠폰</p>
-                    <p>-{tempData.couponDiscount}</p>
+                    <p>-{discount}</p>
                   </div>
                 </div>
                 <div className="totalPrice">
@@ -201,6 +304,15 @@ export const Payment = ({ onNext }) => {
           </div>
         </div>
       </PaymentComp>
+      <Modal
+        open={openModal}
+        close={closeModal}
+        header={modalHeader}
+        children={modalMsg}
+        confirm={() => {
+          navigate("/mypage");
+        }}
+      ></Modal>
     </>
   );
 };
