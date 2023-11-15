@@ -7,5 +7,11 @@ const ReviewApi = {
 
     return await axios.post(BACKEND + "/reviewstock/data");
   },
+  myReview: async (userId) => {
+    const userIdData = {
+      userId: userId,
+    };
+    return await axios.post(BACKEND + "/mypage/myreview", userIdData);
+  },
 };
 export default ReviewApi;
