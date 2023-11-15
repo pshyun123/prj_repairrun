@@ -60,29 +60,23 @@ const PartnerMiniBlock = styled.div`
   }
 `;
 
-const PartnerMini = () => {
-  const test = {
-    logoUrl:
-      "https://firebasestorage.googleapis.com/v0/b/repairrun-dae01.appspot.com/o/03_magic_logo.png?alt=media&token=ca7abac3-4450-4292-bf71-02523b2818f4",
-    ptnName: "뜨개뜨개 마법",
-    repairItem: "가방, 옷, 신발, 벨트지갑",
-    rating: "★★★★★",
-  };
+const PartnerMini = ({ ptn }) => {
   return (
     <PartnerMiniBlock>
       <div className="wrapper">
         <div className="wrap">
-          <img className="logoImg" src={test.logoUrl} alt="logo" />
+          <img className="logoImg" src={ptn.ptnLogo} alt="logo" />
         </div>
         <div className="wrap">
           <div className="item name">
-            <h3>{test.ptnName}</h3>
-            <p>{test.repairItem}</p>
+            <h3>{ptn.ptnName}</h3>
+            <p>{ptn.repairItem}</p>
           </div>
-          <div className="item rating">{test.rating}</div>
+          <div className="item rating">{ptn.rating}</div>
         </div>
       </div>
     </PartnerMiniBlock>
   );
 };
+
 export default PartnerMini;

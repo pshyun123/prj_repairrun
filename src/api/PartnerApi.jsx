@@ -104,6 +104,10 @@ const PartnerApi = {
     return await axios.post(BACKEND + "/partners/updateinfo", updateList);
   },
 
+  partnerList: async () => {
+    return await axios.post(BACKEND + "/partners/ptnlist");
+  },
+
   //임시 이동 예정
   orderStatusList: async (type, id) => {
     const userData = {
