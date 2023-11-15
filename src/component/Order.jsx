@@ -2,6 +2,7 @@ import OrderImgSwiper from "../util/OrderImgSwiper";
 import { useNavigate } from "react-router-dom";
 
 const Order = ({ orderData }) => {
+  const navigate = useNavigate();
   const loginType = window.localStorage.getItem("loginStatus");
   return (
     <>
@@ -36,7 +37,13 @@ const Order = ({ orderData }) => {
             </div>
           </div>
           <div className="orderBtn">
-            <button>자세히</button>
+            <button
+              onClick={() => {
+                navigate(`/partnermain/orderinfo/${orderData.orderNumber}`);
+              }}
+            >
+              자세히
+            </button>
           </div>
         </div>
       </div>

@@ -52,7 +52,7 @@ function App() {
               <Route path="/MyPage" element={<MyPage />} />
               <Route path="/MyPage/UpdateInfo/:id" element={<UpdateInfo />} />
               <Route
-                path="/MyPage/OrderInfo:/ordernum"
+                path="/MyPage/OrderInfo/:ordernum"
                 element={<OrderInfo />}
               />
               <Route path="/MyPage/MyReview" element={<MyReview />} />
@@ -62,6 +62,11 @@ function App() {
               <Route
                 path="/PartnerMain/UpdateInfo/:id"
                 element={<UpdateInfo />}
+              />
+              {/* 주문형황(파트너) */}
+              <Route
+                path="/PartnerMain/OrderInfo/:orderNum"
+                element={<OrderInfo />}
               />
               {/* 후기관리 */}
               <Route

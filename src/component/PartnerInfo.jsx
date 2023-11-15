@@ -5,13 +5,15 @@ import { useNavigate } from "react-router-dom";
 
 const PartnerInfo = ({ selPtn, loginType }) => {
   const navigate = useNavigate();
+  console.log(loginType);
   const ptnId =
     loginType === "partner" ? window.localStorage.getItem("userId") : selPtn;
-  console.log("ptnId" + ptnId);
-  console.log("ptnId" + selPtn);
+  // console.log("ptnId" + ptnId);
+  // console.log("ptnId" + selPtn);
   const [ptnInfo, setPtnInfo] = useState(null);
 
   const getPartnerInfo = async () => {
+    console.log("파트너 정보 불러와!");
     try {
       const res = await PartnerApi.partnerInfo(ptnId);
       if (res.data !== null) {
@@ -33,6 +35,8 @@ const PartnerInfo = ({ selPtn, loginType }) => {
   useEffect(() => {
     getPartnerInfo();
     console.log(ptnInfo);
+    console.log("로그인 타입!" + loginType);
+    console.log("ptnId" + ptnId);
   }, []);
   return (
     <>

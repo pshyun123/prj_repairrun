@@ -43,5 +43,24 @@ const MemberApi = {
     };
     return await axios.post(BACKEND + "/members/new", newMemData);
   },
+
+  updateInfo: async (
+    userId,
+    userPw,
+    userEmail,
+    userPhone,
+    userAddr,
+    userImg
+  ) => {
+    const updateList = {
+      userId: userId,
+      userPw: userPw,
+      userEmail: userEmail,
+      userPhone: userPhone,
+      userAddr: userAddr,
+      userImg: userImg,
+    };
+    return await axios.post(BACKEND + "/members/updateinfo", updateList);
+  },
 };
 export default MemberApi;

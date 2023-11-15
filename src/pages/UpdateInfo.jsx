@@ -18,6 +18,9 @@ const UpdateInfo = () => {
   const userId = window.localStorage.getItem("userId");
   const userName = window.localStorage.getItem("userName");
   const userImg = window.localStorage.getItem("userImg");
+  const userPhone = window.localStorage.getItem("userPhone");
+  const userEmail = window.localStorage.getItem("userEmail");
+  const userAddr = window.localStorage.getItem("userAddr");
   const originImg = userImg !== null ? userImg : basicProfile;
   console.log(status);
 
@@ -26,18 +29,12 @@ const UpdateInfo = () => {
   //프로필이미지
   const [imgSrc, setImgSrc] = useState(originImg);
   const [file, setFile] = useState(null);
-  const [url, setUrl] = useState("");
+  const [url, setUrl] = useState(originImg);
 
   //키보드 입력
-  const [inputPhone, setInputPhone] = useState(
-    window.localStorage.getItem("userPhone")
-  );
-  const [inputEmail, setInputEmail] = useState(
-    window.localStorage.getItem("userEmail")
-  );
-  const [inputAddr, setInputAddr] = useState(
-    window.localStorage.getItem("userAddr")
-  );
+  const [inputPhone, setInputPhone] = useState(userPhone);
+  const [inputEmail, setInputEmail] = useState(userEmail);
+  const [inputAddr, setInputAddr] = useState(userAddr);
   //파트너만
   const [inputDesc, setInputDesc] = useState(
     window.localStorage.getItem("ptnDesc")
@@ -152,9 +149,34 @@ const UpdateInfo = () => {
       setIsPw(true);
     }
 
+    if (inputPhone.length === 0) {
+      setPhoneMessage("");
+      setIsPhone(true);
+    }
+
+    if (inputEmail.length === 0) {
+      setEmailMessage("");
+      setIsEmail(true);
+    }
+
     console.log("isPw" + isPw);
     console.log("isDesc" + isDesc);
-  }, [inputOriginPw, inputPw, isDisable, inputPw2, isPw, inputDesc, isDesc]);
+  }, [
+    inputOriginPw,
+    inputPw,
+    isDisable,
+    inputPw2,
+    inputDesc,
+    inputPhone,
+    inputEmail,
+    inputAddr,
+    isPw,
+    isDesc,
+    isPhone,
+    isEmail,
+    isAddr,
+    url,
+  ]);
   const onChangeInput = (e, num) => {
     switch (num) {
       case 1:
@@ -242,6 +264,64 @@ const UpdateInfo = () => {
       setModalHeader("오류");
       setModalType("");
       setModalMsg("서버와의 연결이 끊어졌습니다!");
+    }
+  };
+  const onSubmit = () => {
+    if (imgSrc !== originImg) {
+      const storageRef = storage.ref();
+      const fileRef = storageRef.child(file.name);
+      fileRef.put(file).then(() => {
+        console.log("저장성공!");
+        fileRef.getDownloadURL().then((url) => {
+          console.log("저장경로 확인 : " + url);
+          setUrl(url);
+          updateInfo();
+        });
+      });
+    } else {
+      imgSrc === originImg && setUrl(originImg);
+      updateInfo();
+    }
+  };
+  const updateInfo = async () => {
+    const chPw = inputPw.length === 0 ? userPw : inputPw;
+    const chPhone = inputPhone.length === 0 ? userPhone : inputPhone;
+    const chEmail = inputEmail.length === 0 ? userEmail : inputEmail;
+    const chAddr = inputAddr.length === 0 ? userAddr : inputAddr;
+
+    try {
+      const res =
+        status === "member"
+          ? await MemberApi.updateInfo(
+              userId,
+              chPw,
+              chEmail,
+              chPhone,
+              chAddr,
+              url
+            )
+          : await PartnerApi.updateInfo(
+              userId,
+              chPw,
+              chEmail,
+              chPhone,
+              chAddr,
+              url,
+              inputDesc
+            );
+      if (res.data === true) {
+        console.log("수정 성공!");
+        setModalOpen(true);
+        setModalHeader("정보 수정 성공");
+        setModalMsg("정보수정에 성공했습니다!");
+        setModalType("성공");
+      }
+    } catch (err) {
+      console.log(err);
+      setModalOpen(true);
+      setModalHeader("오류");
+      setModalMsg("서버와의 연결이 끊어졌습니다!");
+      setModalType("");
     }
   };
 
@@ -411,7 +491,9 @@ const UpdateInfo = () => {
           </div>
           <div className="btnBox">
             {isPw && isPhone && isEmail && isAddr && isDesc ? (
-              <button className="active">제출하기</button>
+              <button className="active" onClick={onSubmit}>
+                제출하기
+              </button>
             ) : (
               <button>제출하기</button>
             )}
@@ -433,7 +515,7 @@ const UpdateInfo = () => {
         children={modalMsg}
         type={modalType}
         confirm={() => {
-          navigate("-1");
+          navigate(-1);
         }}
       ></Modal>
     </>
