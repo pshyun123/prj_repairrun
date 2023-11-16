@@ -1,6 +1,6 @@
 // 주문 단계 관련 API
 import axios from "axios";
-const BACKEND = "http://192.168.10.6:8111";
+const BACKEND = "http://localhost:8111";
 
 const OrderApi = {
   // 상세 항목 가져오기
