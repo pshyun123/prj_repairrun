@@ -158,15 +158,15 @@ export const Payment = ({ onNext }) => {
                 <p className="title">수거 / 배송 주소</p>
               </div>
               <div className="paymentBox">
-                <div className="name">
+                <div className="name box">
                   <div className="label">주문자</div>
                   <p>{tempData.userName}</p>
                 </div>
-                <div className="phone">
+                <div className="phone box">
                   <div className="label">연락처</div>
                   <p>{tempData.userPhone}</p>
                 </div>
-                <div className="addr">
+                <div className="addr box">
                   <div className="label">주 소</div>
                   <p>{tempData.userAddr}</p>
                 </div>

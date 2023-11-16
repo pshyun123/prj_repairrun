@@ -92,11 +92,21 @@ export const PaymentComp = styled.section`
               font-size: 1.1rem;
             }
           }
+          @media only screen and (max-width: 768px) {
+            .box {
+              .label {
+              }
+              p {
+                font-size: 1em;
+              }
+            }
+          }
         }
         .cardSection {
           display: flex;
           justify-content: space-between;
           padding: 5% 3%;
+
           .cardBox {
             /* border: 1px solid red; */
             display: flex;
@@ -160,6 +170,16 @@ export const PaymentComp = styled.section`
               width: 100%;
               padding: 12px;
               border: 1px solid var(--GREY);
+            }
+          }
+          @media only screen and (max-width: 768px) {
+            flex-direction: column;
+            .cardBox {
+              margin-bottom: 30px;
+              width: 100%;
+            }
+            .agreementBox {
+              letter-spacing: -0.8px;
             }
           }
         }

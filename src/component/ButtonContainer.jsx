@@ -3,16 +3,23 @@ import styled, { css } from "styled-components";
 export const NewOrderComp = styled.div`
   display: flex;
   flex-wrap: wrap;
-  margin: 10px 40px;
+  margin: 10px 0;
   padding-top: 230px;
   padding-bottom: 230px;
   align-items: center;
   justify-content: center;
+  width: 100%;
   .container {
     display: flex;
     align-items: center;
     justify-content: space-between;
     height: 100%;
+  }
+  @media only screen and (max-width: 768px) {
+    padding: 100px 0;
+    .container {
+      flex-direction: column;
+    }
   }
 `;
 
