@@ -1,6 +1,6 @@
 import { type } from "@testing-library/user-event/dist/type";
 import axios from "axios";
-const BACKEND = "http://localhost:8111";
+const BACKEND = "http://192.168.10.6:8111";
 
 const ServiceApi = {
   //Service

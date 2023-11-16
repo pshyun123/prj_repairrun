@@ -1,6 +1,6 @@
 // 파트너 정보 관련 API
 import axios from "axios";
-const BACKEND = "http://localhost:8111";
+const BACKEND = "http://192.168.10.6:8111";
 
 const PartnerApi = {
   //로그인

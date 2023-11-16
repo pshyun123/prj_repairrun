@@ -96,6 +96,7 @@ const OrderImg = ({ orderInfo, setInfo }) => {
                   수정
                 </button>
               ) : (
+                loginType === "partner" &&
                 orderInfo.orderPrg !== "완료" && (
                   <button
                     onClick={() => {

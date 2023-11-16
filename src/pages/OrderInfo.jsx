@@ -16,7 +16,7 @@ const OrderInfo = () => {
   };
   useEffect(() => {
     fetchOrder();
-  }, [orderInfo]);
+  }, []);
 
   return (
     <>{orderInfo && <OrderImg orderInfo={orderInfo} setInfo={fetchOrder} />}</>
