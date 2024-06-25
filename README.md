@@ -1,70 +1,42 @@
-# Getting Started with Create React App
+# RepairRun
+ReapirRun은 수선이 필요한 사용자와 수선 업체(파트너)를 매칭해주는 서비스
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 🔍 프로젝트 소개
+처음으로 프론트엔드와 백엔드를 통합하여 진행한 프로젝트였습니다. 맡은 부분에 대하여 프론트/백작업을 모두 수행하면서, 각 파트의 역할과 상호 연결성에 대해 직접 경험하고 이해 할 수 있는 중요한 기회가 되었습니다.
+사용자와 파트너 로그인에 따라 메뉴 구성이 달라지도록 설정하였습니다. 구조는 동일하지만 특정 조건에 따라 미묘한 변화가 있을 경우, 컴포넌트를 재활용하면서 프롭스를 통해 다양한 상황에 맞게 조정했습니다.
 
-## Available Scripts
 
-In the project directory, you can run:
+### ⏰ 개발기간
+2023.10.20 ~ 2023.11.15
 
-### `yarn start`
+### 📌 주요기능
+1. 메인페이지를 분리하여 파트너 사와 일반 회원의 로그인 방식에 따라 다른 화면이 보여지도록 구성
+2. 핵심기능인 빠른 수선, 일반 수선 서비스의 두 종류로 나누어 제공해 사용자의 편의성 제공
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 👨‍👩‍👧‍👦 나의 역할
+사이트의 핵심 기능이자 가장 많은 페이지가 있는 서비스 신청과정 전체 페이지를 담당하였습니다.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **수선서비스 페이지**:  	•	useContext 훅 사용하여 **UserContext**로부터 사용자 컨텍스트를 가져와 로그인 여부 확인 (BasicRepair.jsx)
+* useEffect를 사용하여 local storage에 선택한 품목 저장 → 선택 품목에 따라 라디오 버튼 상세 항목이 바뀜(ItemSelect.jsx → Request.jsx)
+* Restful API 방식으로 백과 프론트가 통신하며 필요한 정보를 불러오도록 구현 (OrderApi.jsx)
+* 네이티브 쿼리를 직접 작성하여 데이터베이스와 상호 작용(정확한 값이 나올 수 있도록)
 
-### `yarn test`
+- **파트너 선택 페이지**: 	
+* 파트너 매칭 상태 변경/일정 시간 후 자동으로 페이지 전환/컴포넌트 언마운트 시 리소스 해제 → 안정적 & 메모리 누수 방지
+* 파트너 데이터를 서버에서 가져오고, 사용자가 선택한 파트너 정보를 로컬 스토리지에 저장
+* 파트너 데이터가 별점 높은 순, 금액 낮은 순으로 정렬되도록 네이티브 쿼리를 상세하게 작성하여 JSON형태로 정보를 보냄
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **결제 페이지**: 
+* 로컬스토리지에 저장한 모든 값을 불러와 DB에 저장
+* 결제성공 시 사용자가 모달을 사용하여 확인 가능하게 설계
 
-### `yarn build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### ⚙️ 사용기술 및 환경
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- 사용 언어 : HTML, CSS(SCSS), JavaScript(JSX) / Java / 
+- 프론트엔드 라이브러리 : React
+- 백엔드 프레임워크 : Spring Boot - JDBC
+- RDBMS : ORACLE
+- IDE : IntelliJ, VScode
+- WAS : Tomcat(Spring Boot 내장)
+- 협업 도구 : GitHub, Notion, Figma, Google Spreadsheet
